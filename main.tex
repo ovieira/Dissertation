@@ -1,14 +1,90 @@
-\documentclass{article}
-\usepackage[utf8]{inputenc}
 
-\title{Dissertation}
-\author{João Vieira}
-\date{August 2015}
+%%%%%%%%%%%%%%%%%%%%%%% file typeinst.tex %%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This is the LaTeX source for the instructions to authors using
+% the LaTeX document class 'llncs.cls' for contributions to
+% the Lecture Notes in Computer Sciences series.
+% http://www.springer.com/lncs       Springer Heidelberg 2006/05/04
+%
+% It may be used as a template for your own input - copy it
+% to a new file with a new name and use it as the basis
+% for your article.
+%
+% NB: the document class 'llncs' has its own and detailed documentation, see
+% ftp://ftp.springer.de/data/pubftp/pub/tex/latex/llncs/latex2e/llncsdoc.pdf
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+% This is LLNCS.DOC the documentation file of
+% the LaTeX2e class from Springer-Verlag
+% for Lecture Notes in Computer Science, version 2.4
+\documentclass[runningheads]{llncs}
+\usepackage{llncsdoc}
+\usepackage{graphicx}
+\usepackage[printonlyused]{acronym}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{cite}
+\usepackage{subcaption}
+\usepackage{hyperref}
+\usepackage{pifont}
+\usepackage{pgfgantt}
+%
 
 \begin{document}
 
+\label{contbegin}
+
+\title{Augmented Reality Upper-Limb Rehabilitation with Multimodal Feedback}
+
+\titlerunning{Augmented Reality Upper-Limb Rehabilitation with Multimodal Feedback}
+
+\author{Jo\~{a}o Vieira}
+
+\authorrunning{Jo\~{a}o Vieira}
+
+
+\institute{Dep. of Computer Science and Engineering, \\ Instituto Superior T\'{e}cnico, Universidade de Lisboa\\
+	Lisbon, Portugal\\
+	\url{http://tecnico.ulisboa.pt}}
+
+
 \maketitle
 
-\section{Introduction}
+
+\begin{abstract}
+	After being exempted from in-clinic physical therapy, 
+	it is usual for a patient to continue performing exercises 
+	outside of the clinic and without any therapist's supervision.
+	While performing unsupervised exercises, it would be desirable 
+	to receive similar feedback as the one provided by a physical therapist, to maintain 
+	a certain quality in the task execution.
+	To address this problem, several approaches using feedback for rehabilitation have been implemented. Unfortunately, the test subjects frequently reported difficulty in completely understanding the feedback given to them, therefore failing to correctly execute the given movement.
+	
+	\keywords{Augmented Reality, Multimodal Feedback, Upper Limb, Home Rehabilitation, Guidance, Motor Learning}
+\end{abstract}
+
+\input{sections/introduction}
+\input{sections/relatedwork}
+\input{sections/vision}
+\input{sections/implementation}
+\input{sections/evaluation}
+\input{sections/conclusion}
+
+
+\raggedbottom
+\pagebreak
+\section*{List of Acronyms}
+\begin{acronym}
+	\acro{AR}{Augmented Reality}
+	\acro{PT}{Physical Therapist}
+	\acro{RS}{Rehabilitation System}
+	\acro{KP}{Knowledge of Performance}
+	\acro{KR}{Knowledge of Results}
+	\acro{MFM}{Multimodal Feedback Manager}
+\end{acronym}
 
 \end{document}
