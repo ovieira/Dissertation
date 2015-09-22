@@ -1,0 +1,102 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                               Introduction - 3pp
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Introduction}
+
+In today's era, users of mobile devices are experiencing a flood of new applications supported by online services through the internet. These applications serve users by providing useful functionality that facilitate some common daily tasks. A common feature among many of such apps is that they require users to entrust sensitive data to the backend service. For example, Yelp \footnote{\url{http://www.yelp.com}} access the user location provided by the device's GPS sensor and send this data over the network to their backend. The backend then returns a list of nearby restaurant suggestions to the user. Google Maps \footnote{\url{http://maps.google.com}} may also use the user's location and a specified destination to calculate route alternatives and provide real-time directions between both places.
+ 
+\section{Motivation}
+
+Relying on such a client-server architecture, however, entails security risks. These applications often have a legitimate reason to ask for each permission, and data must be sent in a way such that the service is able to provide the desired functionality. However, the application cannot guarantee that the data is exclusively used for those exact purposes and not sent to other location-based services or advertisers. The reason is that application providers have no way to guarantee its users that their data is entirely protected both in terms of confidentiality and integrity. In our point of view, service providers in general must not be considered malicious, but application developers or system administrators allowed to manage the \textit{backend} may act against the confidentiality and integrity of user's data. Upon installation of a password management app, user's passwords would be sent to the application servers to perform the backup. Apart from the desired backup, passwords of e-mail or bank accounts could also be accessed by an application insider with access to the \textit{backend} servers or by a malicious developer that coded a backdoor on the application code to keep this data everywhere else for undesired purposes. Also, applications often rely in other third-party applications to provide some specific functionality, like advertisements to be presented to the user. In a recursive way, these applications may also suffer from intentional security breaches or implementation bugs which can be availed by external attackers, compromising user's private data.
+
+There are known records of large-scale private information leaks in widely used web-applications, in which the identity of their users got revealed. For instance, \cite{mojave2014} presents the results of a study performed at Mojave Threat Labs, where a research team analyze mobile applications using several risk factors. One of the tracked risk factors is private data collected and sent to remote web APIs. This private data might include the user's phone number, precise location, email address, etc. The study reveals that at least 78\% of mobile applications installed by business users (users of mobile devices that contain enterprise data) connect to remote endpoints belonging to either an ad network, social media API, or analytics API.
+
+\section{Goals}
+
+The goal of this project is to guarantee the security of private user's data while retaining the application functionality with minimal performance impact. To achieve this, our approach is based on two techniques: Information Flow Control (IFC) and Aspect-Oriented Programming (AOP) \cite{aop}. 
+
+Essentially, IFC is a data-centric access control method that operates through the definition of security policies that regulate the access to data items marked as sensitive at certain information sources. The IFC system then tracks the information flow within the program, performing security checks on the data items marks against the specified policies, anytime data is intended to be exported outside of the application, through interfaces known as information sinks. In this context, because information to be protected is generated at sources located at the mobile endpoint and then sent to the application \textit{backend} through the network, it is necessary to extend the IFC protection between the mobile and the server endpoints. 
+
+AOP, by its turn, entails breaking down program logic into ``concerns'' (cohesive areas of functionality). With AOP, developers can add executable blocks to some source code without explicitly changing it. This programming paradigm pretends that ``cross-cutting concerns'' (the logic needed at many places, without a single class where to implement them) should be implemented once and injected it many times into those places.
+
+While designing this IFC system, we establish the following additional requirements:
+
+\begin{itemize}
+  
+  \item \textbf{Policies specification} in a simple way, easy to express by the developers and understandable by the users;
+        
+  \item \textbf{Minimal impact} on the application model, requiring as less as possible re-engineering effort to the developers;
+    
+  \item \textbf{Acceptable performance overhead} that does not negatively modify the user application experience, a common issue of current IFC systems;
+
+\end{itemize}
+
+We present Floodgate, a system that allows data-centric security policies to be defined over user sensitive data present in a mobile device and enforced in an end-to-end manner between mobile applications and their \textit{backend}, where data must be transferred to.
+
+Floodgate will stand on an architecture that operates at the \textit{middleware}-level, enforcing the security policies defined by the service provider and accepted by the client user. This architecture connects both endpoints where these policies are intended to be enforced, mobile and server, maintaining the security concerns while the application exchanges information between sides over time. On mobile side, Floodgate tracks the information flow across the application using AOP techniques and act accordingly on a misbehavior situation, related to policies violation. On the server side, the exactly same security policies must be respected, in order to guarantee that user's private data is treated the same way as it is on the client side.
+
+Floodgate solves some technical challenges which arise due to the heterogeneity of the mobile and server platforms, which makes it impossible to just plug together two existing systems for mobile and cloud, for multiple reasons: Firstly, existing systems do not provide compatible policy specification methods, making policies specified by one system not understandable by another one. Second, to securely and efficiently achieve policy and label propagation between the mobile endpoint and the backend, the system must implement secure communication methods not present in current systems. Finally, existing systems are supported by different programming models, lacking in offering interfaces to communicate with systems that operate at different levels.
+
+We assume that application providers are not explicitly malicious when offering a service to the user, but applications or other third-parties in which they trust may contain either vulnerabilities intentionally developed by malicious developers or implementation and design bugs that might compromise user's sensitive data. Floodgate aims to protect users and providers against this type of vulnerabilities, providing reliability to applications.
+
+\section{Contributions}
+
+This work addresses the problem of staunching data leaks in mobile-cloud applications. Concretely, we developed and evaluated an end-to-end system to protect user's private data when being accessed by these mobile applications. As a result, the thesis makes the following contributions:
+
+\begin{itemize}
+
+\item A novelty combination of two techniques for data protection: Dynamic taint tracking and aspect-oriented programming
+
+\item The architecture of a \textit{middleware} system operating at both mobile and server endpoints that performs data tracking and enforces protection
+
+\item A publicly available functional prototype of the referred \textit{middleware} system architecture
+
+\item An experimental evaluation of the implemented prototype, along with some criticism regarding the presented results
+
+\end{itemize}
+ 
+\section{Research History}
+
+During this work, multiple architecture components and implementation choices we presented in the project report changed along the path. This happened due to an \textit{a posteriori} in-depth study of those components. This study revealed some difficulties we weren't aware of, some new technologies we didn't know and also some ideas of how the system we idealized could change for the better. 
+
+At first, our system was architecturally based in two essential components:
+
+\begin{itemize}
+\item On the \textbf{mobile-side}, Floodgate worked at the \textit{middleware-level}, operating right ``above'' the mobile operating system, in order to keep applications unchanged. This \textit{middleware} was responsible for enforcing the defined security policies on the mobile-side and propagating them to the backend.
+
+\item On the \textbf{server-side}, Floodgate's operation also occurred at the \textit{middleware-level}, acting as a host for secure containers featuring \textit{servlets} holding the applications' logic. Also, here Floodgate was responsible for enforcing the defined security policies and also controlling data sharing with other \textit{servlets} operating under the same container and even third-parties operating over the network.
+\end{itemize}
+
+To materialize this, the following implementation choices were made: 
+
+For the \textbf{mobile-side}, we planned to use and alter TaintDroid \cite{taintdroid}. TaintDroid is an extension to the Android mobile operating system which performs dynamic taint tracking and intercepts situations when applications export sensitive data belonging to either the user or the device. In such situations, TaintDroid produces notifications and presents them to the user. We planned to modify the security policies followed by TaintDroid, since they are an well-defined list of resources which can be accessed through the Android APIs, and there is no flexible way of defining different policies than these ones. Also, the way how the system handles policy violations was at the same time too rigid and weak for our purpose, since in practice it didn't prevent sensitive data from being exported outside the applications, showing only an informative notification instead. 
+
+Although, after a deep analysis of the TaintDroid, a few aspects made us doubt on this solution's adaptability to our proposed system. In first place, TaintDroid is an extension to the Android mobile operating system, and they need to be compiled together from source. This turned into a limitation since we couldn't apply our system to out-of-the-box Android devices, requiring them to be firstly modified with the TaintDroid-ready operating system build. In the end, this would affect the practical usability of our system and would diverge from our \textit{middleware}-based approach, turning into a mix between \textit{middleware} and OS-based approaches. Also, the latest TaintDroid version available, at the time of writing, targets Android 4.3 Jelly Bean version only. This would also mean a decrease on the number of devices eligible for using Floodgate. Finally, the modifications we planned to perform on TaintDroid's policy definition and enforcement, as stated above, proved themselves to be practically unfeasible, since it would require us to understand the large Android code-base and would somehow not be worth the effort due to all the other spotted issues.
+
+On the server-side, we adopted Servlet Information Flow (SIF) \cite{sif} to build our secure container. SIF is a \textit{software framework} to develop web applications deployed using conventional Linux distributions and containers like Apache Tomcat. SIF allows web applications to be developed with respect for explicit confidentiality and integrity security policies, ensuring they respect users' security requirements. SIF is designed to support only web applications written in Jif 3.0 \cite{jif} and its goal is to perform the tracking of information flows within web applications and information sent to and received from the clients, reduce the trust that must be placed in the applications and exchange it for trust in the framework itself and the Jif compiler.
+
+After a hands-on with SIF, by developing a simple example application, we spotted some particularities of this framework which clearly didn't fit our purpose: First of all, the complexity of correctly defining security policies regarding the confidentiality and integrity of some data. Listing \ref{lst:sif-policy} represents a simple policy associated with a method that comprises the invocation of a given action on the server.
+
+\begin{lstlisting}[caption=SIF security policy example, label=lst:sif-policy]
+public void invoke{*lbl}(label{*lbl} lbl, Request[HellloServEP]{*lbl} req) where caller(req.session),
+    {*lbl} <= {*:req.session} {
+	...
+}
+\end{lstlisting}
+
+Detailing the information contained on the method's header, the first strange component is the \texttt{\{*lbl\}} after the method's name. This component is the begin label of the method, which specifies an upper bound on the method's caller (the caller's program counter cannot be more restrictive that this label). Also, the begin label specifies a lower bound on the method's side effects (during the method's instructions only information at least as restrictive may be updated). Also, the notation \texttt{*name} means that this label is not static, thus, its value will be assigned at runtime. After this, the method's arguments comprise a label \texttt{lbl}, having itself its own label associated \texttt{(\{*lbl\})}, which means that all the labels represented as \texttt{\{*lbl\}} will take the value of this label. Apart from that, a \texttt{Request} instance, wrapping an HTTP web request is received. This request is an instance of a parameterized class, with parameter \texttt{[HelloServEP]}, which is an annotation used for allowing code reusability under different security policies. Following, the annotation \texttt{where caller(req.session)} is another way for the method to acquire authority, since it can be called only from code that is statically known to have the authority of principal \texttt{req.session}, the owner of the session the exchanged web requests belong to.
+	Finally, the annotation \texttt{\{*lbl\} <= \{*:req.session\}} states that this method's call is only allowed if the label \texttt{lbl} is no more restrictive \texttt{(<=)} than the label \texttt{\{ \char`_:\char`_ ; *:req.session\}}, which has no confidentiality concerns but states that only the principal representing the session owner and principals who can act-for him, apart from the top principal, are allowed to alter information with the specified label.
+	
+Another SIF limitation is the fact that like in most language-based IFC systems, Jif's applications have its security policies specified alongside the code. That means that every variable and method along the code is annotated with Jif labels, which makes it hard for the programmer to modify security requirements on the application, requiring the whole code auditing even for minor changes. Thus, it would be preferred to have policies specified in a separate file, importing it when necessary and making it almost transparent for the programmer to implement.
+
+Finally, SIF's functionality is completely web-page-driven. It is supposed to rely on a cycle where the framework receives HTTP GET/POST requests from a client, processes the incoming data from those requests, and finally, builds an well-formed HTML page using Java classes that represent existing HTML nodes (i.e., Body, Div, Form, or the Page itself) to be returned to the client. In a mobile-server architecture as the one Floodgate implements, the method of returning an HTML page is not the one that suits best, since the mobile side of the system already has its own methods to build interfaces to present information to the user. So, a method where only the required information is returned to the mobile-side, which takes the responsibility of presenting this information, would be preferred.
+
+\todo{Talk about the final solutions we found here?}
+  
+%Previous descriptions of this work were published in \cite{xxx}.
+  
+\section{Document Roadmap}
+  
+The rest of this document is organized as follows. Chapter \ref{sec:RelatedWork} presents the state of the art on IFC, in its mobile-side, server-side and distributed strands. Then, Chapter \ref{sec:Architecture} describes the
+architecture and the algorithms used in Floodgate. Chapter \ref{sec:Implementation} describes the implementation details for the described architecture and the tools we used during the process. Then, Chapter~\ref{sec:evaluation} presents the results of the experimental evaluation study. Finally, Chapter~\ref{sec:conclusions} concludes this document by summarizing its main points and future work in sight.
+ 

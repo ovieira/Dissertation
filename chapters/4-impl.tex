@@ -1,0 +1,145 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                               My System 24pp
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Implementation}
+\label{sec:Implementation}
+ 
+%%%%%%%%%%%%%%%%%%%%%
+ 
+\section*{Summary}
+
+In this chapter we will present the implementation details and used tools in order to materialize the architecture described in Sect. \ref{sec:Architecture}. On Sect. \ref{sec:mobile-components} we will focus on the implementation of Floodgate's mobile component and leave the server component for Sect. \ref{sec:server-components}.
+
+In the next chapter we present the experimental evaluation of our system.
+
+\section{Mobile-side Components}
+\label{sec:mobile-components}
+
+As we stated in Sect. \ref{sec:mobile-side-blocks}, our mobile architecture is comprised by two components: The permissions manifest; and the Floodgate library, which is divided into a control library and a network library.
+
+Android SDK allows developers to define multiple text files containing resources to use within an application's source code. These text files may contain pre-defined \textit{strings}, colors, or values and are implemented using the XML text-based format. Even the \texttt{AndroidManifest}, a configuration file where core application parameters are defined, appears on the form of a XML file. In order to keep programming paradigm that Android developers are already used to, we implemented our \textbf{permissions manifest} as a XML file as well. This manifest is placed under the \texttt{resources/raw} folder and contains two sections: One for defining the privacy of each mobile sensitive resource; and other for defining the application's trusted endpoints. Then, when a Floodgate application starts its execution, this file is parsed and its results are stored under Java \texttt{HashMap} data structures for faster access. A simplified example of a permissions manifest file is represented on Listing \ref{lst:permissions-manifest}. The \texttt{<permission>} tag is used to define a new resource privacy permission, identified by its \texttt{<id>} tag and which privacy value (public/private) is defined with the tag \texttt{<access>}. The trusted endpoints are specified with the tag \texttt{<trusted\_endpoint>}, and its value is represented under the tag \texttt{<endpoint>}.
+
+\begin{lstlisting}[language=XML,caption=Permissions manifest example, label=lst:permissions-manifest]
+<?xml version="1.0"?>
+<permissions>
+    <!-- Telephony permissions -->
+    <permission>
+        <id>IMEI</id>
+        <access>public</access>
+    </permission>
+    <permission>
+        <id>LINE1_NUMBER</id>
+        <access>private</access>
+    </permission>
+    <!-- Location permissions -->
+    <permission>
+        <id>GPS_LOCATION</id>
+        <access>public</access>
+    </permission>
+    <permission>
+        <id>GSM_LOCATION</id>
+        <access>public</access>
+    </permission>
+    <!-- Trusted Endpoints -->
+    <trusted_endpoint>
+        <endpoint>http://172.168.1.1:8080</endpoint>
+    </trusted_endpoint>
+</permissions>
+\end{lstlisting}
+
+In order to intercept the accesses to sensitive resources on the mobile device and provide network communication capabilities, the \textbf{Floodgate library} is used. It is implemented as an application library, which can be added as an Android project dependency through Gradle, a build automation and dependency management tool widely-used in Android development.
+
+On the one side, the Floodgate \textbf{control library} can be defined as a set of Java classes, each one representing an \textit{aspect}, annotated with the \texttt{@Aspect} annotation. Every \textit{aspect} is implemented using AspectJ, an aspect-oriented extension to the Java programming language, whose library archive is included in the Floodgate library as a dependency. In practice, an AspectJ \textit{aspect} can be defined as two separate parts which together define where in the code they operate and its actual behavior: A pointcut, represented with the \texttt{@Pointcut} annotation, which defines which method the aspect is intended to intercept and whether the method must be intercepted on every execution or only when an explicit call is made at it by the programmer. For example, the pointcut \texttt{call(* android.telephony.TelephonyManager.getDeviceId())} states that the aspect which it refers to aims at intercepting every explicit call to a method named \texttt{getDeviceId()} of the \texttt{TelephonyManager} Android native class, with any type of return value. The other part, which defines the \textit{aspect} actual behavior when called, is the advice, which in AspectJ, can be represented by the \texttt{@Before},\texttt{@After} or \texttt{@Around}, whether it must be executed before, after or instead the pointcut method's code. Here was the place where we implemented the checks regarding the privacy of the permissions being accessed (by parsing the content of permissions manifest), updating the application's taint if necessary.
+
+Also, some configurations must be added to the application's build file, for the application to recognize the defined \textit{aspects}. Concretely, as stated in one of Fernando Cejas' \textit{blog posts} \footnote{\url{http://fernandocejas.com/2014/08/03/aspect-oriented-programming-in-android/}}, we have to use the AspectJ compiler (\texttt{ajc}, an extension of the Java compiler, \texttt{javac}) to weave all the classes that are affected by our \textit{aspects}.
+
+On the other side, the Floodgate \textbf{network library}, responsible for providing network communication capabilities to Floodgate applications, is also a key-part of our implementation. Abstracting the OkHttp library, it contains methods for developers to perform common HTTP requests, manage cookies and handle network exceptions. Also, since Floodgate's taint propagation from the mobile to the server side is achieved by the addition of a ``privacy'' header to each HTTP request, the network library is responsible for that addition. For example, when a developer calls the \texttt{post(...)} method to perform an HTTP POST request to the \textit{backend}, the library transparently adds the ``privacy'' header, enforcing the taint propagation.
+
+Finally, in order to obligate developers to use our network library (due to the taint propagation features), we also block the execution of other third-party communication libraries which don't enforce taint propagation. This is reached by extending our control library with some ``aspects'', blocking the access to those third-party libraries.
+
+\section{Server-side Components}
+\label{sec:server-components}
+
+To implement the Floodgate's server-side secure container, where lies most of the system's complexity and functionality, we decided to split our concerns into two main challenges: On the one side, the \textbf{\textit{servlet} basis}, which consists in providing developers a tool which implements the proposed programming model, as simple as possible for the developer itself. On the other side, the \textbf{taint tracking and propagation mechanism}, based on code instrumentation, which enables the enforcement of defined security policies.
+
+\subsection{\textit{Servlet} Basis}
+
+For the \textit{servlet} basis, we used the Dropwizard \textit{framework}. This Java \textit{framework} targets simple implementation and deployment of production-ready and high performance RESTful web services, allowing developers to focus mostly on the application behavior, instead of worrying about web server configuration, application metrics, logging or operational tools. In the next paragraphs we will describe what this \textit{framework} provides to developers.
+
+For the HTTP server, Dropwizard uses Jetty HTTP library to directly embed a web server into the application package. This way, Floodgate applications become self-contained programs, with no need for deployment on \textit{servlet} containers like Apache Tomcat. All the web-server configuration parameters, like HTTP/HTTPS ports to deploy to, certificates and \textit{keystores} to use, database credentials or logging settings are described in a configuration file which remains in the application package.
+
+To build RESTful services, Dropwizard uses Jersey. This \textit{framework} allows developers to gracefully map HTTP requests to Java objects, simplifying the task of inputting data into the application. Also, it provides simple mechanisms for developers to define the web application's URL \textit{schema}, mapping the methods to be called when those URLs are reached. For example, List. \ref{lst:jersey-example} provides a simple example of how this mapping is made in Jersey. When deployed, the referred code will execute \texttt{getAllItems()} method whenever an HTTP GET is sent to the URL \texttt{<application\_url>/items}.
+
+\newpage
+
+\begin{lstlisting}[language=Java,caption=Jersey syntax example, label=lst:jersey-example]
+@Path("/items")
+public class ItemResource {
+    @GET
+    public List<Item> getAllItems() {
+		return findAllItems();
+    }
+\end{lstlisting}
+
+Regarding data formats, Dropwizard uses Jackson, a library for dealing with JSON data in Java. Also, it provides object mapping, making it easy to convert JSON objects to the application's domain model.
+
+Also, Dropwizard provides libraries for taking application performance metrics (Metrics), logging (Logback and slf4j), data validation (Hibernate Validator), database interaction (JDBI), time data handling (Joda Time), between others.
+
+Apart from the presented \textit{framework-provided} tools, in order to enable Floodgate's taint propagation for the server-side, and backwards, we had to implement the HTTP filters represented as ``taint sources'' and ``taint-sinks'' in Fig. \ref{fig:floodgate-server-blocks}. To achieve that, we used the filtering library provided by the Jersey \textit{framework}. Then, we created a custom annotation ``\texttt{@TaintCheckRequired}'', with which developers must annotate the \textit{backend} URL-mapped methods that must be checked against taint presence. This annotation triggers a method which provides two different behaviors, considering the request's direction. For incoming requests, it checks the request headers, materially the ``privacy'' one. If it is not empty, then the filter taints the incoming data accordingly. For outcoming requests, the filter the taint of the data being exported. In case it is indeed tainted, it adds the same ``privacy'' header to the request, with the respective value. Although, the action of annotating data with taint tags or checking the assigned taint tags means we need dynamic taint tracking along the application flow and also a tainting API to provide us those methods. This takes us to the second part of our server-side implementation, the taint tracking and propagation mechanism.
+
+\subsection{Taint Tracking and Propagation Mechanism}
+
+In order to achieve taint tracking and propagation on the server-side's application flow, we used Phosphor instrumentation tool and its tainting API. Phosphor applies dynamic taint tracking techniques through \textit{a priori} code instrumentation. This means that it takes as input any archive containing pre-compiled Java binaries (i.e. project folders, \texttt{.jar} archives, or even simple \texttt{.class} files) and outputs an instrumented version of the same archive. Within the instrumentation process, Phosphor firstly finds and analyzes the inputted binaries (inputted archives may contain other types of files), and then starts the instrumentation process, applying some code modifications in order to achieve the desired taint tracking and propagation.
+
+Phosphor tracks taint tags for primitive variables declared within the code by adding an additional variable for each primitive variable (or an array for each primitive array) to store those tags. The tag is stored in a memory location adjacent to the original primitive variable. When a given method returns a primitive value, Phosphor changes its return type to return instead a pre-allocated object containing the original return and its taint tag. Taint tags for primitive method arguments are always passed just before the tagged argument, simplifying stack shuffling prior to method invocation. Phosphor modifies almost all \textit{bytecode} operations to be aware of these additional variables. For example, instructions that load primitive values to the operand stack are modified to also load the taint tag to the stack. Phosphor also wraps all reflection operations to propagate tags through these same semantics as well. Unlike multiple other taint tracking systems, which can only deal with Integer tags, Phosphor allows both Integer or other type objects to be used as tags, which, although, introduces some additional runtime overhead. Listings \ref{lst:phosphor-example-1}, \ref{lst:phosphor-example-2} and \ref{lst:phosphor-example-3} illustrate an example of modifications which Phosphor applies to store and propagate taint tags in Java code, both with Integer and arbitrary object tags. Despite the examples being shown at source code level, we must be aware that Phosphor works entirely at \textit{bytecode}-level, requiring no access to the application's source code.
+
+\begin{lstlisting}[language=Java,caption=Original Java code, label=lst:phosphor-example-1]
+public int foo(int in){
+    int ret = in+val;
+    return ret;
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=Java,caption=Phosphor intrumentation with Integer return, label=lst:phosphor-example-2]
+public TaintedIntWithIntTag foo\$\$PHOSPHOR(int in_tag,int in){
+    int ret = in+val;
+    int ret_tag = in_tag | val_tag;
+    return TaintedIntWithIntTag.valueOf(ret_tag,ret);
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=Java,caption=Phosphor intrumentation with Object return, label=lst:phosphor-example-3]
+public TaintedIntWithObjTag foo\$\$PHOSPHOR(Taint in_tag,int in){
+    int ret = in+val;
+    Taint ret_tag = in_tag.combine(in);
+    return TaintedIntWithObjTag.valueOf(ret_tag,ret);
+}
+\end{lstlisting}
+
+To propagate taint tags, Phosphor applies two different techniques. In Integer tainting mode, tags are 32-bit integers, and Phosphor uses bit-wise OR operations to combine them, allowing only 32 distinct tags, but faster propagation. In Object tainting mode, taint tags are arbitrary objects and also hold a structure which contains all other tags from which that tag was derived, allowing for an arbitrary number of objects and relationships. Like most taint tracking systems, Phosphor propagates taint tags through data flow operations (e.g. variables assignment, arithmetic operations, etc.), but also through control flow. This means that, even when there are no explicit interactions between the input and the output, Phosphor is still able to perform taint propagation. To achieve this, Phosphor modifies each method to pass and accept an additional parameter, representing the control flow dependencies of the program to the point of that method. Within the
+method execution, Phosphor tracks a stack of dependencies, with one entry for each branch condition that is currently influencing the method's execution. When a given branch no longer controls the execution (e.g. at the point where both sides of the
+branch merge), the resulting taint tag is popped from the control flow stack. Before any assignment, Phosphor inserts code to generate a new tag for that variable by merging the current control flow tags with any existing tags on the variable. Listing \ref{lst:phosphor-example-4} shows an example of a method in which taint tags are not propagated through data flow, but that Phosphor's control flow propagation helps solving.
+
+\begin{lstlisting}[language=Java,caption=Phosphor control flow example, label=lst:phosphor-example-4]
+public String leakString(String in){
+    String ret = "";
+    for(int i = 0; i < in.length; i++){
+        switch(in.charAt(i)){
+            case 'a':
+                ret+='a';
+                break;
+            ...
+            case 'z':
+                ret+='z';
+                break;
+        }
+    }
+    return ret;
+}
+\end{lstlisting}
+
+Apart from the taint tracking mechanism, Phosphor offers a tainting API for assigning and reading taint tags on variables. Developers must call the \texttt{Tainter.taintedXXX(XXX input,int tag)} or \texttt{MultiTainter.
+taintedXXX(XXX input,Object tag)} methods, replacing \texttt{XXX} with appropriate
+type (e.g. \texttt{int}, \texttt{long}, \texttt{Object} etc.), for integer tainted or object tainted values, respectively. The referred methods return a tainted copy of the input value with the desired tag transparently applied. To retrieve tags, developers must call the \texttt{Tainter.getTaint(...)} and \texttt{MultiTainter.getTaint(...)} functions. Phosphor wraps its Object tags in instances of its Taint class, which contains the variable's tag and its list of all its Taint type dependencies. Since Phosphor applies to pre-compiled \textit{bytecode}, developers must write calls to these methods when writing their applications' code, then compile it, instrument it, and finally run it. in the end, Phosphor will be responsible for detecting calls to methods belonging to its tainting API and produce the expected functionality. In Floodgate's context, we use the tainting API in order to assign and verify taint tags on the \textit{backend}'s incoming and outcoming HTTP filters, respectively. Also, we use it the same way when reading and writing persistent objects, so that we can persistently store or retrieve the corresponding taint tags, using our taint persistence module.
+
+ 

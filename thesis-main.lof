@@ -1,0 +1,22 @@
+\select@language {english}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces CIFC operation scheme\relax }}{13}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces DIFC operation example\relax }}{15}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces TaintDroid tracking system overview\relax }}{23}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces TaintDroid architecture\relax }}{25}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Aurasium action context\relax }}{26}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Aurasium policy example\relax }}{27}
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Aurasium repackaging process\relax }}{27}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Floodgate proposed architecture\relax }}{30}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Floodgate mobile component design\relax }}{31}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Floodgate server component design\relax }}{33}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Mobile-side performance impact\relax }}{48}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Server-side performance impact\relax }}{49}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Server-side memory usage impact\relax }}{50}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Mobile-server latency\relax }}{51}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Floodgate database performance\relax }}{53}
+\addvspace {10\p@ }
