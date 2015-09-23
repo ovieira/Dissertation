@@ -4,3 +4,50 @@
 \chapter{Implementation}
 \label{sec:implementation}
  
+In this section, the hardware required to implemented our approach will be described. Even though some devices are still not certain, we present the possible alternatives to prevent that. In addition to the hardware, the software tools required will also be described. 
+
+\subsubsection{Tracking Devices}
+
+For the proposed approach to work, it is necessary to track the subjects as accurately as possible. There are more than one available alternatives that can be used as the tracking device.
+
+The first makes use of the recently released, Microsoft Kinect One\footnote{\url{http://www.xbox.com/xboxone/kinect}} 
+(previously baptized as Kinect 2), which supposedly offers a better tracking quality than 
+the previous version, Kinect 1. Although this might be true, to the best of our knowledge there are still no published studies which use the new Kinect in order for us to understand if this would be the best choice for our approach.
+
+The other alternative available at our laboratories is an OptiTrack Motion Capture system \footnote{\url{https://www.naturalpoint.com/optitrack/}}. 
+This option could offer us a more precise tracking and the possibility of dealing with occlusions due to the multiple cameras scattered around the room. The downside is the fact that 
+it requires body markers to be used in order to successfully detect a person, unlike the 
+Kinect which detects the human body through software algorithms.
+
+Occlusion problems are much more likely to occur using Kinect than with the OptiTrack, due to only using one motion capture sensor. There can be moments where the patient could point his arms forward making the Kinect lose sight of the rest of the body. These problems were known to happen with the first Kinect, for the newest version we will need to understand if it still happens.
+
+We intend to develop a comparison test between the tracking devices available. With this test we will be able to evaluate the tracking quality of each device and therefore decide which one would be the more suitable for our implementation. 
+
+\subsubsection{Feedback Devices}
+
+To be able to provide guiding cues to a patient, we will need a group of devices capable of providing each of the three possible feedback types that were presented.
+
+For the visual feedback, we will rely on two concepts: the \ac{AR} mirror and projection mapping. 
+For the first, we will capture the patient's image with a camera and project it into a screen. 
+This way it is simulated a mirror, similar to other approaches discussed in this work.
+As for the projection mapping, a light-projector will be used in order to, combining with 
+the the tracking device, project visual cues on the patient's body.
+
+To provide audio feedback, a set of speakers will be required around the patient. 
+Therefore, enabling the reproduction of surround sound to explore possible sound localization experiments.
+
+Finally, the haptic feedback will rely on vibration applied onto the user by using 
+vibratory actuators attached to his arm. 
+One possible option would be using the \textit{Pebble Smart watch}\footnote{\url{https://getpebble.com/}} that 
+provides a Developer Kit to access its features, which includes vibration motors. 
+By implementing a communication channel with the watch, it will be possible to control its vibrations whenever necessary.
+
+\subsubsection{Software Tools}
+
+To implement our software responsible for interacting with the several feedback interfaces that 
+will be used, we will choose the \emph{Unity3D} game engine\footnote{\url{http://www.unity3d.com}}. 
+This engine already provides several tools that facilitate the development of augmented reality applications and we have in our possession already developed frameworks to communicate with the available tracking devices.
+
+The Kinect Tracking Device already provides an SDK for Unity applications which, if Kinect ends up the chosen tracking device, will accelerate the implementation of the Tracking Module described in section \hyperref[section-approach-architecture]{section \ref{section-approach-architecture}}.
+
+As for the Pebble Smart watch, although there is an SDK available, it does not support Windows at the moment. If the Windows SDK is not released in the next weeks, we will use the other alternatives provided by the Pebble team which will consist on using an Android phone as a bridge between the Pebble and our application.
