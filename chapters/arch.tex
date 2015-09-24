@@ -4,6 +4,8 @@
 \chapter{Architecture}
 \label{sec:Architecture}
  
+\section*{Summary}
+ 
 In this section, we will present our proposal which will be divided as follows. 
 In the first place, in section \ref{section-approach-main-objectives} we explain
 our goals in detail and what we consider to be an innovation. 
@@ -49,7 +51,7 @@ The second and most important part, called \emph{Teaching Architecture}, concern
 
 The first part of our architecture serves the purpose of generating an exercise model which will be used for teaching and guiding exercises' execution.
 
-As we can see in \hyperref[fig:learning]{Fig. \ref{fig:learning}}, we start by having a \ac{PT} demonstrating the prescribed exercise (1). Through motion capture devices, the \ac{PT} body is tracked during the demonstration and the tracking data is stored in a storage infrastructure.
+As we can see in Fig. \ref{fig:learning}, we start by having a \ac{PT} demonstrating the prescribed exercise (1). Through motion capture devices, the \ac{PT} body is tracked during the demonstration and the tracking data is stored in a storage infrastructure.
 
 Then, all the tracking data recorded is sent to the \emph{Exercise Generator Module} (2) in which the data will be sanitized (e.g., remove tracking data whenever the \ac{PT} is not performing the exercise) to be fed into the next step.
 
@@ -72,7 +74,7 @@ The second part of our architecture serves the purpose of taking advantage of
 multiple feedback interfaces in order to guide a patient through 
 the execution of a previously recorded exercise, the already described \emph{Exercise Model}.
 
-As shown in \hyperref[fig:teaching]{Fig. \ref{fig:teaching}}, it starts by 
+As shown in Fig. \ref{fig:teaching}, it starts by 
 loading the desired exercise that was generated in the \emph{Learning Architecture} (4), which will be the basis for comparison with the patient's body.
 
 In this case, the tracking module is responsible for constantly sending the tracking data to the \emph{Multimodal Feedback Manager Module}(MFM) (5,6).

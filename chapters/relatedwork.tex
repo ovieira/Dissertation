@@ -4,6 +4,7 @@
 \chapter{Related Work}
 \label{section-related}
 
+\section*{Summary}
 
 Motor rehabilitation, or motor re-learning, is an extensive and demanding process for a patient.
 For a successful recovery, the patient must be disciplined and understand that this is a tough and painful task in which it
@@ -194,7 +195,7 @@ The projection was made onto the user, using his body as a projection screen.
 Real-time visual cues were projected onto the user's hand in order to guide him through the desired movement. 
 By projecting the information in the body part being moved, the user could keep a high level of concentration 
 without being distracted by external factors.
-As we can in the examples shown in \hyperref[fig:lightguide]{Fig. \ref{fig:lightguide}}, different types of visual cues were developed, having in mind movements that demanded degrees of freedom over 3 dimensions. 
+As we can in the examples shown in Fig. \ref{fig:lightguide}, different types of visual cues were developed, having in mind movements that demanded degrees of freedom over 3 dimensions. 
 For each dimension a different design was planned so that the user could understand clearly to what direction 
 should his hand move.
 
@@ -225,7 +226,7 @@ Even so, studies have shown that Kinect has an acceptable accuracy in comparison
 and can be considered a valuable option for its low price and easy portability \cite{Scano2014,Chang2012a}.
 
 To provide interactive content, the user's body must be detected and its position passed as input. This input normally consists of several tracking points which represent body joints. Their relative position between one another give us a representation of the user's current body posture, since each connection between two joints can be considered a bone as we can see in the 
-\hyperref[fig:joints]{Fig. \ref{fig:joints}}.
+Fig. \ref{fig:joints}.
 In the Kinect's case, being a markerless tracking device, these joints are defined through software.
 
 %Aiming at rehabilitation, a comparison between two skeletons might be required. For example, to know how different is the patient's current posture from the therapist's we would need to compare both skeletons. This comparison can be inaccurate if we take into account the existence of physical differences between them (arms with different lengths for example).\todo{Trabalhar melhor isto. Dizer explicitamente que o paciente deve ter que reproduzir os movimentos do terapeuta.} 
@@ -241,9 +242,9 @@ Two comparison methods that can be used to address the aforementioned problem ar
 In order to facilitate the description of the following methods, we will consider two given skeletons named SK1 and SK2, both with the same number of defined joints and where SK2 wants to mimic SK1's pose.
 
 The first method of measuring differences between skeletons is through the usage of their joints position. 
-As we can see in \hyperref[fig:sk1sk2]{Fig.\ref{fig:sk1sk2}}, SK1 and SK2's arms are not in identical positions. 
+As we can see in Fig.\ref{fig:sk1sk2}, SK1 and SK2's arms are not in identical positions. 
 If we consider the euclidean distance between joints J11 and J12, they might never be considered equal if their arms have different lengths. 
-If the euclidean distance never reaches zero, these two joints might never overlap. As we can see in \hyperref[fig:sk1sk2diff]{Fig. \ref{fig:sk1sk2diff}}, 
+If the euclidean distance never reaches zero, these two joints might never overlap. As we can see in Fig. \ref{fig:sk1sk2diff}, 
 when both skeletons achieve identical pose, there still exist a distance \textit{A} between them, therefore by using the joint position 
 this would not be an identical pose between them.
 To solve this problem, another method must be used for comparison, 
@@ -251,7 +252,7 @@ which relies on other measurements not dependent of, i.e. invariant to, joint sp
 
 If we use the joint angles for comparison, it is possible to achieve better results due to 
 the physical differences not influencing the measurements \cite{Borghese2013}. 
-In this case, looking once more at \hyperref[fig:sk1sk2diff]{Fig. \ref{fig:sk1sk2diff}}, 
+In this case, looking once more at Fig. \ref{fig:sk1sk2diff}, 
 if we take into account the joint angle \textit{B}, both skeletons can be considered to have an identical posture, even though they have different arms length.
 
 The accuracy of skeleton comparison has a important role in rehabilitation systems 
@@ -420,7 +421,7 @@ warn the patient of what is being wrongly done.
 
 After analyzing several examples of feedback approaches, it is possible to make some conclusions about their usefulness, whether it be rehabilitation-oriented or not.
 
-Below, at the \hyperref[table-rw]{Table \ref{table-rw}}, a summary of the state of 
+Below, at the Table \ref{table-rw}, a summary of the state of 
 the art can be found that provides a notion of which feedback types are the most used. 
 Each work is also categorized accordingly to specific features. These categories, which describe some key features that each work may or may not have, are as follows:
 \begin{itemize}
@@ -437,7 +438,7 @@ Visual feedback appears to be normally used in regard to spatial information, du
 the best option to guide a patient through movements seems to be by using visual guidance.
 But it is important to note that visual feedback still is a rather broad concept, therefore we could observe different takes on the whole subject of visual guidance.
 
-The \ac{AR} mirror, discussed at section \hyperref[RW-mirrors]{\ref{RW-mirrors}}, is the most common 
+The \ac{AR} mirror, discussed at section \ref{RW-mirrors}, is the most common 
 solution to provide visual feedback, given that it can add information to the already present
 mirror reflection. Even though a problem seems to persist throughout the several examples, namely the lack of depth perception.
 But other approaches might have a chance of solving this problem if one tries to combine them both.
@@ -483,7 +484,7 @@ up by the fact that the sense of hearing provides a great perception of temporal
 %\label{table-rw}
 %\end{table}
 
-Observing the \hyperref[table-rw]{Table \ref{table-rw}}, we can see that haptic feedback was 
+Observing the Table \ref{table-rw}, we can see that haptic feedback was 
 the least used of the three. Perhaps due to requiring more specialized equipment to apply more 
 detailed feedback, unlike audio which requires only a set of speakers and visual which can be 
 achieved just as easily. Even so, haptic feedback could be useful to emphasize certain aspects, 

@@ -5,31 +5,82 @@
 \label{sec:evaluation}
 
 \section*{Summary}
-To evaluate our approach we plan to run several experimental tests within a group of, at least, ten subjects. 
-With these experiments we want to obtain statistical measures about our approach and be able to conclude 
-on which combinations of feedback could have better performance in guiding a patient.
+%To evaluate our approach we plan to run several experimental tests within a group of, at least, ten subjects. 
+%With these experiments we want to obtain statistical measures about our approach and be able to conclude 
+%on which combinations of feedback could have better performance in guiding a patient.
 
-We will be using two different experiments in order to achieve comparable results. 
-The first experiment will consist of a \ac{PT} and a test subject. 
-The \ac{PT} will demonstrate a given exercise to the test subject and then evaluate their execution without giving any kind of feedback. 
+%We will be using two different experiments in order to achieve comparable results. 
+%The first experiment will consist of a \ac{PT} and a test subject. 
+%The \ac{PT} will demonstrate a given exercise to the test subject and then evaluate their execution without giving any kind of feedback. 
 
-The second experiment will involve guiding a test subject through the same exercise as the first experiment, 
-using different combinations of visual, audio and haptic feedback.
-The resulting performance will be analyzed and several data gathered. 
-We will take into account the following metrics, (a) the trajectory error between the Exercise Model and 
-the patient's actual execution, (b) the time it takes for the patient to finish the exercise 
-and (c) the time it takes for the patient to recover to the correct position if mistaken.
+%The second experiment will involve guiding a test subject through the same exercise as the first experiment, 
+%using different combinations of visual, audio and haptic feedback.
+%The resulting performance will be analyzed and several data gathered. 
+%We will take into account the following metrics, (a) the trajectory error between the Exercise Model and 
+%the patient's actual execution, (b) the time it takes for the patient to finish the exercise 
+%and (c) the time it takes for the patient to recover to the correct position if mistaken.
 
-We will start by using a unimodal approach, to obtain measurements using only one of the 
-available feedback modes each time. After the unimodal experiments, we will begin the multimodal 
-approach experiments by combining the available feedback and repeat the same measurements previously done.
+%We will start by using a unimodal approach, to obtain measurements using only one of the 
+%available feedback modes each time. After the unimodal experiments, we will begin the multimodal 
+%approach experiments by combining the available feedback and repeat the same measurements previously done.
 
-Even though our main focus is to provide concurrent feedback (during the execution), its frequency will be altered in order to evaluate the patient response. Therefore, further in the end, we will provide only terminal feedback (without guiding cues during the execution) to analyze if the patient successfully learned the movement.
+%Even though our main focus is to provide concurrent feedback (during the execution), its frequency will be altered in order to evaluate the patient response. Therefore, further in the end, we will provide only terminal feedback (without guiding cues during the execution) to analyze if the patient successfully learned the movement.
 
-\section{Methodology}
+For the evaluation of the SleeveAR, we intended to observe how well could a subject recreate simple arm movements by only following the feedback at his disposal. In this section we will present a detailed description of the type of tests that were made, what type of information was being gathered and also highlight some of the most important critics received by a professional physical therapist after using our system.
 
-\section{Test Environment and Subjects}
+Since the test would involve executing simple arm movements, five different exercises were created for this evaluation. \todo{colocar links de youtube?} These exercises were recorded both by video and by the SleeveAR's Learning Architecture at the same time. This way, we knew for certain that it was the same movement being stored in video and in our system.
 
-\section{Results Analysis}
+In this chapter we present the methodology used for testing our prototype with test subjects. All the results will be discussed in order to achieve a better understanding about our prototype success. In the end a meeting with a physical therapist, from which resulted a great discussion and exchange of ideas, will also be fully reported.
+
+\section{Methodology} \label{evaluation-methodology}
+TESTE 
+
+\begin{table}
+\centering
+
+\begin{tabular}{lll}
+\#                      & Stage                              & Time                            \\ \hline
+\multicolumn{1}{|l|}{1} & \multicolumn{1}{l|}{Introduction}  & \multicolumn{1}{l|}{2 minutes}  \\ \hline
+\multicolumn{1}{|l|}{2} & \multicolumn{1}{l|}{SleeveAr}      & \multicolumn{1}{l|}{15 minutes} \\ \hline
+\multicolumn{1}{|l|}{3} & \multicolumn{1}{l|}{Video}         & \multicolumn{1}{l|}{10 minutes} \\ \hline
+\multicolumn{1}{|l|}{4} & \multicolumn{1}{l|}{Questionnaire} & \multicolumn{1}{l|}{3 minutes}  \\ \hline
+\end{tabular}
+\label{my-label}
+\caption{caption}
+\end{table}
+
+\begin{itemize}
+\item divided by 3 main parts
+\item executing movements following video instructions
+\item executing movements following SleeveAR
+\item answering a small form at the end
+\end{itemize}
+
+In this section we describe what methodologies were used to test our prototype, focusing on the success in recreating specific movement
+
+\section{Performed Tasks} \label{evaluation-tasks}
+
+\section{Environment and Participants} 
+
+\todo{explicar como era cada exercicio?}
+
+\section{Results}
 
 \section{Validation with Physical Therapist}
+
+\section{Discussion}
+
+\begin{itemize}
+\item missing feedback from one of the 3 axis 
+\item sometimes the arm obstructs visibility to the feedback being projected
+\item there should be more fixed tracking points on the subject. mostly at the shoulder area
+\item some physical therapists follow a group of standart arm movements to initially evaluate a patient's condition. with this tool, they could receive full reports with necessary data that otherwise they would have to measure physicaly
+\item while working in a physical therapy gymnasium, therapists often have to look after several patients at the same time. Tools like sleeveAR could help the therapist by lowering the amout of times they have to correct a patient and, therefore, focus on another patient that might need more priority help
+\item the \ac{KP} and \ac{KR} demonstrated in sleeveAr is very satisfatory and could really help in motivating a patient while showing his evolution as he keeps repeating the exercises
+\end{itemize}
+
+
+
+\section{Discussion}
+
+results x therapist 
