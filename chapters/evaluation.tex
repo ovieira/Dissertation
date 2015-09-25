@@ -33,53 +33,106 @@ Since the test would involve executing simple arm movements, five different exer
 In this chapter we present the methodology used for testing our prototype with test subjects. All the results will be discussed in order to achieve a better understanding about our prototype success. In the end a meeting with a physical therapist, from which resulted a great discussion and exchange of ideas, will also be fully reported.
 
 \section{Methodology} \label{evaluation-methodology}
-TESTE 
 
 \begin{table}
 \centering
-
 \begin{tabular}{lll}
-\#                      & Stage                              & Time                            \\ \hline
+\hline
+\multicolumn{1}{|l|}{\#}& \multicolumn{1}{l|}{Stage}         & \multicolumn{1}{l|}{Time}       \\ \hline
 \multicolumn{1}{|l|}{1} & \multicolumn{1}{l|}{Introduction}  & \multicolumn{1}{l|}{2 minutes}  \\ \hline
 \multicolumn{1}{|l|}{2} & \multicolumn{1}{l|}{SleeveAr}      & \multicolumn{1}{l|}{15 minutes} \\ \hline
 \multicolumn{1}{|l|}{3} & \multicolumn{1}{l|}{Video}         & \multicolumn{1}{l|}{10 minutes} \\ \hline
 \multicolumn{1}{|l|}{4} & \multicolumn{1}{l|}{Questionnaire} & \multicolumn{1}{l|}{3 minutes}  \\ \hline
 \end{tabular}
-\label{my-label}
-\caption{caption}
+\caption{SleeveAR evaluation stages}
+\label{table:teststages}
 \end{table}
 
-\begin{itemize}
-\item divided by 3 main parts
-\item executing movements following video instructions
-\item executing movements following SleeveAR
-\item answering a small form at the end
-\end{itemize}
+%\begin{itemize}
+%\item divided by 3 main parts
+%\item executing movements following video instructions
+%\item executing movements following SleeveAR
+%\item answering a small form at the end
+%\end{itemize}
 
-In this section we describe what methodologies were used to test our prototype, focusing on the success in recreating specific movement
+In this section we describe what methodologies were used to test our prototype. Each of our participants followed this methods similarly.
+
+The average time spent with each participant was approximately thirty minutes. The test was composed of four stages as we can observe in Table \ref{table:teststages}.
+
+\begin{enumerate}
+\item \textbf{Introduction}
+
+Before the actual test, a brief explanation was given about the main goal of our thesis. The participants were also made aware of what would the full experimental test consist of.
+
+\item \textbf{SleeveAR}
+
+The participant would have to execute exercises, described in section \ref{evaluation-tasks}, while following our prototype real-time feedback.
+
+\item \textbf{Video}
+
+For each of the five exercises selected for this evaluation, the participant would have to watch a video of its execution at least two times. Then, while following the video playing, the participant would execute the same movement based on what he was observing.
+
+\item \textbf{Questionnaire}
+
+Finally, a small questionnaire would be filled by the participant. This questionnaire included questions about stage 2 and 3 while also providing us some information about the user's profile.
+
+\end{enumerate}
+
+In order to gather data for further result analysis, each execution of an exercise generated a Log with all the necessary information about the participant's movement. \todo{descrever Logs mais detalhadamente}
+
+Even though we are ordering the stages this way, half of the participantes started by doing the third stage before the second, for the purpose of obtaining a more balanced sample of results.
 
 \section{Performed Tasks} \label{evaluation-tasks}
+For both the second and third stage described in the previous section, the same five exercises were executed.
+
+Each exercise was simultaneously recorded witg a video camera and with motion tracking devices. Under these circunstances, we made sure that the content being stored in video format directly represented the data being stored on SleeveAR's architecture.
+The tasks performed in stage 2 and 3 had the same goal of recreating the five exercises recorded.
+
+\todo{explicar como era cada exercicio?}
 
 \section{Environment and Participants} 
 
-\todo{explicar como era cada exercicio?}
+
 
 \section{Results}
 
 \section{Validation with Physical Therapist}
 
-\section{Discussion}
+We had the opportunity of meeting with a professional physical therapist which accepted our invitation to test the SleeveAR prototype and provide us with some feedback in a small interview.
+
+Prior to the interview, it as decided that the therapist would be part of the same tests being done for our evaluation, which have already been described in this chapter \todo{ref}. Under those circumstances we were able to demonstrate the full potential of our prototype and, as a result of these tests, we received some very interesting feedback.
+
+First of all, this prototype main vision was to prove we were able to guide subjects through pre-recorded exercises in order for them to be as close as possible of the original exercise. With this in mind, we wanted to know in what way would this kind of tool be useful in a regular physical therapy work environment. We also wanted to understand what would be missing to make SleeveAR a more complete tool for a common use along this field of rehabilitation.
+
+We will now present the most notable feedback received, both positive and negative.
+
+
+
 
 \begin{itemize}
-\item missing feedback from one of the 3 axis 
-\item sometimes the arm obstructs visibility to the feedback being projected
+\item \textbf{Missing feedback from one of the three axis}
+
+For SleeveAR feedback to be fully complete, it would need to take into account the missing axis of movement in its real-time feedback. Since this prototype focused on guiding the arm through relatively simple movements, we did not detect this problem. But, consequently, in the evaluation tests, we realized that it might have helped to take this into account. In Fig \todo{fazer figura} we can see an example where, without verifying the upper arm's rotation, our system considers both arm poses to be the same. This happens because both the upper arm direction and angle between the upper and fore arm remain the same.
+
+
+\item \textbf{Arm obstructs visibility}
+
+Ocasionally, the right arm might obstruct the user's vision, making it difficult to observe the feedback being projected onto the floor. This issue could be solved by projecting all the visual feedback further away from the subject
+
 \item there should be more fixed tracking points on the subject. mostly at the shoulder area
+
+\todo{passar do caderno}
+
 \item some physical therapists follow a group of standart arm movements to initially evaluate a patient's condition. with this tool, they could receive full reports with necessary data that otherwise they would have to measure physicaly
+
+\todo{passar do caderno}
 \item while working in a physical therapy gymnasium, therapists often have to look after several patients at the same time. Tools like sleeveAR could help the therapist by lowering the amout of times they have to correct a patient and, therefore, focus on another patient that might need more priority help
+
+\todo{passar do caderno}
 \item the \ac{KP} and \ac{KR} demonstrated in sleeveAr is very satisfatory and could really help in motivating a patient while showing his evolution as he keeps repeating the exercises
+
+\todo{passar do caderno}
 \end{itemize}
-
-
 
 \section{Discussion}
 
