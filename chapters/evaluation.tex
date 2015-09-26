@@ -96,6 +96,24 @@ The tasks performed in stage 2 and 3 had the same goal of recreating the five ex
 
 \section{Results}
 
+The empirical evaluation addressed the correctness of the executed exercises. Experiments with test subjects were performed for a baseline scenario, consisting of exercise execution through video observation, and for the proposed prototype. The performance metrics is given by the degree of similarity between the participants' arm trajectories and the original trajectories demonstrated by the therapist. It is measured using the \textbf{\ac{DTW}} \todo{referencia para o algoritmo} algorithm, 
+which is appropriate for measuring a degree of similarity between two temporal sequences which may vary in time or speed. With the application of this algorithm in mind, the recorded movements can be reformulated as a sequence of positions. One can then compare the performance values for both the proposed solution and the baseline scenario.
+
+Due to an arm movement being divided by the upper and fore arm sections, the \ac{DTW} was applied to each individually, thus providing us with a more detailed set of values. By doing said division, we could observe if there were notable performance differences between each arm region.
+
+The final \ac{DTW} values of each exercise are the result of adding both arm regions' DTW values. It is important to highlight that with the following results, DTW values closer to zero directly represent movements more similar to the original.
+
+For the first exercise, we can observe in Figure \ref{fig:sleevearVSvideoEx1} the test results from all participants, both using the SleeveAr and by observing the respective video.
+
+These results clearly show SleeveAR provided a higher similarity when comparing to the original exercise. In terms of statistic values, participantes achieved an average \ac{DTW} value of \textbf{0.114181315} and a Standard Deviation of \textbf{0.090349091} when using SleeveAR, as oppose to an average \ac{DTW} value of \textbf{0.438959688} and a standard deviation of \textbf{0.164684962}
+
+\begin{figure}[t!]
+    \centering
+    \includegraphics{imgs/results/sleevearVSvideoEx1.png}
+    \caption{Exercise 1 DTW comparison between SleeveAR and observing video.}
+    \label{fig:sleevearVSvideoEx1}
+\end{figure}
+
 \section{Validation with Physical Therapist}
 
 We had the opportunity of meeting with a professional physical therapist which accepted our invitation to test the SleeveAR prototype and provide us with some feedback in a small interview.
@@ -112,26 +130,34 @@ We will now present the most notable feedback received, both positive and negati
 \begin{itemize}
 \item \textbf{Missing feedback from one of the three axis}
 
-For SleeveAR feedback to be fully complete, it would need to take into account the missing axis of movement in its real-time feedback. Since this prototype focused on guiding the arm through relatively simple movements, we did not detect this problem. But, consequently, in the evaluation tests, we realized that it might have helped to take this into account. In Fig \todo{fazer figura} we can see an example where, without verifying the upper arm's rotation, our system considers both arm poses to be the same. This happens because both the upper arm direction and angle between the upper and fore arm remain the same.
+For SleeveAR feedback to be fully complete, it would need to take into account the missing axis of movement in its real-time feedback. Since this prototype focused on guiding the arm through relatively simple movements, we did not detect this problem. But, consequently, in the evaluation tests, we realized that it might have helped to take this into account. In Fig \textbf{fazer figura} we can see an example where, without verifying the upper arm's rotation, our system considers both arm poses to be the same. This happens because both the upper arm direction and angle between the upper and fore arm remain the same.
 
 
 \item \textbf{Arm obstructs visibility}
 
 Ocasionally, the right arm might obstruct the user's vision, making it difficult to observe the feedback being projected onto the floor. This issue could be solved by projecting all the visual feedback further away from the subject
 
-\item there should be more fixed tracking points on the subject. mostly at the shoulder area
+\item \textbf{Increase number of tracking points in shoulder area}
 
-\todo{passar do caderno}
+In physical therapy, a lot of arm movements also focus on the shoulder area. With this in mind, it would be necessary for our sleeve to contain more tracking points around the shoulder instead of only having a tracking point for the shoulder, elbow and wrist.
 
-\item some physical therapists follow a group of standart arm movements to initially evaluate a patient's condition. with this tool, they could receive full reports with necessary data that otherwise they would have to measure physicaly
+\item \textbf{Potential useful tool for patient reports}
 
-\todo{passar do caderno}
-\item while working in a physical therapy gymnasium, therapists often have to look after several patients at the same time. Tools like sleeveAR could help the therapist by lowering the amout of times they have to correct a patient and, therefore, focus on another patient that might need more priority help
+Some physical therapists follow a group of standard arm movements to initially evaluate a patient's condition. With this tool, they could receive full reports with necessary data that otherwise they would have to measure physically. It could be possible to extend SleeveAR to return several additional information about a patient's range of movement after executing a group of exercises. This would allow a physical therapist to have access to information much faster and, possibly, more precise about the patient. 
 
-\todo{passar do caderno}
-\item the \ac{KP} and \ac{KR} demonstrated in sleeveAr is very satisfatory and could really help in motivating a patient while showing his evolution as he keeps repeating the exercises
+Also, with the possibility of recording movements and later replaying them, SleeveAR could offer a great way of demonstrating the patient, in a visual form, how much he has improved over the course of his rehabilitation, by replaying the recordings of his movements.
 
-\todo{passar do caderno}
+\item \textbf{A great tool to help a physical therapist when multi-tasking}
+
+While working in a physical therapy gymnasium, therapists often have to look after several patients at the same time. Tools like SleeveAR could help the therapist by lowering the amount of times they have to correct a patient and, therefore, focus on another patient that might need more priority help.
+
+
+\item \textbf{Provides a great motivation with the feedback received}
+
+The \ac{KP} and \ac{KR} demonstrated in SleeveAR is very satisfactory and could really help in motivating a patient while showing his evolution as he keeps repeating the exercises.
+
+Being able to show how the patient performed by drawing his trajectory over the original exercises helps understanding which parts need improvement. Also, the real-time feedback does a great job at instantaneously showing the patient what to correct on his exercise.
+
 \end{itemize}
 
 \section{Discussion}
