@@ -105,7 +105,12 @@ The final \ac{DTW} values of each exercise are the result of adding both arm reg
 
 For the first exercise, we can observe in Figure \ref{fig:sleevearVSvideoEx1} the test results from all participants, both using the SleeveAr and by observing the respective video.
 
-These results clearly show SleeveAR provided a higher similarity when comparing to the original exercise. In terms of statistic values, participantes achieved an average \ac{DTW} value of \textbf{0.114181315} and a Standard Deviation of \textbf{0.090349091} when using SleeveAR, as oppose to an average \ac{DTW} value of \textbf{0.438959688} and a standard deviation of \textbf{0.164684962}
+These results clearly show SleeveAR provided a higher similarity when comparing to the original exercise. 
+In terms of statistic values, participantes achieved an average \ac{DTW} value of \textbf{0.114181315} and a Standard Deviation of \textbf{0.090349091} when using SleeveAR.
+On the other hand, an average \ac{DTW} value of \textbf{0.438959688} and a standard deviation of \textbf{0.164684962} was achieved when relying on video observation. 
+Based on these results, in the first exercise, SleeveAR clearly improve participant's performance which were able to re-create the original exercise better then by video observation.
+
+
 
 \begin{figure}[t!]
     \centering
@@ -113,6 +118,40 @@ These results clearly show SleeveAR provided a higher similarity when comparing 
     \caption{Exercise 1 DTW comparison between SleeveAR and observing video.}
     \label{fig:sleevearVSvideoEx1}
 \end{figure}
+
+
+Table \ref{table:dtwavg} presents the average DTW and standard deviation for all five exercises \todo{aqui mudar para grafico em vez de tabela}
+
+
+\begin{table}
+\centering
+\begin{tabular}{c|c|c|c|c|c|}
+\cline{2-6}
+\multicolumn{1}{l|}{}                               & \multicolumn{5}{c|}{Exercises}             \\ \cline{2-6} 
+                                                    & 1      & 2      & 3      & 4      & 5      \\ \hline
+\multicolumn{1}{|c|}{SleeveAR Average DTW}          & 0.1142 & 0.1472 & 0.3262 & 0.1289 & 0.3801 \\ \hline
+\multicolumn{1}{|c|}{Std Dev}                       & 0.0903 & 0.148  & 0.2005 & 0.0595 & 0.2762 \\ \hline
+\multicolumn{1}{|c|}{Video Observation DTW Average} & 0.439  & 0.263  & 0.3549 & 0.1945 & 0.2733 \\ \hline
+\multicolumn{1}{|c|}{Std Dev}                       & 0.1647 & 0.0921 & 0.1697 & 0.0657 & 0.0887 \\ \hline
+\end{tabular}
+\caption{My caption}
+\label{table:dtwavg}
+\end{table}
+
+\begin{figure}[t!]
+    \centering
+    \includegraphics{imgs/results/dtw_repetitions.png}
+    \caption{Exercise 1 DTW comparison between SleeveAR and observing video.}
+    \label{fig:dtw_repetitions}
+\end{figure}
+
+Focusing only on SleeveAR results, figure \ref{dtw_repetitions} presents the average DTW on each of the three tries a participant had for each exercise. 
+These results clearly show an improvement on a patient's performance in just a small number of repetitions. 
+Not only the average DTW values become lower, meaning closer to the original, but also the standard deviation appears to diminish. 
+
+Since with each repetition, the participant is able to see where he failed the most \todo{falar na implementation sobre a session review}, 
+it allows for a improvement on his next repetition.
+
 
 \section{Validation with Physical Therapist}
 
