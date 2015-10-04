@@ -35,28 +35,37 @@ Not only it provides a great range of possible movements, but also assigns,onto 
 
 \section{Visual Feedback}
 
-To provide feedback that a user would understand naturally, we aimed at a minimalist design that the user could find easy to understand. 
-Our main goal was for a user to observe the visual cues being projected and imediatly understand what had to be done to correct his arm.
+Providing useful and minimalist desing was our goal when designing our visual feedback. There were some key points we wanted to address when designing it.
+First of all, the visual information had to provide the user with a representation of his \textbf{current} position, while also showing the \textbf{desired} position. 
+These representations had to be done in a way the user would easily comprehend what to do in order to achieve that same desired position.
+To provide suitable feedback regarding the full arm we first applied different design for each of the regions. Next we will present our planned visual feedback designs.
 
-With this in mind, we divided our visual feedback into two main components. 
-First, the \textbf{elbow angle}, given by the relative angle between the upper and fore arm regions \todo{picture of the arm anatomy?}. 
-Second, the \textbf{upper arm direction} given by the direction from the shoulder to the elbow.
+\subsection{Fore Arm}
 
+Before creating the fore arm visual feedback it was important to understand what type of movement could be executed with this arm region.
+The fore arm is connected to the upper arm by the elbow joint and its range of motion could be summarized in extension and flexing of the arm.
+When extending or flexing the arm, we basically are changing the elbow angle, given by the angle between the upper and fore arm.
+If we look at figure \todo{figura} we can see an example of a 90 degree arm flexing.
 
-\subsection{Elbow Angle}
+As we said previously, we wanted both designs to represent the current and desired state. Our final design for a fore arm feedback makes use of a circle with two bars, similar to a clock with two pointers.
 
-Given the fore arm movement being restricted by the upper arm, its range of movement could be simplified in terms of flexing and extending, therefore, increasing and decreasing the elbow angle as seen on Figure \todo{figura de braço a flectir e extender}.
+\subsubsection{Current State}
 
-To provide visual feedback for the elbow angle, it was necessary to present the current angle and the desired angle to be achieved at the same time. So the user could be aware of his current arm pose and visualize to where he should move his forearm to correct it.
+\todo{passar do caderno}
 
-\todo{figura do circulo elbow angle}
+\subsubsection{Desired State}
+\todo{passar do caderno}
 
-Figure \todo{figura} shows two examples of our feedback design. The black bar represents the user's current elbow angle. On the other hand, the green bar represents the desired angle that must be achieved. 
-
-\subsection{Upper Arm Direction}
-
+\subsection{Upper Arm}
+\todo{passar do caderno}
+\subsubsection{Current State}
+\todo{passar do caderno}
+\subsubsection{Desired State}
+\todo{passar do caderno}
 
 \section{Movement Guidance}
+
+\todo{refazer}
 Hereafter, as depicted in Figure~\ref{fig:vision}, 
 the patient follows all provided feedback to replicate the pre-recorded movement step-by-step, without ever seeing the exercise executed before.
 The current position of the subject's arm is being constantly tracked in order to always provide real-time 
