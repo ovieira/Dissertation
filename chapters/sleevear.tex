@@ -44,20 +44,28 @@ To provide suitable feedback regarding the full arm we first applied different d
 
 \begin{figure}[!t]
     \begin{center}
-        \includegraphics[width=0.5\textwidth]{imgs/forearmfeedback.png}
+        \includegraphics[width=0.5\textwidth]{imgs/elbowangle.png}
     \end{center}
     \caption{caption}
-    \label{fig:forearmfeedback}
+    \label{fig:elbowangle}
 \end{figure}
 
 Before creating the fore arm visual feedback it was important to understand what type of movement could be executed with this arm region.
 The fore arm is connected to the upper arm by the elbow joint and its range of motion could be summarized in extension and flexing of the arm.
 When extending or flexing the arm, we basically are changing the elbow angle, given by the angle between the upper and fore arm.
-If we look at figure \todo{figura} we can see an example of a 90 degree arm flexing.
+If we look at figure \ref{fig:elbowangle} we can see an example of two diferent elbow angles. On the left, we see an elbow angle $\theta$$_1$ of approximately 180 degrees, while on the right an elbow angle $\theta$$_2$ of 90 degrees.  
 
 As we said previously, we wanted both designs to represent the current and desired state. Our final design for a fore arm feedback makes use of a circle with two bars, similar to a clock with two pointers.
 
 %\subsubsection{Current State}
+
+\begin{figure}[!b]
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{imgs/forearmfeedback.png}
+    \end{center}
+    \caption{caption}
+    \label{fig:forearmfeedback}
+\end{figure}
 
 To represent the current state, we use the black bar, seen in figure \ref{fig:forearmfeedback}. Whenever the user moves his fore arm, this bar will move accordingly.
 
