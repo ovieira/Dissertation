@@ -10,14 +10,6 @@ The following chapter describes our vision of this work and lists the feautures 
 
 \section{Vision}
 
-\begin{figure*}[!t]
-    \begin{center}
-        \includegraphics[width=0.9\textwidth]{imgs/interaction.png}
-    \end{center}
-    \caption{Sleeve Projected Feedback: A) bla. B) Bla. C) Bla}
-    \label{fig:interaction}
-\end{figure*}
-
 SleeveAR aims further beyond the accomplishments LightGuide was able to make. 
 As described in the previous section, Lightguide only focused on projecting information on top of the hand. Not only does this leave a small room for movement variety, but also the amount of possible information given can be quite reduced.
 By increasing the projection area throughout the whole arm we can successfully improve an user's awareness while an movement is being executed. 
@@ -30,17 +22,9 @@ While, at the same time, provide awareness of the rehabilitation exercise progre
 With SleeveAR, a therapist can easily demonstrate the prescribed exercises and make sure his patient will perform them correctly without the requirement of his close supervision.
 
 In the SleeveAR system, the exercise being performed needs to be recorded beforehand, which, in this case, should be a health professional. 
-Not only it provides a great range of possible movements, but also assigns,onto the professional, the responsibility of providing adequate exercises based on a specific patient's condition
-
+Not only it provides a great range of possible movements, but also assigns,onto the professional, the responsibility of providing adequate exercises based on a specific patient's condition.
 
 \section{Visual Feedback}
-
-Providing useful and minimalist design was our goal when designing our visual feedback. There were some key points we wanted to address when designing it.
-First of all, the visual information had to provide the user with a representation of his \textbf{current} position, while also showing the \textbf{desired} position. 
-These representations had to be done in a way the user would easily comprehend what to do in order to achieve that same desired position.
-To provide suitable feedback regarding the full arm we first applied different design for each of the regions. Next we will present our planned visual feedback designs.
-
-\subsection{Fore Arm}
 
 \begin{figure}[!t]
     \begin{center}
@@ -50,16 +34,23 @@ To provide suitable feedback regarding the full arm we first applied different d
     \label{fig:elbowangle}
 \end{figure}
 
+Providing useful and minimalist design was our goal when designing our visual feedback. There were some key points we wanted to address when designing it.
+First of all, the visual information had to provide the user with a representation of his \textbf{current} position, while also showing the \textbf{desired} position. 
+These representations had to be done in a way the user would easily comprehend what to do in order to achieve that same desired position.
+To provide suitable feedback regarding the full arm we first applied different design for each of the regions. Next we will present our planned visual feedback designs.
+
+\subsection{Fore Arm}
+
 Before creating the fore arm visual feedback it was important to understand what type of movement could be executed with this arm region.
 The fore arm is connected to the upper arm by the elbow joint and its range of motion could be summarized in extension and flexing of the arm.
 When extending or flexing the arm, we basically are changing the elbow angle, given by the angle between the upper and fore arm.
-If we look at figure \ref{fig:elbowangle} we can see an example of two diferent elbow angles. On the left, we see an elbow angle $\theta$$_1$ of approximately 180 degrees, while on the right an elbow angle $\theta$$_2$ of 90 degrees.  
+If we look at figure \ref{fig:elbowangle} we can see an example of two different elbow angles. On the left, we see an elbow angle $\theta$$_1$ of approximately 180 degrees, while on the right an elbow angle $\theta$$_2$ of 90 degrees.  
 
 As we said previously, we wanted both designs to represent the current and desired state. Our final design for a fore arm feedback makes use of a circle with two bars, similar to a clock with two pointers.
 
 %\subsubsection{Current State}
 
-\begin{figure}[!b]
+\begin{figure}[!t]
     \begin{center}
         \includegraphics[width=0.5\textwidth]{imgs/forearmfeedback.png}
     \end{center}
@@ -80,7 +71,7 @@ To extend the user's awareness we added two additional features specifically to 
 
 \subsection{Upper Arm}
 
-\begin{figure}[!b]
+\begin{figure}[!t]
     \begin{center}
         \includegraphics[width=0.5\textwidth]{imgs/upperarmfeedback.png}
     \end{center}
@@ -101,36 +92,67 @@ As for the desired state, a simple circle was chosen. For the upper arm to achie
 
 \subsection{Full Arm}
 
-Each one of the previouly presented designs are able to guide each arm region individually.
-In order to guide a user to a full arm position, we combined both of them as seen on fig \todo{figura}
+\begin{figure}[!b]
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{imgs/fullarmfeedback.png}
+    \end{center}
+    \caption{caption}
+    \label{fig:fullarmfeedback}
+\end{figure}
+
+Each one of the previously presented designs are able to guide each arm region individually.
+In order to guide a user to a full arm position, we combined both of them as seen on fig \ref{fig:fullarmfeedback}.
 
 By replacing the grey circle, used on the upper arm's design, with the elbow angle circle from the fore arm's design, we are able to use both of them simultaneously. 
 
 All these designs are able to guide the user to a specific, but static, position. For us to be able to guide a user throughout a movement, there need to be some changes on it.
 
-\section{Movement Guidance}
+\todo{falar das cores no braço}
 
-\todo{refazer}
-Hereafter, as depicted in Figure~\ref{fig:vision}, 
-the patient follows all provided feedback to replicate the pre-recorded movement step-by-step, without ever seeing the exercise executed before.
-The current position of the subject's arm is being constantly tracked in order to always provide real-time 
-feedback based on how he should move it from that point.
-Visual feedback is achieved by projecting light onto his full arm and surroundings. The projection on the arm will enable us to 
-guide a subject through translations and rotations, using different kinds of visual cues to different situations. As for the projection on the subject's surrounding 
-will serve the purpose of providing other useful information not directly connected to the movement itself. 
-In Figure~\ref{fig:vision} we can observe a progress bar being projected on the floor. 
-This bar not only provides the subject an understanding of how far in the exercise he is at the moment, but also helps the subject visualize the angle of movement he should be doing.
-Audio and haptic feedback can help inform the subject about specific information, without making him loose his focus on the visual feedback.
-The haptic feedback is used to quickly notify the subject of any vital information about the current state of the exercise. 
-Awareness of erroneous movements is achieved mainly by the employment of vibration cues into the patient's arm.
-Furthermore, for the purpose of timing, auditory feedback provide the subject with information regarding when to start or stop the exercise by using recognizable audio cues which represent those same actions.
+\subsection{Movement Guidance}
 
-Interactive phases(Figure~\ref{fig:interaction}):
-\begin{itemize}
-\item {\bf Initial Position Phase:}
-\item {\bf Task Performance:}
-\item {\bf Progress Report:}
-\end{itemize}
+During an arm movement, we can not assume that both the upper and fore arm will remain the same. We can have an example were the arm remains fully extended throughout the movement or where the fore arm varies during the movement. In this case there's an elbow angle variation which mean the fore arm desired state is continuously changing.
+With this in mind, our planned feedback must then change its desired state during the movement.
+
+As for the upper arm, to help the user know to where he must move it, a path will be drawn showing the direction to where he must go. If we look closely at the previously presented design, we can observe it actually focus around the circle. The fore arm changes the circle itself, while the upper arm controls the dotted circumference that must cover also the circle. With this in mind, if we move this same circle through the movement path, we will be able to continuously inform the user about the desired direction while also updating what specific elbow angle he should have. In fig \ref{fig:movementguidancefeedback} we can see an example of this, where the user is already midpoint in the exercise.
+
+\begin{figure*}[!t]
+    \begin{center}
+        \includegraphics[width=0.4\textwidth]{imgs/movementguidancefeedback.png}
+    \end{center}
+    \caption{caption}
+    \label{fig:movementguidancefeedback}
+\end{figure*}
+
+
+\section{Exercise Phases}
+
+\subsection{Initial Position}
+\subsection{Task Performance}
+\subsection{Exercise Review}
+
+
+
+%Hereafter, as depicted in Figure~\ref{fig:vision}, 
+%the patient follows all provided feedback to replicate the pre-recorded movement step-by-step, without ever seeing the exercise executed before.
+%The current position of the subject's arm is being constantly tracked in order to always provide real-time 
+%feedback based on how he should move it from that point.
+%Visual feedback is achieved by projecting light onto his full arm and surroundings. The projection on the arm will enable us to 
+%guide a subject through translations and rotations, using different kinds of visual cues to different situations. As for the projection on the subject's surrounding 
+%will serve the purpose of providing other useful information not directly connected to the movement itself. 
+%In Figure~\ref{fig:vision} we can observe a progress bar being projected on the floor. 
+%This bar not only provides the subject an understanding of how far in the exercise he is at the moment, but also helps the subject visualize the angle of movement he should be doing.
+%Audio and haptic feedback can help inform the subject about specific information, without making him loose his focus on the visual feedback.
+%The haptic feedback is used to quickly notify the subject of any vital information about the current state of the exercise. 
+%Awareness of erroneous movements is achieved mainly by the employment of vibration cues into the patient's arm.
+%Furthermore, for the purpose of timing, auditory feedback provide the subject with information regarding when to start or stop the exercise by using recognizable audio cues %which represent those same actions.
+
+%Interactive phases(Figure~\ref{fig:interaction}):
+%\begin{itemize}
+%\item {\bf Initial Position Phase:}
+%\item {\bf Task Performance:}
+%\item {\bf Progress Report:}
+%\end{itemize}
 
 
 
