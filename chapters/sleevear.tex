@@ -4,27 +4,70 @@
 \section*{Summary}
 
 Before implementing SleeveAR, it was vital to fully establish what were our goals and what we wanted to achieve. 
-The following chapter describes our vision of this work and lists the feautures we considered to be a minimum requirement for a successful implementation.
+The following chapter describes our vision of this work and lists the features we considered to be a minimum requirement for a successful implementation.
 
 
 
 \section{Vision}
 
 SleeveAR aims further beyond the accomplishments LightGuide was able to make. 
-As described in the previous section, Lightguide only focused on projecting information on top of the hand. Not only does this leave a small room for movement variety, but also the amount of possible information given can be quite reduced.
+As described in the previous section, LightGuide only focused on projecting information on top of the hand. Not only does this leave a small room for movement variety, but also the amount of possible information given can be quite reduced.
 By increasing the projection area throughout the whole arm we can successfully improve an user's awareness while an movement is being executed. 
 Not only that, but if it was possible for the movement being replicated to be originated by another person, we could achieve much more realistic and useful guidance.
-With SleeveAR virtual content can be projected onto different surfaces, and even, onto people's own limbs, to provide, in real-time, a more immersive experience. 
+With SleeveAR virtual content can be projected onto different surfaces, and even, onto people's own limbs, to provide, in real-time, a more immerse experience. 
 
 Our vision consists on two main concepts. Firstly, the precise recording of the exercise being demonstrated by a personal therapist. 
-And secondly, the ability to properly guide another person, the rehabilitation subject, during the execution of the pre-recorded exercise. 
-While, at the same time, provide awareness of the rehabilitation exercise progress to insure the correctness of the patient's movements.
-With SleeveAR, a therapist can easily demonstrate the prescribed exercises and make sure his patient will perform them correctly without the requirement of his close supervision.
+And secondly, the ability to properly guide another person, the rehabilitation subject, during the execution of the pre-recorded exercise.
+Next we will describe in detail each of this general concepts of our vision.
 
-In the SleeveAR system, the exercise being performed needs to be recorded beforehand, which, in this case, should be a health professional. 
-Not only it provides a great range of possible movements, but also assigns,onto the professional, the responsibility of providing adequate exercises based on a specific patient's condition.
+%While, at the same time, provide awareness of the rehabilitation exercise progress to insure the correctness of the patient's movements.
+%With SleeveAR, a therapist can easily demonstrate the prescribed exercises and make sure his patient will perform them correctly without the requirement of his close supervision.
+
+%In the SleeveAR system, the exercise being performed needs to be recorded beforehand, which, in this case, should be a health professional. 
+%Not only it provides a great range of possible movements, but also assigns,onto the professional, the responsibility of providing adequate exercises based on a specific patient's condition.
+
+\section{Recording}
+
+Normally, when a patient executes prescribed exercises, these same exercises were specifically made for the current patient's condition. 
+With this in mind, we wanted to maintain that relation between a therapist and patient. 
+To do this, we chose to give the therapists the power of demonstrating the exercise they want the patient to do. 
+Based on this demonstration, SleeveAr will capture the therapist movement and store it for later use.
+By giving the therapist the responsibility of demonstrating the exercise, we do not need to worry about the physical limitations of the patient that would use our system to recreate it. 
+We are assuming the recorded exercise is already customized for the patient in question.
+
+Given these assumptions, SleeveAr must then be able to guide a patient through those exercises as best as it can. Next we describe the behaviour SleeveAR should have while guiding a patient.
+
+
+\section{Guiding}
+
+Guiding a patient through an exercise can be divided in three phases in our approach, which are as follows:
+
+\begin{itemize}
+\item Reaching Initial Position
+\item Performing Exercise
+\item Performance Review
+\end{itemize}
+
+We consider these three phases to be a simple and clear way of organizing what SleeveAR should do when interaction with an patient. Next we describe each of them.
+
+To successfully recreate an exercise, we considered the user must first reach the exercise initial position, i.e., the first arm position from the recorded demonstration.
+To do this, a patient must follow SleeveAR's feedback in order to achieve the correct arm position. 
+All feedback used for this first phase is explained in section \ref{vision-feedback}.
+After SleeveAR considers the initial position has been reached, we can now start guiding the user through the remaining exercise.
+
+It could be an almost impossible task for a patient to recreate an exercise exactly the same as the original. 
+With this in mind, SleeveAR needs to rely on thresholds for specific values. 
+By doing so, if it was required of a patient to achieve, for example, a 90 degree arm flexion, he would not 
+need to actually achieve it, being only enough for him to get close to that degree of flexion.
+
+Finally at the end of each exercise, SleeveAR should provide an overview of the patient's performance in comparison with the original. 
+This will help the patient understand what he might have done wrong and in which parts of the exercise he could still perform better.
+
+To successfully guide a patient through his exercises while informing him of his performance, we need to plan how will SleeveAR interact with its users. 
+Next section will describe our planned designs for providing real-time and interactive feedback aimed at the user.
 
 \section{Visual Feedback}
+\label{vision-feedback}
 
 \begin{figure}[!t]
     \begin{center}
@@ -132,14 +175,6 @@ As for the upper arm, to help the user know to where he must move it, a path wil
 \end{figure*}
 
 
-\section{Exercise Phases}
-
-\subsection{Initial Position}
-\subsection{Task Performance}
-\subsection{Exercise Review}
-
-
-
 %Hereafter, as depicted in Figure~\ref{fig:vision}, 
 %the patient follows all provided feedback to replicate the pre-recorded movement step-by-step, without ever seeing the exercise executed before.
 %The current position of the subject's arm is being constantly tracked in order to always provide real-time 
@@ -170,3 +205,5 @@ As for the upper arm, to help the user know to where he must move it, a path wil
     \caption{Sleeve Projected Feedback: A) Correct Arm. B) Incorrect Fore Arm. C) Incorrect UpperArm}
     \label{fig:vision}
 \end{figure}
+
+\subsection{Performance Review}
