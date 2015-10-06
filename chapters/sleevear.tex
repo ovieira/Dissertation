@@ -30,7 +30,7 @@ Not only it provides a great range of possible movements, but also assigns,onto 
     \begin{center}
         \includegraphics[width=0.5\textwidth]{imgs/elbowangle.png}
     \end{center}
-    \caption{caption}
+    \caption{Definition of the elbow angle.}
     \label{fig:elbowangle}
 \end{figure}
 
@@ -54,7 +54,7 @@ As we said previously, we wanted both designs to represent the current and desir
     \begin{center}
         \includegraphics[width=0.5\textwidth]{imgs/forearmfeedback.png}
     \end{center}
-    \caption{caption}
+    \caption{Visual Feedback based on fore arm.}
     \label{fig:forearmfeedback}
 \end{figure}
 
@@ -75,7 +75,7 @@ To extend the user's awareness we added two additional features specifically to 
     \begin{center}
         \includegraphics[width=0.5\textwidth]{imgs/upperarmfeedback.png}
     \end{center}
-    \caption{caption}
+    \caption{Visual Feedback based on upper arm.}
     \label{fig:upperarmfeedback}
 \end{figure}
 
@@ -94,9 +94,9 @@ As for the desired state, a simple circle was chosen. For the upper arm to achie
 
 \begin{figure}[!b]
     \begin{center}
-        \includegraphics[width=0.5\textwidth]{imgs/fullarmfeedback.png}
+        \includegraphics[width=0.4\textwidth]{imgs/fullarmfeedback.png}
     \end{center}
-    \caption{caption}
+    \caption{Combination of both visual feedback designs.}
     \label{fig:fullarmfeedback}
 \end{figure}
 
@@ -107,7 +107,12 @@ By replacing the grey circle, used on the upper arm's design, with the elbow ang
 
 All these designs are able to guide the user to a specific, but static, position. For us to be able to guide a user throughout a movement, there need to be some changes on it.
 
-\todo{falar das cores no braço}
+In addition to the already presented feedback, which will be projected on the floor, we will also project information on top of the user's arm. 
+In this case, we will not provide feedback as detailed as it is being provided on the floor. 
+Instead, we will project diferent colors in each arm region depending on how far they are from the desired state. 
+Once again, looking at figure \ref{fig:armvisualfeedback} we can observe the 
+different arm regions having different colours on top, depending on the user's arm position.
+These arm color projections will help in highlighting what the user might be doing incorrectly whiteout losing focus on the main feedback.
 
 \subsection{Movement Guidance}
 
@@ -116,11 +121,13 @@ With this in mind, our planned feedback must then change its desired state durin
 
 As for the upper arm, to help the user know to where he must move it, a path will be drawn showing the direction to where he must go. If we look closely at the previously presented design, we can observe it actually focus around the circle. The fore arm changes the circle itself, while the upper arm controls the dotted circumference that must cover also the circle. With this in mind, if we move this same circle through the movement path, we will be able to continuously inform the user about the desired direction while also updating what specific elbow angle he should have. In fig \ref{fig:movementguidancefeedback} we can see an example of this, where the user is already midpoint in the exercise.
 
+
+
 \begin{figure*}[!t]
     \begin{center}
         \includegraphics[width=0.4\textwidth]{imgs/movementguidancefeedback.png}
     \end{center}
-    \caption{caption}
+    \caption{Visual Feedback during a movement.}
     \label{fig:movementguidancefeedback}
 \end{figure*}
 
@@ -158,8 +165,8 @@ As for the upper arm, to help the user know to where he must move it, a path wil
 
 \begin{figure}[!b]
     \begin{center}
-        \includegraphics[width=\columnwidth]{imgs/visualfeedback.png}
+        \includegraphics[width=\columnwidth]{imgs/armvisualfeedback.png}
     \end{center}
-    \caption{Sleeve Projected Feedback: A) bla. B) Bla. C) Bla}
+    \caption{Sleeve Projected Feedback: A) Correct Arm. B) Incorrect Fore Arm. C) Incorrect UpperArm}
     \label{fig:vision}
 \end{figure}
