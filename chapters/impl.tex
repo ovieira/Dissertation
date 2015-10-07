@@ -1,68 +1,77 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                               My System 24pp
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Implementation}
+\chapter{Prototype}
 \label{sec:implementation}
 
 \section*{Summary}
-%In this section, the hardware required to implemented our approach will be described. Even though some devices are still not certain, we present the possible alternatives to prevent that. In addition to the hardware, the software tools required will also be described. 
+A SleeveAR prototype was built to meet our vision expectations. To implement all planned features, our prototype had to rely on some already existing devices, mainly for motion tracking and feedback sources. This chapter will being with a description of our architecture and its most notable implementation details
 
-This section will describe the necessary steps taken for our SleeveAR's implementation. 
-First of all, section \ref{sec:impl:arch} will briefly explain the overall architecture which served as a guiding tool for our implementation. 
-Second, at section \ref{sec:impl:dev} we will dig deeper into the the most important aspects that made possible to develop the tool here presented.
+
 
 \section{Architecture}
 \label{sec:impl:arch}
 
 
-\section{Development}
-\label{sec:impl:dev}
 
-
-
+\section{Tools}
+\label{sec:impl:tools}
 
 \subsection{Tracking Devices}
 
-For the proposed approach to work, it is necessary to track the subjects as accurately as possible. There are more than one available alternatives that can be used as the tracking device.
 
+As for tracking devices, we had two different options to choose from.
 The first makes use of the recently released, Microsoft Kinect One\footnote{\url{http://www.xbox.com/xboxone/kinect}} 
 (previously baptized as Kinect 2), which supposedly offers a better tracking quality than 
-the previous version, Kinect 1. Although this might be true, to the best of our knowledge there are still no published studies which use the new Kinect in order for us to understand if this would be the best choice for our approach.
+the previous version, Kinect 1. Although this might be true, for our implementation we wanted a much more accurate and faster source of tracking, while also with a not so common tendency to fail due to camera occlusion.
 
-The other alternative available at our laboratories is an OptiTrack Motion Capture system \footnote{\url{https://www.naturalpoint.com/optitrack/}}. 
-This option could offer us a more precise tracking and the possibility of dealing with occlusions due to the multiple cameras scattered around the room. The downside is the fact that 
-it requires body markers to be used in order to successfully detect a person, unlike the 
-Kinect which detects the human body through software algorithms.
+The other alternative available at our laboratories was an OptiTrack Motion Capture system \footnote{\url{https://www.naturalpoint.com/optitrack/}}. 
+This option offered us a more precise tracking and the possibility of dealing with occlusions due to the multiple cameras scattered around the room. 
+The downside is the fact that it requires body markers to be used in order to successfully detect a person, unlike the 
+Kinect which detects the human body through software algorithms. 
+But using a comfortable and rather easy way to attach these body markers, made this not a bigger issue as it seems. 
+A description of how we used the body markers can be found in section \ref{prototype-sleeve}.
 
-Occlusion problems are much more likely to occur using Kinect than with the OptiTrack, due to only using one motion capture sensor. There can be moments where the patient could point his arms forward making the Kinect lose sight of the rest of the body. These problems were known to happen with the first Kinect, for the newest version we will need to understand if it still happens.
 
-We intend to develop a comparison test between the tracking devices available. With this test we will be able to evaluate the tracking quality of each device and therefore decide which one would be the more suitable for our implementation. 
 
 \subsection{Feedback Devices}
 
-To be able to provide guiding cues to a patient, we will need a group of devices capable of providing each of the three possible feedback types that were presented.
+Providing feedback could be considered one of the foundations of this work. 
+We chose to provide both visual and auditory feedback, being the latter much less vital to our goals in this implementation.
 
-For the visual feedback, we will rely on two concepts: the \ac{AR} mirror and projection mapping. 
-For the first, we will capture the patient's image with a camera and project it into a screen. 
-This way it is simulated a mirror, similar to other approaches discussed in this work.
-As for the projection mapping, a light-projector will be used in order to, combining with 
-the the tracking device, project visual cues on the patient's body.
+As it was described in section \ref{sec:sleevear}, our planned visual feedback would be applied on the user's arm and floor.
+We relied on a light projector attached to the ceiling of our laboratory to project all visual feedback.
+Details about how the light projections were able to hit the correct places, specifically the user's moving arm and floor, will be explained in section \ref{prototype-projection}.
 
-To provide audio feedback, a set of speakers will be required around the patient. 
-Therefore, enabling the reproduction of surround sound to explore possible sound localization experiments.
+Audio feedback was used simply to notify the user when to start the exercise and \todo{COMPLETAR}.
+To provide audio, we relied on a speaker system also available at our laboratory
 
-Finally, the haptic feedback will rely on vibration applied onto the user by using 
-vibratory actuators attached to his arm. 
-One possible option would be using the \textit{Pebble Smart watch}\footnote{\url{https://getpebble.com/}} that 
-provides a Developer Kit to access its features, which includes vibration motors. 
-By implementing a communication channel with the watch, it will be possible to control its vibrations whenever necessary.
+\subsection{Software}
 
-\subsection{Software Tools}
+We chose to implement our prototype with the well known \emph{Unity3D} game engine\footnote{\url{http://www.unity3d.com}}.
+This engine already provides several tools that facilitate the development of augmented reality applications and we have in our possession already developed frameworks to communicate with the available tracking devices. In addition to this, Unity3D uses c# as his main programming language, which is one of the most common languages use in the game development world, and already offers a wide range of solutions to create visual information.
 
-To implement our software responsible for interacting with the several feedback interfaces that 
-will be used, we will choose the \emph{Unity3D} game engine\footnote{\url{http://www.unity3d.com}}. 
-This engine already provides several tools that facilitate the development of augmented reality applications and we have in our possession already developed frameworks to communicate with the available tracking devices.
+\section{Setup Environment}
 
-The Kinect Tracking Device already provides an SDK for Unity applications which, if Kinect ends up the chosen tracking device, will accelerate the implementation of the Tracking Module described in section \ref{section-approach-architecture}.
+\section{Implementation}
 
-As for the Pebble Smart watch, although there is an SDK available, it does not support Windows at the moment. If the Windows SDK is not released in the next weeks, we will use the other alternatives provided by the Pebble team which will consist on using an Android phone as a bridge between the Pebble and our application.
+\subsection{Sleeve}
+\label{prototype-sleeve}
+
+\subsection{Projection}
+\label{prototype-projection}
+
+\todo{mais cenas}
+
+
+
+
+
+
+
+\todo{LIMPAR ABAIXO DISTO}
+
+
+
+\section{Development}
+\label{sec:impl:dev}
