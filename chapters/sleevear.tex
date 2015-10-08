@@ -69,13 +69,31 @@ Next section will describe our planned designs for providing real-time and inter
 \section{Visual Feedback}
 \label{vision-feedback}
 
+
 \begin{figure}[!t]
-    \begin{center}
-        \includegraphics[width=0.5\textwidth]{imgs/elbowangle.png}
-    \end{center}
+\minipage[t]{0.49\textwidth}
+  \centering
+  \includegraphics[width=0.7\linewidth]{imgs/elbowangle.png}
     \caption{Elbow Angle Definition.}
     \label{fig:elbowangle}
+    \endminipage\hfill
+\minipage[t]{0.49\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{imgs/forearmfeedback.png}
+    \caption{Fore Arm Visual Feedback.}
+    \label{fig:forearmfeedback}
+    \endminipage
 \end{figure}
+
+
+
+%\begin{figure}[!t]
+%    \begin{center}
+%        \includegraphics[width=0.5\textwidth]{imgs/elbowangle.png}
+%    \end{center}
+%    \caption{Elbow Angle Definition.}
+%    \label{fig:elbowangle}
+%\end{figure}
 
 Providing useful and minimalist design was our goal when designing our visual feedback. There were some key points we wanted to address when designing it.
 First of all, the visual information had to provide the user with a representation of his \textbf{current} position, while also showing the \textbf{desired} position. 
@@ -95,13 +113,13 @@ Our final design for a fore arm feedback makes use of a circle with two bars, si
 
 %\subsubsection{Current State}
 
-\begin{figure}[!t]
-    \begin{center}
-        \includegraphics[width=0.5\textwidth]{imgs/forearmfeedback.png}
-    \end{center}
-    \caption{Fore Arm Visual Feedback.}
-    \label{fig:forearmfeedback}
-\end{figure}
+%\begin{figure}[!t]
+%    \begin{center}
+%        \includegraphics[width=0.5\textwidth]{imgs/forearmfeedback.png}
+%    \end{center}
+%    \caption{Fore Arm Visual Feedback.}
+%    \label{fig:forearmfeedback}
+%\end{figure}
 
 To represent the current state, we use the black bar, seen in figure \ref{fig:forearmfeedback}. Whenever the user moves his fore arm, this bar will move accordingly.
 On the other hand, the desired fore arm state is represented by the green bar. 
@@ -176,13 +194,13 @@ In fig \ref{fig:movementguidancefeedback} we can see an example where the user i
 
 
 
-\begin{figure*}[!t]
+\begin{figure}[!t]
     \begin{center}
         \includegraphics[width=0.4\textwidth]{imgs/movementguidancefeedback.png}
     \end{center}
     \caption{Movement Visual Feedback.}
     \label{fig:movementguidancefeedback}
-\end{figure*}
+\end{figure}
 
 %\begin{figure}[!b]
 %    \begin{center}
@@ -194,9 +212,9 @@ In fig \ref{fig:movementguidancefeedback} we can see an example where the user i
 
 \subsection{Performance Review}
 
-\begin{figure}[!t]
+\begin{figure}
     \begin{center}
-        \includegraphics[width=0.4\textwidth]{imgs/performancereview.png}
+        \includegraphics[width=0.35\textwidth]{imgs/performancereview.png}
     \end{center}
     \caption{Performance Review.}
     \label{fig:performancereview}
