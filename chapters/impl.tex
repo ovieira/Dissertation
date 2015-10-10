@@ -8,8 +8,15 @@
 A SleeveAR prototype was built to meet our vision expectations. To implement all planned features, our prototype had to rely on some already existing devices, mainly for motion tracking and feedback sources. This chapter will being with a description of our architecture and its most notable implementation details
 
 
-\todo{foto da implementação}
 
+
+\begin{figure}[!t]
+    \begin{center}
+        \includegraphics[width=\textwidth]{imgs/impl/teaser.jpg}
+    \end{center}
+    \caption{SleeveAR addresses new active projection-based strategies for providing user feedback during rehabilitation exercises. a) Initial position. b) Mid-performance. c) Sleeve Feedback. d) Performance review.}
+    \label{fig:sleevewearable}
+\end{figure}
 
 \section{Architecture}
 \label{sec:impl:arch}
@@ -58,7 +65,7 @@ This engine already provides several tools that facilitate the development of au
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=0.5\textwidth]{imgs/projector.png}
+\includegraphics[width=0.5\textwidth]{imgs/impl/projector.png}
 \caption{Light Projector}
 \label{fig:projector}
 \end{figure}
@@ -81,19 +88,19 @@ meters.
 \begin{figure}
 \minipage[t]{0.32\textwidth}
   \centering
-  \includegraphics[width=\linewidth]{imgs/singlemarker.png}
+  \includegraphics[width=\linewidth]{imgs/impl/singlemarker.png}
     \caption{Single Tracking Marker.}
     \label{fig:singlemarker}
     \endminipage\hfill
 \minipage[t]{0.32\textwidth}
   \centering
-  \includegraphics[width=\linewidth]{imgs/markercombination.png}
+  \includegraphics[width=\linewidth]{imgs/impl/markercombination.png}
     \caption{Marker Combination.}
     \label{fig:markercombination}
     \endminipage\hfill
 \minipage[t]{0.32\textwidth}
   \centering
-  \includegraphics[width=\linewidth]{imgs/rigidbodiesattached.png}
+  \includegraphics[width=\linewidth]{imgs/impl/rigidbodiesattached.png}
     \caption{Markers location on arm.}
     \label{fig:rigidbodiesattached}
     \endminipage
@@ -127,7 +134,7 @@ Therefore, we created a better attachment method, by using a custom designed sle
 
 \begin{figure}[!t]
     \begin{center}
-        \includegraphics[width=\textwidth]{imgs/sleevewearable.png}
+        \includegraphics[width=\textwidth]{imgs/impl/sleevewearable.png}
     \end{center}
     \caption{Sleeve used for tracking.}
     \label{fig:sleevewearable}
@@ -144,7 +151,7 @@ while also enabling us to still squeeze them more or less depending on the user'
 \subsection{Projection}
 \label{prototype-projection}
 
-\todo{mais cenas}
+\todo{explicar tecnica de projection no chao e braco}
 
 \subsection{Recording Movements}
 
@@ -157,7 +164,7 @@ By standard, the recording time was set to a maximum duration of ten seconds, wh
 The user could also stop the recording earlier if the exercise was not intended to take 10 seconds. He simply had to press the stop button.
 
 Immediately after finishing recording, new options appear in the interface. 
-The user could fill a text area with the intended filename and save the exercise, or first attach some more information to the file which we will explain next.
+The user could fill a text area with the intended file name and save the exercise, or first attach some more information to the file which we will explain next.
 
 As we shown previously in section \ref{sec:movementguidance}, visual feedback provided during a movement included drawing the movement path on the floor. 
 But this could become confusing if, for example, the recorded movement passed by the same place two times. 
@@ -172,26 +179,20 @@ All of this information was saved along with the exercises and stored on our com
 
 \subsection{Data Storage}
 
-Our stored files contained a list of all captured data from the three rigidbodies, as described in \ref{prototype-tracking}. 
-Each of the list entries contained the position and rotation from each rigidbody and also the required information to indentify the different exercise parts in case they were assigned. 
+Our stored files contained a list of all captured data from the three rigid bodies, as described in \ref{prototype-tracking}. 
+Each of the list entries contained the position and rotation from each rigid body and also the required information to identify the different exercise parts in case they were assigned. 
 If not, the exercises would be treated as one full movement without division.
 
-We chose to save our information in the JSON format as oppose to XML due to generating much smaller filesizes. In addition to that, is was also a much more readable format, something we found useful when implementing and debugging this part of our prototype.
+We chose to save our information in the JSON format as oppose to XML due to generating much smaller file sizes. In addition to that, is was also a much more readable format, something we found useful when implementing and debugging this part of our prototype.
 
 \subsection{Guiding}
 
-%\begin{itemize}
-%\item Loading wanted files
-%\item Initial position
-%\item Full movement
-%\item thresholds
-%\item audio notifications when guiding
-%\end{itemize}
+\todo{figura feedback implementado}
 
 Guiding a user through a recorded exercise, the core of our work, involved several phases for it to be possible.
 
 First of all, we needed to load exercise files for them to be used again. 
-We decided to use an already existing library \todo{url do json fullserializer}, for the sole purpose of reading and parsing JSON files.
+We decided to use an already existing library, FullSerializer\footnote{\url{https://github.com/jacobdufault/fullserializer}}, for the sole purpose of reading and parsing JSON files.
 After loading an exercise file, we could then start guiding a user whenever we wanted.
 
 To implement the planned visual feedback, described in section \ref{vision-feedback}, and for it to dynamically change throughout a movement, 
@@ -199,18 +200,30 @@ we divided responsibilities into two main components. We will refer to these com
 The \ac{FS} has the responsibility of manipulating the provided feedback while the \ac{ES} was responsible in deciding if the user was executing correctly the exercise.
 
 In other words, considering an exercise as a list of specific arm directions that we want another person to replicate in the correct orders. 
-Obviously, the exercise should start in the first entry of this list. Once the user gets close enough to these specific entry, the \ac{ES} will then advance to the next entry. This will keep happening until we reach the end of the list and the exercise is over.
+Obviously, the exercise should start in the first entry of this list. 
+Once the user gets close enough to these specific entry, the \ac{ES} will then advance to the next entry. 
+This will keep happening until we reach the end of the list and the exercise is over.
 
 With this in mind, every time \ac{ES} is focused on a specific entry, the information inside it will generate the so called visual feedback \textbf{desired state}. 
 Therefore, grabbing the concept of current and desired state from section \ref{vision-feedback}, two things will happen. 
 First, \ac{FS} will update the current state based on real-time tracking from our current user. 
 Second, the desired state will be updated accordingly to the current entry \ac{ES} is focusing on.
 
-\todo{should I have a more low-level explanation of this? I wanted it to be "simple"}
-\todo{talk about thresholds?}
+Even though we were tracking rigid bodies positions, we could not blindly compare positions between the original and attempt.
+As explained in section \ref{sec:skeletoncomparison}, the person which recorded an exercise could have, for example, a different arm length.
+With this in mind, even though we were storing rigid bodies positions, we generated normalized vectors to represent the arm direction. 
+Upper arm direction was a normalized vector pointing from should to elbow position, while the fore arm direction was a vector from elbow to wrist.
+By comparing both arm region directions, we eliminate the physical differences between different user's arm.
+
+\todo{JV:should I have a more low-level explanation of this? I wanted it to be "simple"}
+\todo{JV:talk about thresholds?}
 
 \subsection{Performance Review}
 
-\begin{itemize}
-\item how we
-\end{itemize}
+\todo{figura performance review}
+
+Every time an exercise was finished, our prototype should present the user with a review of his attempt. 
+As described in our approach, the review should contain trajectory comparison between the original exercise and user's attempt.
+As for the score, we implemented a simple formula to return a value from 0 to 100. 
+Unfortunately, only after finishing our user tests we discovered a better alternative, which we ended up using for our result analysis, in section \ref{sec:results}.
+A picture of our performance review implementation can be seen in figure \todo{figura performance review}
