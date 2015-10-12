@@ -22,7 +22,7 @@ Given the real-time tracking, our SleeveAR prototype will then generate feedback
 
 \begin{figure}[!t]
     \begin{center}
-        \includegraphics[width=0.5\textwidth]{imgs/impl/arch.jpg}
+        \includegraphics[width=0.5\textwidth]{imgs/impl/arch}
     \end{center}
     \caption{SleeveAR Architecture.}
     \label{fig:arch}
@@ -60,7 +60,7 @@ As it was described in section \ref{sec:sleevear}, our planned visual feedback w
 We relied on a light projector attached to the ceiling of our laboratory to project all visual feedback.
 Details about how the light projections were able to hit the correct places, specifically the user's moving arm and floor, will be explained in section \ref{prototype-projection}.
 
-Audio feedback was used simply to notify the user when to start the exercise and \todo{COMPLETAR}.
+Audio feedback was used for simple notifications. Events that require the user attention, we
 To provide audio, we relied on a speaker system also available at our laboratory
 
 \subsection{Software}
@@ -72,19 +72,19 @@ This engine already provides several tools that facilitate the development of au
 \begin{figure}[!t]
 \minipage[t]{0.32\textwidth}
   \centering
-  \includegraphics[width=\linewidth]{imgs/impl/laboratory.jpg}
+  \includegraphics[width=\linewidth]{imgs/impl/laboratory}
     \caption{Work Laboratory.}
     \label{fig:laboratory}
     \endminipage\hfill
 \minipage[t]{0.32\textwidth}
   \centering
-  \includegraphics[width=\linewidth]{imgs/impl/projector.png}
+  \includegraphics[width=\linewidth]{imgs/impl/projector}
     \caption{Light Projector.}
     \label{fig:projector}
     \endminipage\hfill
 \minipage[t]{0.32\textwidth}
   \centering
-  \includegraphics[width=0.75\linewidth]{imgs/impl/optitracksensor.png}
+  \includegraphics[width=0.75\linewidth]{imgs/impl/optitracksensor}
     \caption{Single Optitrack Camera.}
     \label{fig:optitracksensor}
     \endminipage
@@ -110,19 +110,19 @@ meters.
 \begin{figure}
 \minipage[t]{0.32\textwidth}
   \centering
-  \includegraphics[width=\linewidth]{imgs/impl/singlemarker.png}
+  \includegraphics[width=\linewidth]{imgs/impl/singlemarker}
     \caption{Single Tracking Marker.}
     \label{fig:singlemarker}
     \endminipage\hfill
 \minipage[t]{0.32\textwidth}
   \centering
-  \includegraphics[width=\linewidth]{imgs/impl/markercombination.png}
+  \includegraphics[width=\linewidth]{imgs/impl/markercombination}
     \caption{Marker Combination.}
     \label{fig:markercombination}
     \endminipage\hfill
 \minipage[t]{0.32\textwidth}
   \centering
-  \includegraphics[width=\linewidth]{imgs/impl/rigidbodiesattached.png}
+  \includegraphics[width=\linewidth]{imgs/impl/rigidbodiesattached}
     \caption{Markers location on arm.}
     \label{fig:rigidbodiesattached}
     \endminipage
@@ -156,7 +156,7 @@ Therefore, we created a better attachment method, by using a custom designed sle
 
 \begin{figure}[!t]
     \begin{center}
-        \includegraphics[width=\textwidth]{imgs/impl/sleevewearable.png}
+        \includegraphics[width=\textwidth]{imgs/impl/sleevewearable}
     \end{center}
     \caption{Sleeve used for tracking.}
     \label{fig:sleevewearable}
@@ -175,19 +175,26 @@ Another advantage of using our custom sleeve is providing a better surface to pr
 
 Projection visual information on the floor and user's arm was one of the greatest challenges in our implementation. To accomplish it, we divided the implementation into smaller goals.
 
-First of all, we needed to understand the requires concepts to project information wherever we wanted. We'll use a simple example with a cube being tracked by 
-our device and to facilitate we'll use the nomenclature \todo{physical position, virtual position, projected position}.
+First of all, we needed to understand the required concepts to project information wherever we wanted. We'll use a simple example with a cube being tracked by 
+our device and to facilitate we'll use the following nomenclature:
+
+\begin{itemize}
+\item \textbf{\ac{PP}} represents the actual position of an object inside the room.
+\item \textbf{\ac{VP}} represents the object's 3-dimensional position calculated from the tracking system coordinates
+\item \textbf{\ac{PrP}} - 2-dimensional positions on the floor projected area.
+\end{itemize}
+
 
 \todo{fig 1 do caderno}
 
-Looking at \todo{fig 1}, we have a cube inside our room being tracked by our optitrack sensor, hence, we receive its raw positional data, i.e., its \todo{virtual position}.
-So, now we know the cube's position in a virtual room. If we wanted to project, for example, a small circle directly below the cube, we would encounter several obstacles.
+Looking at \todo{fig 1}, we have a cube inside our room being tracked by our Optitrack sensor, hence, we receive its raw positional data, i.e., its \ac{VP}, which is calculated based on the tracking system coordinates' origin.
+So, now we know the cube's position in a virtual room. If we wanted to project, for example, a small circle directly below the cube, we would need to find out in which position should the circle be projected (\ac{PrP}) so that it would be below the cube's actual physical position in the room. Hence, we need to find a way of syncing these three different position types so that content is easily placed wherever we want. If we tried to simply apply the cube's \ac{VP} position to the projected area, we would encounter several obstacles.
 
 
 \todo{fig 4 do caderno}
 
-Even though we might have the circle being projected perfectly below \todo{fig 4, A}, it was not constant.
-If we moved the cube to another position, closer to the edges, like in cubes B and C from \todo{fig 4}, the circle would not remain below it. 
+Even though we might have the circle being projected perfectly below \todo{fig 4, A}, it was not constantly synced.
+If we moved the cube to another \ac{PP}, closer to the edges of the projected area, like in cubes B and C from \todo{fig 4}, the circle would not remain below it. 
 Two reasons could cause this. First, the projected area center is not synced with the tracking coordinates center. 
 This already generates a small offset in our projection. 
 Second, and probably what influences our projection accuracy the most, is the projection distortion closer to the edges.
@@ -262,7 +269,13 @@ We chose to save our information in the JSON format as oppose to XML due to gene
 
 \subsection{Guiding}
 
-\todo{figura feedback implementado}
+\begin{figure}[!t]
+    \begin{center}
+        \includegraphics[width=\textwidth]{imgs/impl/teaser.jpg}
+    \end{center}
+    \caption{SleeveAR addresses new active projection-based strategies for providing user feedback during rehabilitation exercises. a) Initial position. b) Mid-performance. c) Sleeve Feedback. d) Performance review.}
+    \label{fig:teaser}
+\end{figure}
 
 Guiding a user through a recorded exercise, the core of our work, involved several phases for it to be possible.
 
@@ -290,15 +303,10 @@ With this in mind, even though we were storing rigid bodies positions, we genera
 Upper arm direction was a normalized vector pointing from should to elbow position, while the fore arm direction was a vector from elbow to wrist.
 By comparing both arm region directions, we eliminate the physical differences between different user's arm.
 
-\todo{JV:should I have a more low-level explanation of this? I wanted it to be "simple"}
-\todo{JV:talk about thresholds?}
-
 \subsection{Performance Review}
-
-\todo{figura performance review}
 
 Every time an exercise was finished, our prototype should present the user with a review of his attempt. 
 As described in our approach, the review should contain trajectory comparison between the original exercise and user's attempt.
 As for the score, we implemented a simple formula to return a value from 0 to 100. 
 Unfortunately, only after finishing our user tests we discovered a better alternative, which we ended up using for our result analysis, in section \ref{sec:results}.
-A picture of our performance review implementation can be seen in figure \todo{figura performance review}
+A picture of our performance review implementation can be seen in figure \ref{fig:teaser} D).
