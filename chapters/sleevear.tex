@@ -3,15 +3,13 @@
 
 \section*{Summary}
 
-This chapter describes a new approach  to deal with the various SleeveAR implementation challenges, and  identifies the critical resources required for a successful implementation.
+This chapter describes a new approach to deal with the various SleeveAR implementation challenges, and  identifies the critical resources required for a successful implementation.
 
 \todo{Artur: "establish the most important requirements and objectives to be achieved by the solution" - isto deve ser feito logo na intro, em Requirements and Goals, e não aqui.}
 
 
 \section{Vision}
 \label{sec:sleevear:approach}
-
-\todo{vision passa a approach}
 
 SleeveAR has ambitious goals, aiming further beyond the accomplishments achieved by LightGuide. 
 As described in the previous section, LightGuide only focused on projecting information on top of the hand. Not only does this leaves a small room for movement diversity, but also reduces the amount of possible and useful information that can be given.
@@ -29,7 +27,16 @@ Hereafter we will describe in detail each of this general concepts of our vision
 %In the SleeveAR system, the exercise being performed needs to be recorded beforehand, which, in this case, should be a health professional. 
 %Not only it provides a great range of possible movements, but also assigns,onto the professional, the responsibility of providing adequate exercises based on a specific patient's condition.
 
-\section{Recording}
+
+
+
+\section{Process (Or SleeveAR Workflow)}
+
+
+\todo{explicar 3 fases}
+
+
+\subsection{Recording}
 
 Usually, the patient's prescribed exercises were specifically conceived designed for the current patient's health condition. 
 With this in mind, we wanted to maintain this relation between a therapist and a patient, by giving the therapists the power for demonstrating the prescribed exercises to the patient. 
@@ -40,7 +47,7 @@ We are assuming the recorded exercise is already customized for the patient in q
 Given these assumptions, SleeveAr must then be able to guide a patient through those exercises as best as it can. Next we describe the behaviour SleeveAR should have while guiding a patient.
 
 
-\section{Guiding}
+\subsection{Guiding}
 
 Guiding a patient through an exercise can be divided in three phases in our approach, which are as follows:
 
@@ -53,7 +60,7 @@ Guiding a patient through an exercise can be divided in three phases in our appr
 We consider these three phases to be a simple and clear way of organizing what SleeveAR should do when interaction with an patient.
 To successfully recreate an exercise, we considered the user must first reach the exercise initial position, i.e., the first arm position from the recorded demonstration.
 To do this, a patient must follow SleeveAR's feedback in order to achieve the correct arm position. 
-All feedback used for this first phase is explained in section \ref{vision-feedback}.
+All feedback used for this first phase is explained in section \ref{sec:feedback}.
 After SleeveAR considers the initial position has been reached, we can now start guiding the user through the remaining exercise.
 
 It could be an almost impossible task for a patient to recreate an exercise exactly the same as the original. 
@@ -67,7 +74,39 @@ This will help the patient understand what he might have done wrong and in which
 To successfully guide a patient through his exercises while informing him of his performance, we need to plan how will SleeveAR interact with its users. 
 Next section will describe our planned designs for providing real-time and interactive feedback aimed at the user.
 
-\section{Visual Feedback}
+
+\subsection{Performance Review}
+
+\begin{figure}
+    \begin{center}
+        \includegraphics[width=0.35\textwidth]{imgs/approach/performancereview}
+    \end{center}
+    \caption{Performance Review.}
+    \label{fig:performancereview}
+\end{figure}
+
+Whenever an exercise is finished, SleeveAR must provide users with a review of their performance. 
+By reviewing their exercise, a patient would be able to understand how close he was from the original exercise.
+
+Patients will be informed about their performance by two different designs. 
+First, and perhaps most importantly, the original exercise trajectory will be drawn on the floor, followed by the user's recently executed attempt. 
+These trajectories will help to visualize what fractions of the exercise could use improvement.
+Second, a score will be calculated, based on similarity between both movements, and also projected on the floor. 
+With this small gamification, users will feel motivated to improve their score and, consequently, also improve their overall performance.
+
+On figure \ref{fig:performancereview}, we have an example where an orange and green line, 
+respectively representing the original trajectory and user's attempt, are drawn on the floor. 
+The calculated score would be shown with a simple horizontal bar, including the calculated percentage of similarity.
+
+
+\section{Feedback}
+\label{sec:feedback}
+
+
+\todo{introduzir}
+
+
+\subsection{Visual Feedback}
 \label{vision-feedback}
 
 
@@ -101,7 +140,7 @@ First of all, the visual information had to provide the user with a representati
 These representations had to be done in a way the user would easily comprehend what to do in order to achieve that same desired position.
 To provide suitable feedback regarding the full arm we first applied different design for each of the regions. Next we will present our planned visual feedback designs.
 
-\subsection{Fore Arm}
+\subsubsection{Fore Arm}
 
 Before creating the fore arm visual feedback it was important to understand what type of movement could be executed with this arm region.
 The fore arm is connected to the upper arm by the elbow joint and its range of motion could be summarized in extension and flexing of the arm.
@@ -131,7 +170,7 @@ Depending on the distance between both bars, the circle color would fade between
 Also, if the black bar gets too far from the desired position, rotating arrows will appear to wan the user he is currently not correctly positioned. 
 Next we present the planned design for the upper arm feedback.
 
-\subsection{Upper Arm}
+\subsubsection{Upper Arm}
 
 \begin{figure}[!t]
     \begin{center}
@@ -155,7 +194,7 @@ By moving the upper arm vertically or horizontally, the dotted circumference sho
 As for the desired state, a simple circle was chosen. 
 For the upper arm to achieve the desired direction the user simply has to move it until the dotted circumference surrounds the circle.
 
-\subsection{Full Arm}
+\subsubsection{Full Arm}
 
 \begin{figure}[!t]
     \begin{center}
@@ -179,7 +218,7 @@ Once again, looking at figures \ref{fig:forearmfeedback}, \ref{fig:upperarmfeedb
 different arm regions having different colours on top, depending on the user's arm position.
 These arm color projections will help in highlighting what the user might be doing incorrectly without losing focus on the main feedback.
 
-\subsection{Movement Guidance}
+\subsubsection{Movement Guidance}
 \label{sec:movementguidance}
 During an arm movement, we can not assume that both the upper and fore arm will remain the same. 
 We can have an example were the arm remains fully extended throughout the movement or where the fore arm varies during the movement. 
@@ -211,25 +250,7 @@ In fig \ref{fig:movementguidancefeedback} we can see an example where the user i
 %    \label{fig:armvisualfeedback}
 %\end{figure}
 
-\subsection{Performance Review}
+\subsubsection{Floor Guidance}
+\todo{este ja n faz mt sentido}
 
-\begin{figure}
-    \begin{center}
-        \includegraphics[width=0.35\textwidth]{imgs/approach/performancereview}
-    \end{center}
-    \caption{Performance Review.}
-    \label{fig:performancereview}
-\end{figure}
-
-Whenever an exercise is finished, SleeveAR must provide users with a review of their performance. 
-By reviewing their exercise, a patient would be able to understand how close he was from the original exercise.
-
-Patients will be informed about their performance by two different designs. 
-First, and perhaps most importantly, the original exercise trajectory will be drawn on the floor, followed by the user's recently executed attempt. 
-These trajectories will help to visualize what fractions of the exercise could use improvement.
-Second, a score will be calculated, based on similarity between both movements, and also projected on the floor. 
-With this small gamification, users will feel motivated to improve their score and, consequently, also improve their overall performance.
-
-On figure \ref{fig:performancereview}, we have an example where an orange and green line, 
-respectively representing the original trajectory and user's attempt, are drawn on the floor. 
-The calculated score would be shown with a simple horizontal bar, including the calculated percentage of similarity.
+\subsection{Audio}

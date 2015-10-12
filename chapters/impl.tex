@@ -283,7 +283,7 @@ First of all, we needed to load exercise files for them to be used again.
 We decided to use an already existing library, FullSerializer\footnote{\url{https://github.com/jacobdufault/fullserializer}}, for the sole purpose of reading and parsing JSON files.
 After loading an exercise file, we could then start guiding a user whenever we wanted.
 
-To implement the planned visual feedback, described in section \ref{vision-feedback}, and for it to dynamically change throughout a movement, 
+To implement the planned visual feedback, described in section \ref{sec:feedback}, and for it to dynamically change throughout a movement, 
 we divided responsibilities into two main components. We will refer to these components as services, more specifically, the \ac{FS} and \ac{ES}.
 The \ac{FS} has the responsibility of manipulating the provided feedback while the \ac{ES} was responsible in deciding if the user was executing correctly the exercise.
 
@@ -293,7 +293,7 @@ Once the user gets close enough to these specific entry, the \ac{ES} will then a
 This will keep happening until we reach the end of the list and the exercise is over.
 
 With this in mind, every time \ac{ES} is focused on a specific entry, the information inside it will generate the so called visual feedback \textbf{desired state}. 
-Therefore, grabbing the concept of current and desired state from section \ref{vision-feedback}, two things will happen. 
+Therefore, grabbing the concept of current and desired state from section \ref{sec:feedback}, two things will happen. 
 First, \ac{FS} will update the current state based on real-time tracking from our current user. 
 Second, the desired state will be updated accordingly to the current entry \ac{ES} is focusing on.
 
