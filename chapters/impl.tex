@@ -10,24 +10,30 @@ A SleeveAR prototype was built to meet our vision expectations. To implement all
 
 
 
-\begin{figure}[!t]
-    \begin{center}
-        \includegraphics[width=\textwidth]{imgs/impl/teaser.jpg}
-    \end{center}
-    \caption{SleeveAR addresses new active projection-based strategies for providing user feedback during rehabilitation exercises. a) Initial position. b) Mid-performance. c) Sleeve Feedback. d) Performance review.}
-    \label{fig:teaser}
-\end{figure}
+
 
 \section{Architecture}
 \label{sec:impl:arch}
 
+The SleeveAR architecture, which can be seen in figure \ref{fig:arch}, relies on several devices to both receive and send information.
+In terms of input, we are receiving real-time tracking information through an UDP connection with a tracking dedicated computer. Section \ref{sec:impl:trackdevices} and \ref{prototype-tracking} will explain with more detail what devices were used and how did we actually were able to track a user's arm by using a sleeve with markers.
+
+Given the real-time tracking, our SleeveAR prototype will then generate feedback accordingly to a specific exercise the user should attempt to execute. To provide feedback, we controlled speakers to provide audio notifications but most importantly, a light projector to project information both on the user's arm and floor. In Section \ref{prototype-projection} we explain how this projection was achieved.
+
+\begin{figure}[!t]
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{imgs/impl/arch.jpg}
+    \end{center}
+    \caption{SleeveAR Architecture.}
+    \label{fig:arch}
+\end{figure}
 
 
 \section{Tools}
 \label{sec:impl:tools}
 
 \subsection{Tracking Devices}
-
+\label{sec:impl:trackdevices}
 
 As for tracking devices, we had two different options to choose from.
 The first makes use of the recently released, Microsoft Kinect One\footnote{\url{http://www.xbox.com/xboxone/kinect}} 
@@ -195,7 +201,21 @@ By doing this, the offsets observed were almost non-existing and even if they we
 
 \todo{fig 5 do caderno}
 
-After being able to project informatioin directly below any tracked object, our next challenge was to project light on the object being tracked. In this case, based on our example, we want to project the circle on top of the cube.
+After being able to project information directly below any tracked object, our next challenge was to project light on the object being tracked. 
+In this case, based on our example, we want to project the circle on top of the cube. 
+Our challenge here was discovering how a two-dimensional projection could be used to illuminate targets above the floor.
+
+\todo{fig 6}
+
+Looking at \todo{fig 6}, we have a side-view of our example. When the projector light hits the cube, a shadow is created on the floor. 
+Since this shadow is still inside the projected area, if we move the circle to its position, it will then be projected on top of the cube.
+
+If we are able to project information where we want (when it comes to floor positions), to hit the cube with light, we just need to know where the shadow is in terms of virtual position. 
+To accomplish this, we calculated the projector virtual position and then use it to predict where the shadow would be. 
+By simulating the direction a light ray would have when originating from the projector and aimed at a cube, we could achieve a shadow virtual position. 
+As is can be seen in fig \todo{fig 7}, by using the "lightdir" vector, we reach the shadow virtual position. 
+From there we are already able to convert it to the correct physical position. Hence, we are able to hit the actual cube with the circle projection.
+When applying this line of thought to our tracked rigid bodies, we were able to project any kind of content on top of the user's arm
 
 \subsection{Recording Movements}
 
