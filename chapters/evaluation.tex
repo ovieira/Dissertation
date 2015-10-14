@@ -28,7 +28,7 @@
 
 For the evaluation of the SleeveAR, we intended to observe how well a subject recreates simple arm movements just by following the feedback at his disposal. 
 
-Since tests involve executing simple arm movements, five different exercises were created for this evaluation. \todo{colocar links de youtube?} These exercises were simultaneously recorded both by video and by the SleeveAR's Learning Architecture. This way, we guarantee the same movement is being stored in video and in our system.
+Since tests involve executing simple arm movements, five different exercises were created for this evaluation. These exercises were simultaneously recorded both by video and by the SleeveAR's Learning Architecture. This way, we guarantee the same movement is being stored in video and in our system.
 
 This chapter presents a detailed description of the experimental tests. It addresses the experimental methodology employed for testing our prototype with test subjects, the category of performed tests, the measurement metrics, and the characteristics of the collected sensor information. It also presents the experimental results and their critical analysis. All the results will be discussed in order to achieve a better understanding about our prototype functionality and performance.
 Finally, the chapter reports some of the most important critics elaborated by a professional physical therapist after using our system.
@@ -87,22 +87,142 @@ In order to gather data for further result analysis, each execution of an exerci
 Even though we are presenting this ordering for the four stages, half of the participants started by doing the third stage before the second, for the purpose of obtaining a more balanced sample of results.
 
 \section{Performed Tasks} \label{evaluation-tasks}
-The same five exercises were executed for both the above mentioned second and third stages.
-
-Each exercise was simultaneously recorded with a video camera and with motion tracking devices. Under these circumstances, we made sure that the content being stored in video format directly represented the data being stored on SleeveAR's architecture.
-The tasks performed in stage 2 and 3 had the identical goal of recreating the five recorded exercises.
-
-\todo{explicar como era cada exercicio? Sim}
-
-\section{Environment and Participants} 
 
 
+Our performed tasks involved the execution of five different exercises which consisted of rather simple combinations of possible anatomic arm movements, described in section \ref{vision-feedback}.
+Each exercise consisted of different movement combinations which can be seen in table \ref{table:exercises}.
+These same five exercises were executed for both the above mentioned second and third stages.
+To store the original exercise we first had to capture it, hence, each exercise was simultaneously recorded with a video camera and with motion tracking devices. Under these circumstances, we made sure that the content being stored in video format directly represented the data being stored on SleeveAR's prototype.
 
-\section{Results}
+While in the SleeveAR phase, the users would first be presented with a small tutorial which introduced interactively each of the feedback components individually. 
+More specifically, the fore arm feedback, followed by the upper arm feedback and finishing with its combination.
+After the tutorial, both the SleeveAr and Video phases had the same methodology. 
+The user had three attempts for each exercise, being the first two more aimed at practicing the exercise.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[!t]
+\centering
+\scalebox{0.8}{
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Exercises} & \textbf{Abduction/Adduction} & \textbf{Elevation/Depression} & \textbf{Flexion/Extension} \\ \hline
+1 & \ding{51} &  &  \\ \hline
+2 & \ding{51} & \ding{51} &  \\ \hline
+3 & \ding{51} &  & \ding{51} \\ \hline
+4 &  & \ding{51} &  \\ \hline
+5 & \ding{51} & \ding{51} & \ding{51} \\ \hline
+\end{tabular}
+}
+\caption{Arm movements in exercises.}
+\label{table:exercises}
+\end{table}
+
+
+\section{Participants} 
+
+
+The participants in this trial were invited randomly and were mainly students attending our educational
+institution. Thereby, the set of test users was comprised of 18 participants, consisted of 14 males and 4 females,
+and all with a college degree. In regard to their age, we had an average age of approximately 26 years old. 
+All participants declared not having any physical impairment at the moment of the tests. 
+The test users profile gathered from the questionnaire is available in \todo{colocar o questionario em apendice}.
+It should be noted one of our participants was a professional physical therapist. 
+In section \ref{sec:pt} the full interaction with this participant is described.
+
+
+\section{Results and Discussion}
 \label{sec:results}
 
-The empirical evaluation addressed the correctness of the executed exercises. Experiments with test subjects were performed for a baseline scenario, consisting of exercise execution through video observation, and for a patient assisted scenario consisting of real-time feedback provided the proposed prototype. The performance metrics is given by the degree of similarity between the participants' arm trajectories and the original trajectories demonstrated by the therapist. It is measured using the \textbf{\ac{DTW}} \todo{referencia para o algoritmo} algorithm, 
-which is appropriate for measuring a degree of similarity between two temporal sequences which may vary in time or speed. With the application of this algorithm in mind, the recorded movements can be reformulated as a sequence of positions. One can then compare the performance values for both the proposed solution and the baseline scenario.
+In this section, we present an analysis of the data obtain during the evaluation sessions.
+The data gathered consists of user preferences and task performance.
+The main objective was to address the correctness of the executed exercises. 
+Experiments with test subjects were performed for a baseline scenario, consisting of exercise execution through video observation, and for a patient assisted scenario consisting of real-time feedback provided the proposed prototype. 
+Furthermore, this evaluation provides a formal study of our feedback techniques.
+Therefore, the analysis of the results is divided into a {\it User Preferences Overview} and {\it Task Performance Overview}. 
+A discussion of the final results is also provided along this section.
+
+\subsection{User Preferences Overview}
+
+\begin{table}[!t]
+\centering
+\scalebox{0.8}{
+\begin{tabular}{l|c|c|}
+\cline{2-3}
+\textbf{}                                                          & \multicolumn{2}{c|}{\textbf{Median (IQR)}} \\ \hline
+\multicolumn{1}{|l|}{\textbf{It was easy to...}}                   & \textbf{Video}     & \textbf{SleeveAR}     \\ \hline
+\multicolumn{1}{|l|}{...perform the first exercise?}               & 6 (0)              & 6 (0.75)              \\ \hline
+\multicolumn{1}{|l|}{...perform the second exercise?}              & 6 (0.75)           & 5.5 (1)               \\ \hline
+\multicolumn{1}{|l|}{...perform the third exercise?}               & 5.5 (1)            & 5 (2)                 \\ \hline
+\multicolumn{1}{|l|}{...perform the fourth exercise?}              & 5.5 (1)            & 5 (2)                 \\ \hline
+\multicolumn{1}{|l|}{...perform the fifth exercise?}               & 5 (1.75)           & 4 (1)                 \\ \hline
+\multicolumn{1}{|l|}{...follow the guidance information?}          & 5 (1)              & 5 (0.75)              \\ \hline
+\multicolumn{1}{|l|}{...see if the arm was in the right position?} & 5 (1.75)           & 5.5 (1)               \\ \hline
+\multicolumn{1}{|l|}{...see if the arm was in the wrong position?} & 6 (1.75)           & 6 (0.75)              \\ \hline
+\multicolumn{1}{|l|}{...see when the exercise ended?}              & 6 (1)              & 5 (1)                 \\ \hline
+\end{tabular}
+}
+\caption{Questionnaire results}
+\label{tab:userpreferences}
+\end{table}
+
+
+The users preferences regarding using SleeveAr or Video observation help us understand how users felt about certain parameter when it comes to its easiness. 
+More specifically, how easy it was to perform the five exercises and interpret the feedback provided, both by SleeveAr and Video. 
+
+In Table \ref{tab:userpreferences} are depicted the responses obtained from our questionnaires regarding the overall easiness of using SleeveAR and Video presented in the form of median and interquartile range. 
+The presented data suggests that our users felt a similar easiness using both alternatives since there are big discrepancies worth highlighting between the values obtained weather by observing a video or following the SleeveAR's prototype.
+
+However, we observed users gained more interest in using SleeveAr for being something interactive and a completely different experience from what they used to.
+Also, due to the gamification provided during the performance review, the majority was challenging themselves to improve their score on each exercise, showing they were completely focused on our prototype and on the exercises execution.
+
+Our questionnaire also included questions regarding our visual feedback to evaluate how easy it was to understand its meaning. 
+In Table \ref{table:widgets}, the resulting values from our participants are depicted. \todo{o que concluir destes valores}
+
+
+
+
+\begin{table}[!t]
+\centering
+\scalebox{0.8}{
+\begin{tabular}{|l|c|}
+\hline
+\textbf{It was easy to understand the...} & \textbf{Median (IQR)} \\ \hline
+...fore arm feedback?                     & 6 (0.75)                 \\ \hline
+...upper arm feedback?                    & 5.5 (1)               \\ \hline
+...full arm feedback?                     & 5 (2)                 \\ \hline
+...movement guidance feedback?            & 6 (1)                 \\ \hline
+...arm color projection?                  & 5(1.5)                \\ \hline
+\end{tabular}
+}
+\caption{Widgets Questionnaire}
+\label{table:widgets}
+\end{table}
+
+\subsection{Task Performance Overview}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The performance metrics is given by the degree of similarity between the participants' arm trajectories and the original trajectories demonstrated by the therapist. 
+It is measured using the \textbf{\ac{DTW}} \todo{referencia para o algoritmo} algorithm, which is appropriate for measuring a degree of similarity between two temporal sequences which may vary in time or speed. 
+With the application of this algorithm in mind, the recorded movements can be reformulated as a sequence of positions. One can then compare the performance values for both the proposed solution and the baseline scenario.
 
 Due to an arm movement being divided by the upper and fore arm sections, the \ac{DTW} was applied to each individually, thus providing us with a more detailed set of values. This separation enables to observe if there were significant performance differences between each arm region.
 
@@ -158,11 +278,12 @@ Not only the average DTW values become smaller, i.e. closer to the original, wit
 Indeed, with each repetition, the participant is able to see where he failed the most \todo{falar na implementation sobre a session review}. Hence,
 the system enables improvements on user's next repetition.
 
-\todo{There is no time for this until delivery, but for your knowledge: we could now conduct a hypothesis t-test (test statistic follows a Student's t-distribution) on the slope of the regression line Y = Β0 + Β1X, where Β0 is a constant, Β1 is the slope (regression coefficient), X is the noise and Y the execution time value. If there is a significant linear relationship between these two variables, the slope Β1 will not equal zero. Hence, the hypothesis to evaluate is
-- H0: Β1 = K. The null hypothesis states that the slope is equal to K (K = 0)
-- Ha: Β1 ≠ K. The alternative hypothesis states that the slope is not equal to 0}
+%\todo{There is no time for this until delivery, but for your knowledge: we could now conduct a hypothesis t-test (test statistic follows a Student's t-distribution) on the slope of the regression line Y = Β0 + Β1X, where Β0 is a constant, Β1 is the slope (regression coefficient), X is the noise and Y the execution time value. If there is a significant linear relationship between these two variables, the slope Β1 will not equal zero. Hence, the hypothesis to evaluate is
+%- H0: Β1 = K. The null hypothesis states that the slope is equal to K (K = 0)
+%- Ha: Β1 ≠ K. The alternative hypothesis states that the slope is not equal to 0}
 
 \section{Validation with Physical Therapist}
+\label{sec:pt}
 
 A professional physical therapist, besides the test subjects, also tested the SleeveAR prototype, performing the same exercises as the evaluation ones performed by the test subjects. This expert feedback was afterwards gathered in an interview as a qualitative evaluation of the proposed solution.
 
@@ -204,6 +325,6 @@ Being able to show how the patient performed by drawing his trajectory over the 
 
 \end{itemize}
 
-\section{Discussion}
+\section{Evaluation Overview}
 
 results x therapist 
