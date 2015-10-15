@@ -163,17 +163,31 @@ it is normal that this seems to be the most common approach.
 %
 %They have been used for a wide variety of subjects such as anatomy education \cite{blum2012}
 
-\ac{AR} makes it possible to add more capabilities to the classic mirror. In a visual feedback perspective, we can generate virtual images on top of the reflection (for instance, for guiding purposes). There has been already applications that make use of \ac{AR} mirrors to guide a user, whether it be for rehabilitation \cite{Tang2014a, Velloso2013, Klein2013} or for other types of interaction not focused on rehabilitation \cite{Alhamid2012a, blum2012}.
+\ac{AR} makes it possible to add more capabilities to the classic mirror. 
+In a visual feedback perspective, we can generate virtual images on top of the reflection (for instance, for guiding purposes). 
+There has been already applications that make use of \ac{AR} mirrors to guide a user, whether it be for rehabilitation \cite{Tang2014a,Velloso2013,Klein2013} or for other types of interaction not focused on rehabilitation \cite{Alhamid2012a,blum2012}.
 
 Although \ac{AR} mirrors have proven to be useful for visual feedback, there are some limitations. 
 An obvious limitation of this virtual alternative is the ``reflection`` dependency on the camera direction, 
 so that if a user looks at the screen from a different direction
 other than directly forward, the reflection would not be correct.
-The lack of depth perception means that 3-dimensional movements are more difficult to be guided by virtual images on a flat screen. We can conclude that \ac{AR} mirrors are more suitable for 2-dimensional movements. One possible way of solving this limitation, is to combine other augmented reality sources in a way that they can complement each other and not be stuck within a screen.
+The lack of depth perception means that 3-dimensional movements are more difficult to be guided by virtual images on a flat screen. 
+We can conclude that \ac{AR} mirrors are more suitable for 2-dimensional movements. One possible way of solving this limitation, 
+is to combine other augmented reality sources in a way that they can complement each other and not be stuck within a screen.
 
 
 \subsection{Augmented Reality with Light-Projectors}
 \label{RW-projectionmapping}
+
+
+\begin{figure}[!t]
+    \begin{center}
+        \includegraphics[width=\textwidth]{imgs/lightguide}
+    \end{center}
+    \caption{LightGuide Visual Cues, Sodhi et. al \cite{Sodhi2012}.}
+    \label{fig:lightguide}
+\end{figure}
+
 
 Using light-projectors for augmented reality has enabled the creation of very interesting applications. 
 Through techniques of projection mapping, it became possible to turn any irregular surface into a projection screen.
@@ -195,7 +209,7 @@ The projection was made onto the user, using his body as a projection screen.
 Real-time visual cues were projected onto the user's hand in order to guide him through the desired movement. 
 By projecting the information in the body part being moved, the user could keep a high level of concentration 
 without being distracted by external factors.
-As we can in the examples shown in Fig. \ref{fig:lightguide}, different types of visual cues were developed, having in mind movements that demanded degrees of freedom over 3 dimensions. 
+As we can in the examples shown in Figure~\ref{fig:lightguide}, different types of visual cues were developed, having in mind movements that demanded degrees of freedom over 3 dimensions. 
 For each dimension a different design was planned so that the user could understand clearly to what direction 
 should his hand move.
 
@@ -203,15 +217,6 @@ To apply real-time projection mapping onto a moving body part, its
 position must be known at all time to make sure the light projector is 
 illuminating the correct position. 
 For this, motion tracking devices are used which enable to record the movement of, in this case, a person. 
-
-
-
-\begin{figure}[t!]
-\includegraphics[width=\textwidth]{imgs/lightguide}
-\centering
-%\caption{LightGuide Visual Cues, extracted from the work of Sodhi \cite{Sodhi2012}.}
-\label{fig:lightguide}
-\end{figure}
 
 \section{Tracking Techniques} 
 
@@ -261,7 +266,7 @@ base of the system behaviour and it will influence how it responds to the patien
 Next, we will analyse the state of art concerning several different approaches for 
 the provisioning of feedback information to the patient.
 
-\begin{figure}[t!]
+\begin{figure}[!t]
 	\centering
 	\includegraphics[scale=0.7]{imgs/joints.png}
 	\caption{Joints position from Kinect}
@@ -269,14 +274,14 @@ the provisioning of feedback information to the patient.
 \end{figure}
 
 
-\begin{figure}[t!]
+\begin{figure}[!t]
 	\centering
 	\includegraphics[scale=0.5]{imgs/SK1SK2.png}
 	\caption{SK1 shows desired pose, SK2 midway to achieving it}
 	\label{fig:sk1sk2}
 \end{figure}
 
-\begin{figure}[t!]
+\begin{figure}[!t]
 	\centering
 	\includegraphics[scale=0.5]{imgs/sk1sk2diff.png}
 	\caption{SK1 and SK2 overlapped}
@@ -321,7 +326,54 @@ But if not designed with caution, a system can end up overloading the user with 
 
 
 
+Sigrist et al.~\cite{Sigrist2013} suggests that different types of feedback can complement each other and enhance the user comprehension. 
+Alhamid et al.~\cite{Alhamid2012a} introduced an interface between a user and biofeedback sensors (sensors that are able to measure physiological functions). 
+Even though it is not aimed for rehabilitation, his approach on user interaction can be analyzed.
+Through this interface, the user was able to access data about his body and health thanks to the measurements made by the biofeedback sensors.
+This system was prepared to interact with the user using multiple response interfaces, each one intended for specific purposes.
+The visual interface relied on a projector that showed important messages and results from the biofeedback measurements.
+In the other hand, the audio interface was responsible for playing different kinds of music through speakers. 
+The music was selected depending on the user's current state. For example, if high levels of stress are detected,  calming music would be played to help the user relax.
 
+One of the most common approaches on visual feedback is the augmented mirror approach already discussed. 
+Its common use is justified by the fact that even without overlaying virtual images, it enables the user to have a spatial awareness of his own body.
+But since a simple reflection does not provide guidance, we could observe several examples of augmented feedback being applied to the mirror.
+Tang et al.~\cite{Tang2014a} explored two different designs for visual guidance on a mirror aimed at upper-limbs movement.
+Their first iteration consisted of virtual arrows that pointed at the targeted position for the user's hand.
+The second provided a trace of tubes placed along a path which represented the complete movement to be performed by the user's arm.
+In both cases it was detected some difficulty in depth perception. 
+This kind of visual cues has proven not to be suitable for exercises 
+where the user had to move his arm towards the camera or when he had to contract it.
+
+Anderson et al.~\cite{Anderson} tried to provide a more detailed visual feedback 
+by using a full virtual skeleton placed over the user reflection. In this case the goal 
+was to mimic the skeleton's pose and hold it for a specific time.
+To diminish the lack of depth perception, a second tracker was placed on the user's side. 
+Every time the system detected a large error on the z-axis, a window would appear with a 
+side-view of both the virtual and user's skeleton for him to be corrected.
+
+Unlike the previous approach, LightGuide~\cite{Sodhi2012} does not rely on interactive mirrors or screens to apply its visual feedback. 
+By using a depth-sensor camera and a light projector, they were able 
+to project information on the user's hand. 
+This approach was able to guide the hand through a defined 
+movement by projecting visual cues. 
+All the information projected on the hand was being updated in real-time influenced by the current position given by the tracking device.
+The visual cues varied according to the desired direction of the movement. 
+If the current movement only required back and forward motion, only one dimension was being used. 
+Therefore, the visual cue would only inform the user where to move his 
+hand in the z axis through a little arrow pointing to the correct position.
+Two dimensional movements would combine the first visual cue by virtually painting the
+remaining of the hand with a color pattern. The portion of the hand closer to the
+desired position, would be painted with a different color than the remaining portion.
+They concluded that by using LightGuide, most of the users could better execute a certain 
+movement than if they were following video instructions.
+
+
+
+Our approach follows the work of Sodhi et al.~\cite{Sodhi2012} (LightGuide) and Tang et al.~\cite{Tang2014a} (Physio@Home), both of them addresses movement guidance. 
+But both they lack performance review tools, feature much needed during the rehabilitation process.
+Also they assume that users always execute almost perfect movements, since the error feedback relies only in pointing to the direction of the pre-recorded exercise.
+In addition, the Physio@Home, mirror metaphor, provides for poor depth perception.
 
 
 
@@ -446,8 +498,8 @@ Each work is also categorized accordingly to specific features. These categories
 \end{itemize}
 
 Indeed, each of the three types of feedback observed, namely visual, audio and haptic, have shown to be more suitable for different purposes.
-Visual feedback appears to be normally used in regard to spatial information, due to the perception of space being the most precise when using the sense of sight. For this reason,
-the best option to guide a patient through movements seems to be by using visual guidance.
+Visual feedback appears to be normally used in regard to spatial information, due to the perception of space being the most precise when using the sense of sight. 
+For this reason, the best option to guide a patient through movements seems to be by using visual guidance.
 But it is important to note that visual feedback still is a rather broad concept, therefore we could observe different takes on the whole subject of visual guidance.
 
 The \ac{AR} mirror, discussed at Section~\ref{RW-mirrors}, is the most common 
