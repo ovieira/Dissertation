@@ -11,10 +11,10 @@ The prototype had to rely on some already existing devices to implement all plan
 \section{Architecture}
 \label{sec:impl:arch}
 
-The SleeveAR architecture, which can be seen in figure \ref{fig:arch}, relies on several devices for both receiving and sending information.
-In terms of input, we are receiving real-time tracking information through an UDP connection with a tracking dedicated computer. Section \ref{sec:impl:trackdevices} and \ref{prototype-tracking} will explain in more detail what devices were used and how did we actually were able to track a user's arm by using a sleeve with markers.
+The SleeveAR architecture, which can be seen in Figure~\ref{fig:arch}, relies on several devices for both receiving and sending information.
+In terms of input, we are receiving real-time tracking information through an UDP connection with a tracking dedicated computer. Section~\ref{sec:impl:trackdevices} and \ref{prototype-tracking} will explain in more detail what devices were used and how did we actually were able to track a user's arm by using a sleeve with markers.
 
-Given the real-time tracking information, the SleeveAR prototype will then generate user feedback according to a specific exercise the user should attempt to execute. Such feedback was provided by controlling speakers to deliver audio notifications and, most importantly, by making usage of a light projector to project information both on the user's arm and floor. Section \ref{prototype-projection} explains in detail how this projection was achieved.
+Given the real-time tracking information, the SleeveAR prototype will then generate user feedback according to a specific exercise the user should attempt to execute. Such feedback was provided by controlling speakers to deliver audio notifications and, most importantly, by making usage of a light projector to project information both on the user's arm and floor. Section~\ref{prototype-projection} explains in detail how this projection was achieved.
 
 \begin{figure}[!t]
     \begin{center}
@@ -45,7 +45,7 @@ This option offered us a more precise tracking, and the possibility of dealing w
 The downside is the fact that it requires body markers to be carried out by a person for successfully detect him, unlike the 
 Kinect, which detects the human body through software algorithms. 
 
-This issue was alleviated by conceiving a comfortable and rather easy way to attach these body markers. A description of how we used the body markers can be found in section \ref{prototype-tracking}.
+This issue was alleviated by conceiving a comfortable and rather easy way to attach these body markers. A description of how we used the body markers can be found in Section~\ref{prototype-tracking}.
 
 
 \subsection{Feedback Devices}
@@ -53,8 +53,8 @@ This issue was alleviated by conceiving a comfortable and rather easy way to att
 Providing effective feedback could be considered one of the foundations of this work. 
 We chose to provide both visual and auditory feedback, being the latter much less vital to our goals in this implementation.
 
-As previously described in section \ref{sec:sleevear}, our planned visual feedback should be applied on the user's arm and floor. Hence, we relied on a light projector attached to the ceiling of our laboratory to project all visual feedback.
-Details about how the light projections were able to hit the correct places, specifically the user's moving arm and floor, will be explained in section \ref{prototype-projection}.
+As previously described in Section~\ref{sec:sleevear}, our planned visual feedback should be applied on the user's arm and floor. Hence, we relied on a light projector attached to the ceiling of our laboratory to project all visual feedback.
+Details about how the light projections were able to hit the correct places, specifically the user's moving arm and floor, will be explained in Section~\ref{prototype-projection}.
 
 Audio feedback was used for simple notifications. Events that require the user attention, we \todo{Falta completar}
 To provide audio, we relied on a speaker system also available at our laboratory.
@@ -87,12 +87,12 @@ This engine already includes several tools that facilitate the development of au
 
 \section{Setup Environment}
 
-All the work here presented was conducted in the Jo\~ao Louren\c{c}o Fernandes Laboratory, located at Campus Taguspark of T\'ecnico Lisboa. This laboratory, shown figure \ref{fig:laboratory}, had at our disposal all required devices to implement our work.
+All the work here presented was conducted in the Jo\~ao Louren\c{c}o Fernandes Laboratory, located at Campus Taguspark of T\'ecnico Lisboa. This laboratory, shown Figure~\ref{fig:laboratory}, had at our disposal all required devices to implement our work.
 
 There were Optitrack motion sensors already fixed on the walls and prepared to use UDP communication to send tracking data. 
-In section \ref{prototype-tracking} we will further explain the key points underlying our tracking system.
+In Section~\ref{prototype-tracking} we will further explain the key points underlying our tracking system.
 
-The light projector is a short-throw Benq MP780 ST+, attached to the ceiling, as seen in figure \ref{fig:projector}, and
+The light projector is a short-throw Benq MP780 ST+, attached to the ceiling, as seen in Figure~\ref{fig:projector}, and
 was connected by a VGA cable to our working computer. We used a resolution of \textit{1280x1024} which resulted in a floor projection of approximately \textit{4.3x3.3} 
 meters.
 
@@ -124,16 +124,16 @@ meters.
 
 
 As previously stated, we chose the Optitrack as our tracking system to implement SleeveAR's approach. This tracking system relies on body markers to capture movement.
-These body markers are made of reflective material and are usually shaped as small spheres (as shown in figure \ref{fig:singlemarker}).
+These body markers are made of reflective material and are usually shaped as small spheres (as shown in Figure~\ref{fig:singlemarker}).
 However, Optitrack is not able to track one single marker. Instead, we need to use combinations of markers so that Optitrack calculates both 
 position and rotation of the combination's center of mass. 
-Small plastic objects were employed to create combinations, onto which was possible to attach several markers exactly as the one being shown in figure \ref{fig:markercombination}.
+Small plastic objects were employed to create combinations, onto which was possible to attach several markers exactly as the one being shown in Figure~\ref{fig:markercombination}.
 
 After combining at least three markers, they could be assigned an ID inside Optitrack software. 
 From then on, the software was able to identify that specific combination and provide the current position and rotation of the tracked object. Aiming at a simplified writing notation, as well as easier understanding of this thesis, this markers' combination will be hereafter denoted as a \textbf{rigid body}.
 
 As such, three different rigid bodies were required for our solution. Each one should be attached to a different arm location. In this case, shoulder, elbow and wrist. 
-With this selection, we were able to receive tracking data from the three locations, and therefore, replicate the arm with data \todo{what is it mean with "replicate the arm with data"? reformulate}. In figure \ref{fig:rigidbodiesattached} we can observe
+With this selection, we were able to receive tracking data from the three locations, and therefore, replicate the arm with data \todo{what is it mean with "replicate the arm with data"? reformulate}. In Figure~\ref{fig:rigidbodiesattached} we can observe
 an approximate location of each rigid body.
 
 Our first method of placing the each rigid body was by using a Velcro bracelet around each location of the arm. 
@@ -155,7 +155,7 @@ Therefore, we created a better attachment method, by using a custom designed sle
     \label{fig:sleevewearable}
 \end{figure}
 
-We designed a custom sleeve, as shown in figure \ref{fig:sleevewearable}, made out of wool material. 
+We designed a custom sleeve, as shown in Figure~\ref{fig:sleevewearable}, made out of wool material. 
 This solved the above mentioned issues, by fixing the sleeve in place using a kind of "belt" around the user's torso which greatly increased its stability. 
 Each of the rigid bodies were still attached to a bracelet, but in this case the bracelets were stitched to the sleeve. 
 This improved significantly the rigid bodies attachment due to the bracelets never leaving the sleeve, 
@@ -232,13 +232,13 @@ Our challenge here was discovering how a two-dimensional projection could be use
 \minipage[t]{0.49\textwidth}
   \centering
   \includegraphics[width=\linewidth]{imgs/impl/projection3}
-    \caption{}
+    \caption{Projected Screen to Projected Area conversion.}
     \label{fig:projection3}
     \endminipage\hfill
 \minipage[t]{0.49\textwidth}
   \centering
   \includegraphics[width=\linewidth]{imgs/impl/projection5}
-    \caption{}
+    \caption{Cube Shadow Side-view.}
     \label{fig:projection5}
     \endminipage
 \end{figure}
@@ -266,10 +266,10 @@ we were able to project any kind of content on top of the user's arm.
 
 \todo{Here user should be replaced by therapist over the text?}
 
-As previously described in section \ref{sec:sleevear:approach}, the prototype should be able to record demonstrated exercises for further use.
+As previously described in Section~\ref{sec:sleevear:approach}, the prototype should be able to record demonstrated exercises for further use.
 We implemented a simple interface to facilitate the recording process.
 
-Assuming the user is already wearing the tracking sleeve, the \textbf{record} button, as shown in figure \ref{fig:recordinginterface}, simply had to be pressed to enable recording. 
+Assuming the user is already wearing the tracking sleeve, the \textbf{record} button, as shown in Figure~\ref{fig:recordinginterface}, simply had to be pressed to enable recording. 
 After pressing the recording button, an audio countdown was played through the laboratory speakers, in order to give the user some time to place himself at the desired exercise initial position. 
 The recording time was set, by default, to a maximum duration of ten seconds, while the rate for capturing the arm tracking data was set to 24 times per second.
 The user can also stop the recording earlier if the exercise was not intended to take 10 seconds. He simply has to press the stop button.
@@ -277,7 +277,7 @@ The user can also stop the recording earlier if the exercise was not intended to
 Immediately after finishing recording, new options appear in the interface. 
 The user can fill a text area with the intended file name and save the exercise, or first attach more information to the file.
 
-As shown previously in section \ref{sec:movementguidance}, visual feedback provided during a movement includes drawing the movement path on the floor. 
+As shown previously in Section~\ref{sec:movementguidance}, visual feedback provided during a movement includes drawing the movement path on the floor. 
 But this feedback could become confusing if, for instance, the recorded movement passed twice by the same place. 
 The drawn path would intersect with itself, creating an unclear clue to where the movement might go next for the user. 
 To avoid this, we implemented the \textbf{exercise parts}, which basically allowed us to divide the exercise in different parts and, consequently, divide also the drawn trajectory generated by the prototype.
@@ -290,7 +290,7 @@ All of this information was saved along with the exercises and stored on the com
 
 \subsection{Data Storage}
 
-The stored files contained a list of all captured data from the three rigid bodies, as described in \ref{prototype-tracking}. 
+The stored files contained a list of all captured data from the three rigid bodies, as described in Section~\ref{prototype-tracking}. 
 Each of the list entries contained the position and rotation from each rigid body and also the required information to identify the different exercise parts for assigned exercise parts. Otherwise, the exercises would be treated as one full movement without division.
 
 We chose to save our information in the JSON format, as opposed to XML, because it generates much smaller file sizes. In addition, it is also a more readable format, something useful for the prototype implementation and debugging.
@@ -303,7 +303,7 @@ First of all, we needed to load exercise files for them to be used again.
 We decided to use an already existing library, FullSerializer\footnote{\url{https://github.com/jacobdufault/fullserializer}}, for the sole purpose of reading and parsing JSON files.
 After loading an exercise file, we could then start guiding a user whenever we wanted.
 
-To implement the planned visual feedback, described in section \ref{sec:feedback}, and for it to dynamically change throughout a movement, 
+To implement the planned visual feedback, described in Section~\ref{sec:feedback}, and for it to dynamically change throughout a movement, 
 we divided responsibilities into two main components. We will refer to these components as services, more specifically, the \ac{FS} and \ac{ES}.
 The \ac{FS} has the responsibility of manipulating the provided feedback while the \ac{ES} was responsible in deciding if the user was executing correctly the exercise.
 
@@ -313,12 +313,12 @@ Once the user gets close enough to these specific entry, the \ac{ES} will then a
 This will keep happening until we reach the end of the list and the exercise is over.
 
 With this process in mind, every time \ac{ES} is focused on a specific entry, the information inside it will generate the so called visual feedback \textbf{desired state}. 
-Therefore, grabbing the concept of current and desired state from section \ref{sec:feedback}, two things will happen. 
+Therefore, grabbing the concept of current and desired state from Section~\ref{sec:feedback}, two things will happen. 
 First, \ac{FS} will update the current state based on real-time tracking from our current user. 
 Second, the desired state will be updated accordingly to the current entry \ac{ES} is focusing on.
 
 Even though we were tracking rigid bodies positions, we could not blindly compare between the original and attempted positions.
-As explained in section \ref{sec:skeletoncomparison}, the person which recorded an exercise could have, for instance, a different arm length. Hence, even though we were storing rigid bodies positions, we generated normalized vectors to represent the arm direction. 
+As explained in Section~\ref{sec:skeletoncomparison}, the person which recorded an exercise could have, for instance, a different arm length. Hence, even though we were storing rigid bodies positions, we generated normalized vectors to represent the arm direction. 
 Upper arm direction was a normalized vector pointing from shoulder to elbow position, while the fore arm direction was a vector from elbow to wrist.
 By comparing the directions for both arm regions, we eliminate the physical differences between different user's arm.
 
@@ -327,7 +327,7 @@ By comparing the directions for both arm regions, we eliminate the physical diff
 Every time an exercise was finished, our prototype should present the user with a review of his attempt. 
 As described in our approach, the review should contain trajectory comparison between the original exercise and user's attempt.
 As for the score, we implemented a simple formula to return a value from 0 to 100. 
-Unfortunately, only after finishing our user tests we discovered a better alternative, which we ended up using for our result analysis, in section \ref{sec:results}.
-A picture of our performance review implementation can be seen in figure \ref{fig:teaser} D). \todo{rever este texto...}
+Unfortunately, only after finishing our user tests we discovered a better alternative, which we ended up using for our result analysis, in Section~\ref{sec:results}.
+A picture of our performance review implementation can be seen in Figure~\ref{fig:teaser} D). \todo{rever este texto...}
 
 \todo{where is described the scoring algorithm ?}

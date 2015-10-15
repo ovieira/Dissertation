@@ -58,7 +58,7 @@ Finally, the chapter reports some of the most important critics elaborated by a 
 
 This section describes the experimental methodologies for testing our prototype. Each participant followed this methodology in a similar way.
 
-The average time spent with each participant was approximately thirty minutes. As we can observe in Table \ref{table:teststages}, the test was composed of four stages:
+The average time spent with each participant was approximately thirty minutes. As we can observe in Table~\ref{table:teststages}, the test was composed of four stages:
 
 \begin{enumerate}
 \item \textbf{Introduction}
@@ -67,7 +67,7 @@ Before the actual test, participants received a brief explanation concerning the
 
 \item \textbf{SleeveAR}
 
-The participant executes the exercises, as described in section \ref{evaluation-tasks}, while following our prototype real-time feedback.
+The participant executes the exercises, as described in Section~\ref{evaluation-tasks}, while following our prototype real-time feedback.
 
 \item \textbf{Video}
 
@@ -89,8 +89,8 @@ Even though we are presenting this ordering for the four stages, half of the par
 \section{Performed Tasks} \label{evaluation-tasks}
 
 
-Our performed tasks involved the execution of five different exercises which consisted of rather simple combinations of possible anatomic arm movements, described in section \ref{vision-feedback}.
-Each exercise consisted of different movement combinations which can be seen in table \ref{table:exercises}.
+Our performed tasks involved the execution of five different exercises which consisted of rather simple combinations of possible anatomic arm movements, described in Section~\ref{vision-feedback}.
+Each exercise consisted of different movement combinations which can be seen in Table~\ref{table:exercises}.
 These same five exercises were executed for both the above mentioned second and third stages.
 To store the original exercise we first had to capture it, hence, each exercise was simultaneously recorded with a video camera and with motion tracking devices. Under these circumstances, we made sure that the content being stored in video format directly represented the data being stored on SleeveAR's prototype.
 
@@ -128,7 +128,7 @@ and all with a college degree. In regard to their age, we had an average age of 
 All participants declared not having any physical impairment at the moment of the tests. 
 The test users profile gathered from the questionnaire is available in \todo{colocar o questionario em apendice}.
 It should be noted one of our participants was a professional physical therapist. 
-In section \ref{sec:pt} the full interaction with this participant is described.
+In Section~\ref{sec:pt} the full interaction with this participant is described.
 
 
 \section{Results and Discussion}
@@ -171,7 +171,7 @@ The users preferences regarding using SleeveAr or Video observation help to unde
 More specifically, it evaluates how easy it was to perform the five exercises and to interpret the provided feedback, both by SleeveAr and Video.
 Our questions were presented in a \textit{Likert} scale of 6 values.
 
-Table \ref{tab:userpreferences} depicts the questionnaire responses regarding the overall SleeveAR and Video usability, presented in the form of median and interquartile range. 
+Table~\ref{tab:userpreferences} depicts the questionnaire responses regarding the overall SleeveAR and Video usability, presented in the form of median and interquartile range. 
 
 Results from the questionnaire suggest that there are no statistically relevant differences between the usability of the two tested approaches. Indeed, there are \todo{Acrescentei o NO: parece-me que sem este o resto da frase estava em contradição} no big discrepancies worth highlighting between the values obtained weather by observing a video or following the SleeveAR's prototype.
 Evidencing that, regarding user preferences, test subjects were convinced that they were capable of executing successfully all five exercises. 
@@ -179,12 +179,12 @@ Evidencing that, regarding user preferences, test subjects were convinced that t
 However, we observed users were more interested in using SleeveAr because it provided a new and interactive experience. 
 Furthermore, due to the gamification provided during the performance review, the majority of users were challenging themselves to improve their score on each exercise. Hence, they were completely focused on exercises execution, trying to make the best usage of our prototype.
 
-The questionnaire included questions regarding the visual feedback, as shown in Table \ref{table:widgets}, to evaluate how easy it was to understand its meaning \todo{o que concluir destes valores?}. Participants were also free to share any personal thoughts regarding every visual feedback presented during the tests.
+The questionnaire included questions regarding the visual feedback, as shown in Table~\ref{table:widgets}, to evaluate how easy it was to understand its meaning \todo{o que concluir destes valores?}. Participants were also free to share any personal thoughts regarding every visual feedback presented during the tests.
 In general, our feedback had a positive approval rate. Participants seemed to understand the purpose of each feedback projected on the floor and reacted accordingly to it. 
 On the other hand, the arm projection, even though being considered a very useful idea, received a few improvement suggestions regarding our implementation. Some participants stated some difficulty following simultaneously both the arm and floor feedback, even though they are placed in the same field of view.
 
 As for the floor feedback, some participants complained about their arm occluding their vision when looking down at the projections. 
-This could be solved by positioning the floor feedback further away from the user, and will be discussed in Section \ref{sec:futurework}.
+This could be solved by positioning the floor feedback further away from the user, and will be discussed in Section~\ref{sec:futurework}.
 
 \begin{table}[!t]
 \centering
@@ -214,13 +214,13 @@ Due to an arm movement being divided by the upper and fore arm sections, the \ac
 
 The final \ac{DTW} values of each exercise are the result of adding both arm regions' DTW values. It is important to highlight that with the following results, DTW values closer to zero directly represent movements more similar to those of the original demonstration.
 
-For the first exercise, we can observe in Figure \ref{fig:sleevearVSvideoEx1} the test results from all participants, both using the SleeveAr and by observing the respective video.
+For the first exercise, we can observe in Figure~\ref{fig:sleevearVSvideoEx1} the test results from all participants, both using the SleeveAr and by observing the respective video.
 These results clearly show SleeveAR provided a higher similarity when comparing to the original exercise. 
 In terms of statistic values, participantes achieved an average \ac{DTW} value of \textbf{0.114} and a Standard Deviation of \textbf{0.09} when using SleeveAR.
 On the other hand, an average \ac{DTW} value of \textbf{0.439} and a standard deviation of \textbf{0.165} was achieved when relying on video observation. 
 Based on these results, in the first exercise, SleeveAR clearly improve participant's performance which were able to re-create the original exercise better then by video observation. 
 
-Based on evidence from the experimental results, similar conclusions can be drawn for the other four exercises. Table \ref{table:dtwavg} presents the average DTW and standard deviation for all five exercises \todo{aqui mudar para grafico em vez de tabela}
+Based on evidence from the experimental results, similar conclusions can be drawn for the other four exercises. Table~\ref{table:dtwavg} presents the average DTW and standard deviation for all five exercises \todo{aqui mudar para grafico em vez de tabela}
 
 \begin{figure}[!t]
     \centering
@@ -253,7 +253,7 @@ Based on evidence from the experimental results, similar conclusions can be draw
     \label{fig:dtw_repetitions}
 \end{figure}
 
-Focusing solely on SleeveAR results, figure \ref{fig:dtw_repetitions} presents the average DTW on each of the three trials executed by participants for each exercise. 
+Focusing solely on SleeveAR results, Figure~\ref{fig:dtw_repetitions} presents the average DTW on each of the three trials executed by participants for each exercise. 
 
 These results clearly show an improvement on a patient's performance in just a small number of repetitions. 
 Not only the average DTW values become smaller, i.e. closer to the original, with the number of repetitions, but also the standard deviation appears to diminish. 
@@ -270,7 +270,7 @@ In order to evaluate the overall performance from SleeveAR compared to Video obs
 
 Our null hypothesis stated SleeveAR and Video observation average DTW are similar,hence, our goal was to statistically prove SleeveAR enables a lower average DTW. This would prove SleeveAR provides a better guidance when replicating exercises.
 
-In Table \ref{table:ttest} are depicted the calculated p-values for each exercises.
+In Table~\ref{table:ttest} are depicted the calculated p-values for each exercises.
 The first four present a p-value lower than \textbf{0.05}. 
 By a statistical point of view, we are able to reject the null hypothesis and assume SleeveAR average DTW is in fact lower than using video observation.
 
