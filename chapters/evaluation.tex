@@ -168,19 +168,25 @@ A discussion of the final results is also provided along this section.
 
 
 The users preferences regarding using SleeveAr or Video observation help us understand how users felt about certain parameter when it comes to its easiness. 
-More specifically, how easy it was to perform the five exercises and interpret the feedback provided, both by SleeveAr and Video. 
+More specifically, how easy it was to perform the five exercises and interpret the feedback provided, both by SleeveAr and Video.
+Our questions were presented in a \textit{Likert} scale of 6 values.
 
 In Table \ref{tab:userpreferences} are depicted the responses obtained from our questionnaires regarding the overall easiness of using SleeveAR and Video presented in the form of median and interquartile range. 
+
 The presented data suggests that our users felt a similar easiness using both alternatives since there are big discrepancies worth highlighting between the values obtained weather by observing a video or following the SleeveAR's prototype.
 
 However, we observed users gained more interest in using SleeveAr for being something interactive and a completely different experience from what they used to.
 Also, due to the gamification provided during the performance review, the majority was challenging themselves to improve their score on each exercise, showing they were completely focused on our prototype and on the exercises execution.
 
 Our questionnaire also included questions regarding our visual feedback to evaluate how easy it was to understand its meaning. 
-In Table \ref{table:widgets}, the resulting values from our participants are depicted. \todo{o que concluir destes valores}
+In Table \ref{table:widgets}, the resulting values from our participants are depicted. \todo{o que concluir destes valores?}
+Participants were also free to share any personal thoughts regarding every visual feedback presented during the tests.
 
+In general, our feedback had a positive approval rate. Participants seemed to understand the purpose of each feedback projected on the floor and reacted accordingly to it. 
+On the other hand, the arm projection, even though being considered a very useful idea, received some suggestions regarding our implementation. Some participants stated some difficulty following both the arm and floor feedback at the same time, even though they are placed in the some field of view.
 
-
+As for the floor feedback, some participants complained about their arm occluding their vision when looking down at the projections. 
+This could be solved by positioning the floor feedback further away from the user, and will be discussed at Section \ref{sec:futurework}.
 
 \begin{table}[!t]
 \centering
@@ -228,17 +234,15 @@ Due to an arm movement being divided by the upper and fore arm sections, the \ac
 
 The final \ac{DTW} values of each exercise are the result of adding both arm regions' DTW values. It is important to highlight that with the following results, DTW values closer to zero directly represent movements more similar to those of the original demonstration.
 
-\todo{arredonda os numeros, maximo 3 casas decimais e.g. 0.090 e 0.165}
-
 For the first exercise, we can observe in Figure \ref{fig:sleevearVSvideoEx1} the test results from all participants, both using the SleeveAr and by observing the respective video.
 These results clearly show SleeveAR provided a higher similarity when comparing to the original exercise. 
-In terms of statistic values, participantes achieved an average \ac{DTW} value of \textbf{0.114181315} and a Standard Deviation of \textbf{0.090349091} when using SleeveAR.
-On the other hand, an average \ac{DTW} value of \textbf{0.438959688} and a standard deviation of \textbf{0.164684962} was achieved when relying on video observation. 
+In terms of statistic values, participantes achieved an average \ac{DTW} value of \textbf{0.114} and a Standard Deviation of \textbf{0.09} when using SleeveAR.
+On the other hand, an average \ac{DTW} value of \textbf{0.439} and a standard deviation of \textbf{0.165} was achieved when relying on video observation. 
 Based on these results, in the first exercise, SleeveAR clearly improve participant's performance which were able to re-create the original exercise better then by video observation. 
 
 Based on evidence from the experimental results, similar conclusions can be drawn for the other four exercises. Table \ref{table:dtwavg} presents the average DTW and standard deviation for all five exercises \todo{aqui mudar para grafico em vez de tabela}
 
-\begin{figure}[t!]
+\begin{figure}[!t]
     \centering
     \includegraphics{imgs/results/sleevearVSvideoEx1.png}
     \caption{Exercise 1 DTW comparison between SleeveAR and observing video.}
@@ -247,7 +251,7 @@ Based on evidence from the experimental results, similar conclusions can be draw
 
 
 
-\begin{table}
+\begin{table}[!t]
 \centering
 \begin{tabular}{c|c|c|c|c|c|}
 \cline{2-6}
@@ -255,14 +259,14 @@ Based on evidence from the experimental results, similar conclusions can be draw
                                                     & 1      & 2      & 3      & 4      & 5      \\ \hline
 \multicolumn{1}{|c|}{SleeveAR Average DTW}          & 0.1142 & 0.1472 & 0.3262 & 0.1289 & 0.3801 \\ \hline
 \multicolumn{1}{|c|}{Std Dev}                       & 0.0903 & 0.148  & 0.2005 & 0.0595 & 0.2762 \\ \hline
-\multicolumn{1}{|c|}{Video Observation DTW Average} & 0.439  & 0.263  & 0.3549 & 0.1945 & 0.2733 \\ \hline
+\multicolumn{1}{|c|}{Video Observation Average DTW} & 0.439  & 0.263  & 0.3549 & 0.1945 & 0.2733 \\ \hline
 \multicolumn{1}{|c|}{Std Dev}                       & 0.1647 & 0.0921 & 0.1697 & 0.0657 & 0.0887 \\ \hline
 \end{tabular}
 \caption{My caption}
 \label{table:dtwavg}
 \end{table}
 
-\begin{figure}[t!]
+\begin{figure}[!t]
     \centering
     \includegraphics{imgs/results/dtw_repetitions.png}
     \caption{DTW value variation with each repetition using SleeveAR.}
@@ -271,16 +275,50 @@ Based on evidence from the experimental results, similar conclusions can be draw
 
 Focusing solely on SleeveAR results, figure \ref{fig:dtw_repetitions} presents the average DTW on each of the three trials executed by participants for each exercise. 
 
-\todo{in methodology, say that there are three trials}
-
 These results clearly show an improvement on a patient's performance in just a small number of repetitions. 
 Not only the average DTW values become smaller, i.e. closer to the original, with the number of repetitions, but also the standard deviation appears to diminish. 
-Indeed, with each repetition, the participant is able to see where he failed the most \todo{falar na implementation sobre a session review}. Hence,
+Indeed, with each repetition, the participant is able to see where he failed the most. Hence,
 the system enables improvements on user's next repetition.
 
 %\todo{There is no time for this until delivery, but for your knowledge: we could now conduct a hypothesis t-test (test statistic follows a Student's t-distribution) on the slope of the regression line Y = Β0 + Β1X, where Β0 is a constant, Β1 is the slope (regression coefficient), X is the noise and Y the execution time value. If there is a significant linear relationship between these two variables, the slope Β1 will not equal zero. Hence, the hypothesis to evaluate is
 %- H0: Β1 = K. The null hypothesis states that the slope is equal to K (K = 0)
 %- Ha: Β1 ≠ K. The alternative hypothesis states that the slope is not equal to 0}
+
+
+
+
+
+In order to evaluate the overall performance from SleeveAR compared to Video observation, a T-Student statistical test was applied to each exercise. Our data two data groups for each exercise consisted of their last attempt's DTW value in both alternatives.
+
+Our null hypothesis stated SleeveAR and Video observation average DTW are similar,hence, our goal was to statistically prove SleeveAR enables a lower average DTW. This would prove SleeveAR provides a better guidance when replicating exercises.
+
+In Table \ref{table:ttest} are depicted the calculated p-values for each exercises.
+The first four present a p-value lower than \textbf{0.05}. 
+By a statistical point of view, we are able to reject the null hypothesis and assume SleeveAR average DTW is in fact lower than using video observation.
+
+As for the last exercise, even though the calculated p-value exceeds the \textbf{0.05} limit, we have detected an outlier that significantly changes this result.
+This user generated a SleeveAR DTW value of \textbf{0.85}, more than four times the standard deviation of \textbf{0.187}. 
+Therefore, if we chose to remove him from our calculations, a p-value of approximately \textbf{0.004} would be obtained, hence, also rejecting our null hypothesis.
+
+
+
+
+\begin{table}[!t]
+\centering
+\scalebox{0.8}{
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|}
+\cline{2-11}
+                                              & \multicolumn{2}{c|}{\textbf{Ex. 1}} & \multicolumn{2}{c|}{\textbf{Ex. 2}} & \multicolumn{2}{c|}{\textbf{Ex. 3}} & \multicolumn{2}{c|}{\textbf{Ex. 4}} & \multicolumn{2}{c|}{\textbf{Ex. 5}} \\ \cline{2-11} 
+                                              & \textbf{S}    & \textbf{V}    & \textbf{S}    & \textbf{V}    & \textbf{S}    & \textbf{V}    & \textbf{S}    & \textbf{V}    & \textbf{S}    & \textbf{V}    \\ \hline
+\multicolumn{1}{|c|}{\textbf{Average DTW}}    & 0,133                & 0,439             & 0,115                & 0,263             & 0,235                & 0,355             & 0,119                & 0,195             & 0,2                  & 0,273             \\ \hline
+\multicolumn{1}{|c|}{\textbf{Std. Deviation}} & 0,193                & 0,169             & 0,072                & 0,095             & 0,161                & 0,175             & 0,059                & 0,068             & 0,187                & 0,091             \\ \hline
+\multicolumn{1}{|c|}{\textbf{T-Student Test}} & \multicolumn{2}{c|}{0,00002}             & \multicolumn{2}{c|}{0,00001}             & \multicolumn{2}{c|}{0,039}               & \multicolumn{2}{c|}{0,001}               & \multicolumn{2}{c|}{0,145}               \\ \hline
+\end{tabular}
+}
+\caption{T-Student Test for all exercises. SleeveAR(S), Video(V)}
+\label{table:ttest}
+\end{table}
+
 
 \section{Validation with Physical Therapist}
 \label{sec:pt}
