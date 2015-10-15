@@ -26,7 +26,7 @@
 
 %Even though our main focus is to provide concurrent feedback (during the execution), its frequency will be altered in order to evaluate the patient response. Therefore, further in the end, we will provide only terminal feedback (without guiding cues during the execution) to analyze if the patient successfully learned the movement.
 
-For the evaluation of the SleeveAR, we intended to observe how well a subject recreates simple arm movements just by following the feedback at his disposal. 
+To evaluate SleeveAR, we intended to observe how well a subject recreates simple arm movements just by following the feedback at his disposal. 
 
 Since tests involve executing simple arm movements, five different exercises were created for this evaluation. These exercises were simultaneously recorded both by video and by the SleeveAR's Learning Architecture. This way, we guarantee the same movement is being stored in video and in our system.
 
@@ -82,7 +82,7 @@ JV: Yes, we still did not include the questionnaire, I'll take care of it in the
 
 \end{enumerate}
 
-In order to gather data for further result analysis, each execution of an exercise generated a Log with all the necessary information about the participant's movement. \todo{descrever Logs mais detalhadamente}
+In order to gather data for further result analysis, each execution of an exercise generated a Log with all the necessary information about the participant's movement.
 
 Even though we are presenting this ordering for the four stages, half of the participants started by doing the third stage before the second, for the purpose of obtaining a more balanced sample of results.
 
@@ -167,26 +167,24 @@ A discussion of the final results is also provided along this section.
 \end{table}
 
 
-The users preferences regarding using SleeveAr or Video observation help us understand how users felt about certain parameter when it comes to its easiness. 
-More specifically, how easy it was to perform the five exercises and interpret the feedback provided, both by SleeveAr and Video.
+The users preferences regarding using SleeveAr or Video observation help to understand how users felt about a specific parameter and its impact on the solution usability. 
+More specifically, it evaluates how easy it was to perform the five exercises and to interpret the provided feedback, both by SleeveAr and Video.
 Our questions were presented in a \textit{Likert} scale of 6 values.
 
-In Table \ref{tab:userpreferences} are depicted the responses obtained from our questionnaires regarding the overall easiness of using SleeveAR and Video presented in the form of median and interquartile range. 
+Table \ref{tab:userpreferences} depicts the questionnaire responses regarding the overall SleeveAR and Video usability, presented in the form of median and interquartile range. 
 
-The presented data suggests that our users felt a similar easiness using both alternatives since there are big discrepancies worth highlighting between the values obtained weather by observing a video or following the SleeveAR's prototype.
+Results from the questionnaire suggest that there are no statistically relevant differences between the usability of the two tested approaches. Indeed, there are \todo{Acrescentei o NO: parece-me que sem este o resto da frase estava em contradição} no big discrepancies worth highlighting between the values obtained weather by observing a video or following the SleeveAR's prototype.
+Evidencing that, regarding user preferences, test subjects were convinced that they were capable of executing successfully all five exercises. 
 
-However, we observed users gained more interest in using SleeveAr for being something interactive and a completely different experience from what they used to.
-Also, due to the gamification provided during the performance review, the majority was challenging themselves to improve their score on each exercise, showing they were completely focused on our prototype and on the exercises execution.
+However, we observed users were more interested in using SleeveAr because it provided a new and interactive experience. 
+Furthermore, due to the gamification provided during the performance review, the majority of users were challenging themselves to improve their score on each exercise. Hence, they were completely focused on exercises execution, trying to make the best usage of our prototype.
 
-Our questionnaire also included questions regarding our visual feedback to evaluate how easy it was to understand its meaning. 
-In Table \ref{table:widgets}, the resulting values from our participants are depicted. \todo{o que concluir destes valores?}
-Participants were also free to share any personal thoughts regarding every visual feedback presented during the tests.
-
+The questionnaire included questions regarding the visual feedback, as shown in Table \ref{table:widgets}, to evaluate how easy it was to understand its meaning \todo{o que concluir destes valores?}. Participants were also free to share any personal thoughts regarding every visual feedback presented during the tests.
 In general, our feedback had a positive approval rate. Participants seemed to understand the purpose of each feedback projected on the floor and reacted accordingly to it. 
-On the other hand, the arm projection, even though being considered a very useful idea, received some suggestions regarding our implementation. Some participants stated some difficulty following both the arm and floor feedback at the same time, even though they are placed in the some field of view.
+On the other hand, the arm projection, even though being considered a very useful idea, received a few improvement suggestions regarding our implementation. Some participants stated some difficulty following simultaneously both the arm and floor feedback, even though they are placed in the same field of view.
 
 As for the floor feedback, some participants complained about their arm occluding their vision when looking down at the projections. 
-This could be solved by positioning the floor feedback further away from the user, and will be discussed at Section \ref{sec:futurework}.
+This could be solved by positioning the floor feedback further away from the user, and will be discussed in Section \ref{sec:futurework}.
 
 \begin{table}[!t]
 \centering
@@ -206,24 +204,6 @@ This could be solved by positioning the floor feedback further away from the use
 \end{table}
 
 \subsection{Task Performance Overview}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 The performance metrics is given by the degree of similarity between the participants' arm trajectories and the original trajectories demonstrated by the therapist. 
@@ -286,8 +266,6 @@ the system enables improvements on user's next repetition.
 
 
 
-
-
 In order to evaluate the overall performance from SleeveAR compared to Video observation, a T-Student statistical test was applied to each exercise. Our data two data groups for each exercise consisted of their last attempt's DTW value in both alternatives.
 
 Our null hypothesis stated SleeveAR and Video observation average DTW are similar,hence, our goal was to statistically prove SleeveAR enables a lower average DTW. This would prove SleeveAR provides a better guidance when replicating exercises.
@@ -299,8 +277,6 @@ By a statistical point of view, we are able to reject the null hypothesis and as
 As for the last exercise, even though the calculated p-value exceeds the \textbf{0.05} limit, we have detected an outlier that significantly changes this result.
 This user generated a SleeveAR DTW value of \textbf{0.85}, more than four times the standard deviation of \textbf{0.187}. 
 Therefore, if we chose to remove him from our calculations, a p-value of approximately \textbf{0.004} would be obtained, hence, also rejecting our null hypothesis.
-
-
 
 
 \begin{table}[!t]
@@ -365,4 +341,9 @@ Being able to show how the patient performed by drawing his trajectory over the 
 
 \section{Evaluation Overview}
 
-results x therapist 
+Overall results show SleeveAR enables its users to perform exercises significantly closer to the prescribed exercises. 
+Feedback provided, during and after their performance, allowed for a improvement when repeating their exercises. 
+Even if no significant differences were detected on user preference between following SleeveAr or observing video instructions, 
+the task performance results clearly show SleeveAr would be a better alternative due to providing user correction in situations they would have none.
+Our validation with a physical therapist was vital to enumerate what could still be improved or added to our solution. 
+It also confirmed SleeveAR as a possible tool in the rehabilitation field which could facilitate a therapists work in a more advanced phase.
