@@ -178,20 +178,36 @@ our device, and to facilitate we will use the following nomenclature:
 \end{itemize}
 
 
-\todo{fig 1 do caderno}
 
-Looking at \todo{fig 1}, a cube inside the room is being tracked by the Optitrack sensor. Hence, we receive its raw positional data, i.e., its \ac{VP}, which is calculated based on the tracking system coordinates' origin.
+
+\begin{figure}[!t]
+\minipage[t]{0.49\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{imgs/impl/projection1}
+    \caption{Projection cube example.}
+    \label{fig:projection1}
+    \endminipage\hfill
+\minipage[t]{0.49\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{imgs/impl/projection2}
+    \caption{Projected circle offset.}
+    \label{fig:projection2}
+    \endminipage
+\end{figure}
+
+
+
+Looking at Figure~\ref{fig:projection1}, a cube inside the room is being tracked by the Optitrack sensor. Hence, we receive its raw positional data, i.e., its \ac{VP}, which is calculated based on the tracking system coordinates' origin.
 So, now we know the cube's position in a virtual room. If we wanted to project, for instance, a small circle directly below the cube, we would need to find out in which position should the circle be projected (\ac{PrP}) so that it would be below the cube's actual physical position in the room. Hence, we need to find a way of syncing these three different positions, i.e., transforming the different referential, so that the content is easily placed wherever we want. If we tried to simply apply the cube's \ac{VP} position to the projected area, we would encounter several obstacles.
 
 
-\todo{fig 4 do caderno}
 
-Even though we might have the circle being projected perfectly below \todo{fig 4, A}, it was not constantly synced.
-If we moved the cube to another \ac{PP}, closer to the edges of the projected area, like in cubes B and C from \todo{fig 4}, the circle would not remain below it. 
+Even though we might have the circle being projected perfectly below Figure~\ref{fig:projection2} A), it was not constantly synced.
+If we moved the cube to another \ac{PP}, closer to the edges of the projected area, like in cubes B and C from Figure~\ref{fig:projection2}, the circle would not remain below it. 
 Two reasons could cause this. First, the projected area center is not synced with the tracking coordinates center. 
 This already generates a small offset in our projection. 
 Second, and probably what influences our projection accuracy the most, is the projection distortion closer to the edges.
-Looking at \todo{figura4}, we can see the circle projection getting further away from the desired position if we move the cube between the positions A, B and C.
+Looking at Figure~\ref{fig:projection2}, we can see the circle projection getting further away from the desired position if we move the cube between the positions A, B and C.
 
 The first solution to this problem was discovering the correct ratio between what is being tracked what is being projected on the floor. 
 If we applied this ratio on our projected content, it could diminish the observed offset. 
@@ -199,7 +215,13 @@ Our second solution was to scale the virtual content in order to meet the physic
 In other words, looking at \todo{fig 5}, if we projected a line with a virtual length of one unity unit \todo{acronym}, the resulting projection on the floor should have a length of approximately one meter.
 By doing this, the offsets observed were almost non-existing and even if they were noticeable, we could easily fixed them with some manual calibration.
 
-\todo{fig 5 do caderno}
+\begin{figure}[!t]
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{imgs/impl/projection3}
+    \end{center}
+    \caption{Sleeve used for tracking.}
+    \label{fig:projection3}
+\end{figure}
 
 After being able to project information directly below any tracked object, our next challenge was to project light on the object being tracked. 
 In this case, based on our example, we want to project the circle on top of the cube. 

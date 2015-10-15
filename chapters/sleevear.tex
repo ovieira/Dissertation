@@ -5,8 +5,6 @@
 
 This chapter describes a new approach to deal with the various SleeveAR implementation challenges, and  identifies the critical resources required for a successful implementation. It is presented the design options for providing the visual and audio feedback information.
 
-\todo{introduzir os movimentos anatomicos}
-
 \todo{Artur: "establish the most important requirements and objectives to be achieved by the solution" - isto deve ser feito logo na intro, em Requirements and Goals, e não aqui.}
 
 
@@ -73,24 +71,20 @@ Given these assumptions, SleeveAr must then be able to guide a patient through t
 
 
 \subsection{Movement Guidance}
+Our approach divides the task for guiding a patient through
+an exercise into two steps, reaching the first
+initial position of  the  exercise, see  Figure~\ref{fig:teaser}A,  and exercise performance, see  Figure~\ref{fig:teaser}B. 
 
-Our approach divides the task for guiding a patient through an exercise into three phases, as follows:
-
-\begin{itemize}
-\item Reaching Initial Position
-\item Performing Exercise
-\end{itemize}
-
-These two phases constitute a simple and clear process for organizing the desired actions to be performed by SleeveAR while interacting with a patient.
+These steps constitute a simple and clear process for organizing the desired actions to be performed by SleeveAR while interacting with a patient.
 To successfully recreate an exercise, we considered the user must first reach the exercise initial position, i.e., the first arm position from the recorded demonstration.
-For accomplishing this first task, as shown in figure \ref{fig:teaser} A), a patient must follow SleeveAR's feedback to achieve the correct arm position (such feedback information is explained in section \ref{sec:feedback}).
+For accomplishing this first task, as shown in Figure~\ref{fig:teaser} A), a patient must follow SleeveAR's feedback to achieve the correct arm position (such feedback information is explained in Section~\ref{sec:feedback}).
 After the initial position has been reached, as determined by SleeveAR, the system starts guiding the user through the remaining exercise.
 
 It could be an almost impossible task for a patient to exactly recreate the original demonstration of the exercise. 
 With this in mind, SleeveAR needs to rely on thresholds for specific values of tolerance. 
 By doing so, if it were required of a patient to achieve, for example, a 90 degree arm flexion, he would not 
 need to actually achieve it, being only enough for him to get close to that degree of flexion according to the specified tolerance.
-In figure \ref{fig:teaser} B) and C), we see two examples where the user is being guided corrected in case it was necessary.
+In figure~\ref{fig:teaser} B) and C), we see two examples where the user is being guided corrected in case it was necessary.
 
 
 \subsection{Performance Review}
