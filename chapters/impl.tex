@@ -55,8 +55,7 @@ We chose to provide both visual and auditory feedback, being the latter much les
 
 As previously described in Section~\ref{sec:sleevear}, our planned visual feedback should be applied on the user's arm and floor. Hence, we relied on a light projector attached to the ceiling of our laboratory to project all visual feedback.
 Details about how the light projections were able to hit the correct places, specifically the user's moving arm and floor, will be explained in Section~\ref{prototype-projection}.
-
-Audio feedback was used for simple notifications. Events that require the user attention, we \todo{Falta completar}
+Audio feedback was used for simple notifications.
 To provide audio, we relied on a speaker system also available at our laboratory.
 
 \subsection{Software}
@@ -133,8 +132,8 @@ After combining at least three markers, they could be assigned an ID inside Opti
 From then on, the software was able to identify that specific combination and provide the current position and rotation of the tracked object. Aiming at a simplified writing notation, as well as easier understanding of this thesis, this markers' combination will be hereafter denoted as a \textbf{rigid body}.
 
 As such, three different rigid bodies were required for our solution. Each one should be attached to a different arm location. In this case, shoulder, elbow and wrist. 
-With this selection, we were able to receive tracking data from the three locations, and therefore, replicate the arm with data \todo{what is it mean with "replicate the arm with data"? reformulate}. In Figure~\ref{fig:rigidbodiesattached} we can observe
-an approximate location of each rigid body.
+With this selection, we were able to receive tracking data from the three locations, and therefore, obtain a virtual model of the arm consisting of these same three locations. In Figure~\ref{fig:rigidbodiesattached} we can observe
+an approximate location of each rigid body attached to the arm.
 
 Our first method of placing the each rigid body was by using a Velcro bracelet around each location of the arm. 
 Each rigid body would then be attached to each bracelet. This method did not have a positive result for several reasons. 
@@ -260,22 +259,20 @@ we were able to project any kind of content on top of the user's arm.
     \begin{center}
         \includegraphics[width=\textwidth]{imgs/impl/recordinginterface}
     \end{center}
-    \caption{Recording Interface \todo{check caption}}
+    \caption{Recording UI.}
     \label{fig:recordinginterface}
 \end{figure}
-
-\todo{Here user should be replaced by therapist over the text?}
 
 As previously described in Section~\ref{sec:sleevear:approach}, the prototype should be able to record demonstrated exercises for further use.
 We implemented a simple interface to facilitate the recording process.
 
-Assuming the user is already wearing the tracking sleeve, the \textbf{record} button, as shown in Figure~\ref{fig:recordinginterface}, simply had to be pressed to enable recording. 
-After pressing the recording button, an audio countdown was played through the laboratory speakers, in order to give the user some time to place himself at the desired exercise initial position. 
+Assuming the therapist is already wearing the tracking sleeve, the \textbf{record} button, as shown in Figure~\ref{fig:recordinginterface}, simply had to be pressed to enable recording. 
+After pressing the recording button, an audio countdown was played through the laboratory speakers, in order to give the therapist some time to place himself at the desired exercise initial position. 
 The recording time was set, by default, to a maximum duration of ten seconds, while the rate for capturing the arm tracking data was set to 24 times per second.
-The user can also stop the recording earlier if the exercise was not intended to take 10 seconds. He simply has to press the stop button.
+The therapist can also stop the recording earlier if the exercise was not intended to take 10 seconds. He simply has to press the stop button.
 
 Immediately after finishing recording, new options appear in the interface. 
-The user can fill a text area with the intended file name and save the exercise, or first attach more information to the file.
+A text area can be filled with the intended file name and save the exercise, or first attach more information to the file.
 
 As shown previously in Section~\ref{sec:movementguidance}, visual feedback provided during a movement includes drawing the movement path on the floor. 
 But this feedback could become confusing if, for instance, the recorded movement passed twice by the same place. 
@@ -326,8 +323,11 @@ By comparing the directions for both arm regions, we eliminate the physical diff
 
 Every time an exercise was finished, our prototype should present the user with a review of his attempt. 
 As described in our approach, the review should contain trajectory comparison between the original exercise and user's attempt.
-As for the score, we implemented a simple formula to return a value from 0 to 100. 
+As for the score, we implemented a simple formula to return a value from 0 to 100.
 Unfortunately, only after finishing our user tests we discovered a better alternative, which we ended up using for our result analysis, in Section~\ref{sec:results}.
 A picture of our performance review implementation can be seen in Figure~\ref{fig:teaser} D). \todo{rever este texto...}
 
 \todo{where is described the scoring algorithm ?}
+
+
+\section{Summary}
