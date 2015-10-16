@@ -76,9 +76,6 @@ For each of the five exercises selected for this evaluation, the participant  wa
 
 Finally, a small questionnaire should be filled by the participant. This questionnaire includes questions concerning stage 2 and 3, while also providing us some information about the user's profile.
 
-\todo{Artur: Questionnaire in Annex?
-JV: Yes, we still did not include the questionnaire, I'll take care of it in the afternoon}
-
 \end{enumerate}
 
 In order to gather data for further result analysis, each execution of an exercise generated a Log with all the necessary information about the participant's movement.
@@ -125,7 +122,7 @@ The participants in this trial were invited randomly and were mainly students at
 institution. Thereby, the set of test users was comprised of 18 participants, consisted of 14 males and 4 females,
 and all with a college degree. In regard to their age, we had an average age of approximately 26 years old. 
 All participants declared not having any physical impairment at the moment of the tests. 
-The test users profile gathered from the questionnaire is available in \todo{colocar o questionario em apendice}.
+The test users profile gathered from the questionnaire is available in Appendix~\ref{appendix_questionnaire}.
 It should be noted one of our participants was a professional physical therapist. 
 In Section~\ref{sec:pt} the full interaction with this participant is described.
 
@@ -172,7 +169,7 @@ Our questions were presented in a \textit{Likert} scale of 6 values.
 
 Table~\ref{tab:userpreferences} depicts the questionnaire responses regarding the overall SleeveAR and Video usability, presented in the form of median and interquartile range. 
 
-Results from the questionnaire suggest that there are no statistically relevant differences between the usability of the two tested approaches. Indeed, there are \todo{Acrescentei o NO: parece-me que sem este o resto da frase estava em contradição} no big discrepancies worth highlighting between the values obtained weather by observing a video or following the SleeveAR's prototype.
+Results from the questionnaire suggest that there are no statistically relevant differences between the usability of the two tested approaches. Indeed, there are no big discrepancies worth highlighting between the values obtained weather by observing a video or following the SleeveAR's prototype.
 Evidencing that, regarding user preferences, test subjects were convinced that they were capable of executing successfully all five exercises. 
 
 However, we observed users were more interested in using SleeveAr because it provided a new and interactive experience. 
@@ -206,7 +203,7 @@ This could be solved by positioning the floor feedback further away from the use
 
 
 The performance metrics is given by the degree of similarity between the participants' arm trajectories and the original trajectories demonstrated by the therapist. 
-It is measured using the \textbf{\ac{DTW}} \todo{referencia para o algoritmo} algorithm, which is appropriate for measuring a degree of similarity between two temporal sequences which may vary in time or speed. 
+It is measured using the \textbf{\ac{DTW}} algorithm~\cite{kruskal1983symmetric}, which is appropriate for measuring a degree of similarity between two temporal sequences which may vary in time or speed. 
 With the application of this algorithm in mind, the recorded movements can be reformulated as a sequence of positions. One can then compare the performance values for both the proposed solution and the baseline scenario.
 
 Due to an arm movement being divided by the upper and fore arm sections, the \ac{DTW} was applied to each individually, thus providing us with a more detailed set of values. This separation enables to observe if there were significant performance differences between each arm region.
@@ -219,7 +216,7 @@ In terms of statistic values, participantes achieved an average \ac{DTW} value o
 On the other hand, an average \ac{DTW} value of \textbf{0.439} and a standard deviation of \textbf{0.165} was achieved when relying on video observation. 
 Based on these results, in the first exercise, SleeveAR clearly improve participant's performance which were able to re-create the original exercise better then by video observation. 
 
-Based on evidence from the experimental results, similar conclusions can be drawn for the other four exercises. Table~\ref{table:dtwavg} presents the average DTW and standard deviation for all five exercises \todo{aqui mudar para grafico em vez de tabela}
+Based on evidence from the experimental results, similar conclusions can be drawn for the other four exercises. Table~\ref{table:dtwavg} presents the average DTW and standard deviation for all five exercises.
 
 \begin{figure}[!t]
     \centering
@@ -236,10 +233,10 @@ Based on evidence from the experimental results, similar conclusions can be draw
 \cline{2-6}
 \multicolumn{1}{l|}{}                               & \multicolumn{5}{c|}{Exercises}             \\ \cline{2-6} 
                                                     & 1      & 2      & 3      & 4      & 5      \\ \hline
-\multicolumn{1}{|c|}{SleeveAR Average DTW}          & 0.1142 & 0.1472 & 0.3262 & 0.1289 & 0.3801 \\ \hline
-\multicolumn{1}{|c|}{Std Dev}                       & 0.0903 & 0.148  & 0.2005 & 0.0595 & 0.2762 \\ \hline
-\multicolumn{1}{|c|}{Video Observation Average DTW} & 0.439  & 0.263  & 0.3549 & 0.1945 & 0.2733 \\ \hline
-\multicolumn{1}{|c|}{Std Dev}                       & 0.1647 & 0.0921 & 0.1697 & 0.0657 & 0.0887 \\ \hline
+\multicolumn{1}{|c|}{SleeveAR Average DTW}          & 0.114 & 0.148 & 0.326 & 0.129 & 0.380 \\ \hline
+\multicolumn{1}{|c|}{Std Dev}                       & 0.090 & 0.148  & 0.201 & 0.059 & 0.276 \\ \hline
+\multicolumn{1}{|c|}{Video Observation Average DTW} & 0.439  & 0.263  & 0.355 & 0.195 & 0.273 \\ \hline
+\multicolumn{1}{|c|}{Std Dev}                       & 0.165 & 0.092 & 0.170 & 0.066 & 0.0887 \\ \hline
 \end{tabular}
 \caption{My caption}
 \label{table:dtwavg}
@@ -258,6 +255,22 @@ These results clearly show an improvement on a patient's performance in just a s
 Not only the average DTW values become smaller, i.e. closer to the original, with the number of repetitions, but also the standard deviation appears to diminish. 
 Indeed, with each repetition, the participant is able to see where he failed the most. Hence,
 the system enables improvements on user's next repetition.
+
+We now conduct a hypothesis t-test (test statistic follows a Student's t-distribution) on the slope of the regression line 
+
+Y = B$_0$ + B$_1$X
+
+where B$_0$ is a constant, B$_1$ is the slope (regression coefficient), X is the noise and Y the execution time value.
+If there is a significant linear relationship between these two variables, the slope B$_1$ 
+will not equal zero. Hence, the hypothesis to evaluate is:
+\begin{enumerate}
+\item H$_0$: B$_1$ = K. The null hypothesis states that the slope is equal to K (K = 0).
+
+\item H$_a$: B$_1$ $\neq$ K. The alternative hypothesis states that the slope is not equal to 0.
+
+\end{enumerate}
+According to Figure~\ref{fig:dtw_repetitions} data, the tscore is 17.4, which results in a p-value of 0.0367.
+Thus, the two tailed p-value is lower than the significance level of 0.05, and the null hypothesis is rejected.
 
 %\todo{There is no time for this until delivery, but for your knowledge: we could now conduct a hypothesis t-test (test statistic follows a Student's t-distribution) on the slope of the regression line Y = Β0 + Β1X, where Β0 is a constant, Β1 is the slope (regression coefficient), X is the noise and Y the execution time value. If there is a significant linear relationship between these two variables, the slope Β1 will not equal zero. Hence, the hypothesis to evaluate is
 %- H0: Β1 = K. The null hypothesis states that the slope is equal to K (K = 0)

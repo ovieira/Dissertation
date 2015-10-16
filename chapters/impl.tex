@@ -6,7 +6,7 @@
 
 
 A SleeveAR prototype was built according to our human augmented assistance vision, and complying with the solution requirements.
-The prototype had to rely on some already existing devices to implement all planned features, namely for motion tracking and perception and actuation mechanisms for the feedback sources. After describing the system testbed, employed devices, and the setup environment, this chapter will present a description of SleeveAR architecture and its most important implementation details.
+The prototype had to rely on some already existing devices to implement all planned features, namely for motion tracking and perception and actuation mechanisms for the feedback sources. After describing SleeveAR testbed and architecture, employed devices, and the setup environment, this chapter will present a description of the most important implementation details.
 
 \section{Architecture}
 \label{sec:impl:arch}
@@ -30,7 +30,7 @@ Given the real-time tracking information, the SleeveAR prototype will then gener
 \section{Tools}
 \label{sec:impl:tools}
 
-The SleeveAR implementation was aided with the usage of already existing tools. Tracking devices were employed for capturing and tracking the user movements. Actuator devices, namely audio speakers and video projectors, were also employed as feedback devices to provide corrective instructions for users. The usage of a well known and widely used 3D game engine speeds up the software development process and facilitates interoperability with other systems.
+The SleeveAR implementation was aided with the usage of already existing tools. Tracking devices were employed for capturing and tracking the user movements. Actuator devices, namely audio speakers and video projectors, were also employed as feedback devices to provide users with corrective instructions. The usage of a well known and widely used 3D game engine speeds up the software development process and facilitates interoperability with other systems.
 
 \subsection{Tracking Devices}
 \label{sec:impl:trackdevices}
@@ -40,9 +40,9 @@ The first makes use of the recently released, Microsoft Kinect One\footnote{\url
 (previously baptized as Kinect 2), which supposedly offers a better tracking quality than 
 the previous version, Kinect 1. Although this might be true, for our implementation we wanted a much more accurate and faster source of tracking. Furthermore, we intended as well to avoid the occurrence of failures due to camera occlusion.
 
-The other available alternative at our laboratories was an OptiTrack Motion Capture system \footnote{\url{https://www.naturalpoint.com/optitrack/}}. 
+The other available alternative at our laboratories was an OptiTrack \footnote{\url{https://www.naturalpoint.com/optitrack/}} Motion Capture system. 
 This option offered us a more precise tracking, and the possibility of dealing with occlusions due to the usage of multiple cameras scattered around the room. 
-The downside is the fact that it requires body markers to be carried out by a person for successfully detect him, unlike the 
+The downside is the need for body markers to be carried out by a person for successfully detect him, unlike the 
 Kinect, which detects the human body through software algorithms. 
 
 This issue was alleviated by conceiving a comfortable and rather easy way to attach these body markers. A description of how we used the body markers can be found in Section~\ref{prototype-tracking}.
@@ -135,12 +135,12 @@ As such, three different rigid bodies were required for our solution. Each one s
 With this selection, we were able to receive tracking data from the three locations, and therefore, obtain a virtual model of the arm consisting of these same three locations. In Figure~\ref{fig:rigidbodiesattached} we can observe
 an approximate location of each rigid body attached to the arm.
 
-Our first method of placing the each rigid body was by using a Velcro bracelet around each location of the arm. 
+Our first method for the placement of each rigid body consisted of employing a Velcro bracelet around each location of the arm. 
 Each rigid body would then be attached to each bracelet. This method did not have a positive result for several reasons. 
-First, it took to long to attach each bracelet around the arm. In addition, the Velcro material provoked discomfort when pressed hard against the skin. 
+First, it took too long to attach each bracelet around the arm. In addition, the Velcro material provoked discomfort when pressed hard against the skin. 
 Additionally, the bracelets tended to move out of place, especially in the shoulder area where it was particularly hard to properly hold it in place.
 
-Having an easy way to attach, and hard to move, method of holding our rigid bodies was vital for our work. 
+Having an easy way to attach (and hard to move) method of holding our rigid bodies was vital for our work. 
 Rigid bodies moving out of place during a movement could result in unwanted and unexpected results. 
 Therefore, we created a better attachment method, by using a custom designed sleeve.
 
@@ -159,7 +159,7 @@ This solved the above mentioned issues, by fixing the sleeve in place using a ki
 Each of the rigid bodies were still attached to a bracelet, but in this case the bracelets were stitched to the sleeve. 
 This improved significantly the rigid bodies attachment due to the bracelets never leaving the sleeve, 
 while also enabling us to still squeeze them more or less depending on the user's arm thickness.
-Another advantage of using our custom sleeve is providing a better surface to project information, due to its white color. This sleeve enable us to have a smoother and more neutral surface to project information, such as color.  
+Another advantage of using our custom sleeve is the availability of a better surface to project information, due to its white color. This sleeve enabled us to have a smoother and more neutral surface to project information (using color, shapes, or other constructs).  
 
 \subsection{Projection}
 \label{prototype-projection}
