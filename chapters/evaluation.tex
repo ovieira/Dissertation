@@ -169,13 +169,17 @@ Our questions were presented in a \textit{Likert} scale of 6 values.
 
 Table~\ref{tab:userpreferences} depicts the questionnaire responses regarding the overall SleeveAR and Video usability, presented in the form of median and interquartile range. 
 
-Results from the questionnaire suggest that there are no statistically relevant differences between the usability of the two tested approaches. Indeed, there are no big discrepancies worth highlighting between the values obtained weather by observing a video or following the SleeveAR's prototype.
+Since the values obtained from the tasks are two related samples and come from the same population in
+an ordinal scale from 1 to 6, we applied the Wilcoxon Signed Ranks test to highlight possible statistically significant
+differences between using SleeveAR and video observation. Accordingly to the results, we identified a significant statistical difference in the question number eight - \textit{It was easy to see if the arm was in the wrong position} - where users preferred SleeveAr instead of video observation (\textbf{p-value = 0.011)}. This shows users found it easier to detect wrong movements using SleeveAR due to being constantly informed about their movement and corrected in real-time. 
+
+Other than that, there are no big discrepancies worth highlighting between the values obtained weather by observing a video or following the SleeveAR's prototype.
 Evidencing that, regarding user preferences, test subjects were convinced that they were capable of executing successfully all five exercises. 
 
 However, we observed users were more interested in using SleeveAr because it provided a new and interactive experience. 
 Furthermore, due to the gamification provided during the performance review, the majority of users were challenging themselves to improve their score on each exercise. Hence, they were completely focused on exercises execution, trying to make the best usage of our prototype.
 
-The questionnaire included questions regarding the visual feedback, as shown in Table~\ref{table:widgets}, to evaluate how easy it was to understand its meaning \todo{o que concluir destes valores?}. Participants were also free to share any personal thoughts regarding every visual feedback presented during the tests.
+The questionnaire included questions regarding the visual feedback, as shown in Table~\ref{table:widgets}, to evaluate how easy it was to understand its meaning. Participants were also free to share any personal thoughts regarding every visual feedback presented during the tests.
 In general, our feedback had a positive approval rate. Participants seemed to understand the purpose of each feedback projected on the floor and reacted accordingly to it. 
 On the other hand, the arm projection, even though being considered a very useful idea, received a few improvement suggestions regarding our implementation. Some participants stated some difficulty following simultaneously both the arm and floor feedback, even though they are placed in the same field of view.
 
@@ -238,7 +242,7 @@ Based on evidence from the experimental results, similar conclusions can be draw
 \multicolumn{1}{|c|}{Video Observation Average DTW} & 0.439  & 0.263  & 0.355 & 0.195 & 0.273 \\ \hline
 \multicolumn{1}{|c|}{Std Dev}                       & 0.165 & 0.092 & 0.170 & 0.066 & 0.0887 \\ \hline
 \end{tabular}
-\caption{My caption}
+\caption{Average DTW from all attempts.}
 \label{table:dtwavg}
 \end{table}
 
@@ -256,31 +260,20 @@ Not only the average DTW values become smaller, i.e. closer to the original, wit
 Indeed, with each repetition, the participant is able to see where he failed the most. Hence,
 the system enables improvements on user's next repetition.
 
-We now conduct a hypothesis t-test (test statistic follows a Student's t-distribution) on the slope of the regression line 
-
-Y = B$_0$ + B$_1$X
-
-where B$_0$ is a constant, B$_1$ is the slope (regression coefficient), X is the noise and Y the execution time value.
+We now conduct a hypothesis t-test (test statistic follows a Student's t-distribution) on the slope of the regression line Y = B$_0$ + B$_1$X where B$_0$ is a constant, B$_1$ is the slope (regression coefficient), X is the noise and Y the execution time value.
 If there is a significant linear relationship between these two variables, the slope B$_1$ 
 will not equal zero. Hence, the hypothesis to evaluate is:
 \begin{enumerate}
 \item H$_0$: B$_1$ = K. The null hypothesis states that the slope is equal to K (K = 0).
-
 \item H$_a$: B$_1$ $\neq$ K. The alternative hypothesis states that the slope is not equal to 0.
-
 \end{enumerate}
 According to Figure~\ref{fig:dtw_repetitions} data, the tscore is 17.4, which results in a p-value of 0.0367.
 Thus, the two tailed p-value is lower than the significance level of 0.05, and the null hypothesis is rejected.
 
-%\todo{There is no time for this until delivery, but for your knowledge: we could now conduct a hypothesis t-test (test statistic follows a Student's t-distribution) on the slope of the regression line Y = Β0 + Β1X, where Β0 is a constant, Β1 is the slope (regression coefficient), X is the noise and Y the execution time value. If there is a significant linear relationship between these two variables, the slope Β1 will not equal zero. Hence, the hypothesis to evaluate is
-%- H0: Β1 = K. The null hypothesis states that the slope is equal to K (K = 0)
-%- Ha: Β1 ≠ K. The alternative hypothesis states that the slope is not equal to 0}
-
-
-
-In order to evaluate the overall performance from SleeveAR compared to Video observation, a T-Student statistical test was applied to each exercise. Our data two data groups for each exercise consisted of their last attempt's DTW value in both alternatives.
-
-Our null hypothesis stated SleeveAR and Video observation average DTW are similar,hence, our goal was to statistically prove SleeveAR enables a lower average DTW. This would prove SleeveAR provides a better guidance when replicating exercises.
+In order to evaluate the overall performance from SleeveAR compared to Video observation, a T-Student statistical test was applied to each exercise. 
+Our data two data groups for each exercise consisted of their last attempt's DTW value in both alternatives.
+Our null hypothesis stated SleeveAR and Video observation average DTW are similar, hence, our goal was to statistically prove SleeveAR enables a lower average DTW. 
+This would prove SleeveAR provides a better guidance when replicating exercises.
 
 In Table~\ref{table:ttest} are depicted the calculated p-values for each exercises.
 The first four present a p-value lower than \textbf{0.05}. 
@@ -321,7 +314,7 @@ We will now present the most significant feedback, stressing both the positive a
 \begin{itemize}
 \item \textbf{Missing feedback from one of the three axis}
 
-A fully complete SleeveAR real-time feedback would need to take into account the missing axis of movement. Since this prototype focused on guiding the arm through relatively simple movements, we had not previously detected this problem. But, consequently, in the evaluation tests, we realized that it might have helped to take this into account. In Fig \textbf{fazer figura} we can see an example where, without verifying the upper arm's rotation, our system considers both arm poses to be the same. This happens because both the upper arm direction and angle between the upper and fore arm remain identical.
+A fully complete SleeveAR real-time feedback would need to take into account the missing axis of movement. Since this prototype focused on guiding the arm through relatively simple movements, we had not previously detected this problem. But, consequently, in the evaluation tests, we realized that it might have helped to take this into account. In Fig \todo{fazer figura} we can see an example where, without verifying the upper arm's rotation, our system considers both arm poses to be the same. This happens because both the upper arm direction and angle between the upper and fore arm remain identical.
 
 
 \item \textbf{Arm obstructs visibility}
