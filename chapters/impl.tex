@@ -201,18 +201,18 @@ So, now we know the cube's position in a virtual room.
 
 If we wanted to project, for instance, a small circle directly below the cube, we would need to find out in which position should the circle be projected (\ac{PrP}) so that it would be below the cube's actual physical position in the room. Hence, we need to find a way of syncing these three different positions, i.e., transforming the different referential, so that the content is easily placed wherever we want. If we tried to simply apply the cube's \ac{VP} position to the projected area, we would encounter several obstacles.
 
-Even though we might have the circle being projected perfectly below Figure~\ref{fig:projection2} A), it was not constantly synced.
+Even though we might have the circle being projected perfectly below (as shown in Figure~\ref{fig:projection2} A), it was not constantly synced.
 If we moved the cube to another \ac{PP}, closer to the edges of the projected area, like in cubes B and C from Figure~\ref{fig:projection2}, the circle would not remain below it. 
-Two reasons could cause this. First, the projected area center is not synced with the tracking coordinates center. 
+Two reasons could cause this problem. First, the projected area center is not synced with the tracking coordinates center. 
 This already generates a small offset in our projection. 
 Second, and probably what influences our projection accuracy the most, is the projection distortion closer to the edges.
 Looking at Figure~\ref{fig:projection2}, we can see the circle projection getting further away from the desired position if we move the cube between the positions A, B and C.
 
-The first solution to this problem was discovering the correct ratio between what is being tracked what is being projected on the floor. 
-If we applied this ratio on our projected content, it could diminish the observed offset. 
-Our second solution was to scale the virtual content in order to meet the physical dimensions of the room. 
+The first solution to this problem was discovering the correct ratio between what is being tracked and what is being projected on the floor. 
+If we applied this ratio to our projected content, it could diminish the observed offset. 
+Our second solution was to scale the virtual content to meet the physical dimensions of the room. 
 In other words, looking at Figure~\ref{fig:projection3}, if we projected a line with a virtual length of one unit, the resulting projection on the floor should have a length of approximately one meter.
-By doing this, the offsets observed were almost non-existing and even if they were noticeable, we could easily fixed them with some manual offset calibration.
+By doing this, the offsets observed were almost non-existing and even if they were noticeable, we could easily fix them with some manual offset calibration.
 
 \begin{comment}
 \begin{figure}[!t]
@@ -243,11 +243,11 @@ Our challenge here was discovering how a two-dimensional projection could be use
 \end{figure}
 
 Looking at Figure~\ref{fig:projection5}, we have a side-view of our example. When the projector light hits the cube, a shadow is created on the floor. 
-Since this shadow is still inside the projected area, if we move the circle to its position, it will then be projected on top of the cube.
+Since this shadow is still inside the projected area, if we move the circle to a position inside the shadow, it will then be projected on top of the cube.
 
-If we are able to project information where we want (when it comes to floor positions), to hit the cube with light, we need to know the shadow's virtual position. 
-To accomplish this, we calculated the projector virtual position and then use it to predict where the shadow would be. 
-By simulating the direction a light ray would have when originating from the projector and aimed at a cube, we could achieve a shadow virtual position. 
+If we are able to project information where we want (when it comes to floor positions), we need to know the shadow's virtual position to hit the cube with light. 
+To accomplish this task, we calculated the projector virtual position and then use it to predict where the shadow would be. 
+By simulating the direction a of light ray originating from the projector and aimed at a cube, we could achieve a shadow virtual position. 
 As is can be seen in fig Figure~\ref{fig:projection5}, by using the \textbf{Light Direction} vector, we reach the shadow virtual position. 
 From there we are already able to convert it to the correct physical position. Hence, we are able to hit the actual cube with the circle projection.
 When applying this line of thought to our tracked rigid bodies, since there are three rigid bodies attached to our Sleeve, 
@@ -267,19 +267,19 @@ As previously described in Section~\ref{sec:sleevear:approach}, the prototype sh
 We implemented a simple interface to facilitate the recording process.
 
 Assuming the therapist is already wearing the tracking sleeve, the \textbf{record} button, as shown in Figure~\ref{fig:recordinginterface}, simply had to be pressed to enable recording. 
-After pressing the recording button, an audio countdown was played through the laboratory speakers, in order to give the therapist some time to place himself at the desired exercise initial position. 
+After pressing the recording button, an audio countdown was played through the laboratory speakers, to give the therapist some time to place himself at the desired exercise initial position. 
 The recording time was set, by default, to a maximum duration of ten seconds, while the rate for capturing the arm tracking data was set to 24 times per second.
 The therapist can also stop the recording earlier if the exercise was not intended to take 10 seconds. He simply has to press the stop button.
 
 Immediately after finishing recording, new options appear in the interface. 
 A text area can be filled with the intended file name and save the exercise, or first attach more information to the file.
 
-As shown previously in Section~\ref{sec:movementguidance}, visual feedback provided during a movement includes drawing the movement path on the floor. 
+As presented previously in Section~\ref{sec:movementguidance}, visual feedback provided during a movement includes drawing the movement path on the floor. 
 But this feedback could become confusing if, for instance, the recorded movement passed twice by the same place. 
 The drawn path would intersect with itself, creating an unclear clue to where the movement might go next for the user. 
-To avoid this, we implemented the \textbf{exercise parts}, which basically allowed us to divide the exercise in different parts and, consequently, divide also the drawn trajectory generated by the prototype.
+To avoid this issue, we implemented the \textbf{exercise parts}, which basically allowed us to divide the exercise in different parts and, consequently, divide as well the drawn trajectory generated by the prototype.
 
-To divide an exercise in parts, a slider was available in our interface which, when dragged, allowed to replay back and forth the recorded exercise. 
+A slider was made available in our interface to divide an exercise in parts. Whenever dragged, it allowed to replay back and forth the recorded exercise. 
 If the "Add Part" button was pressed, a division would be created in the the exercise based on where the slider currently was positioned.
 All of this information was saved along with the exercises and stored on the computer.
 
@@ -290,7 +290,7 @@ All of this information was saved along with the exercises and stored on the com
 The stored files contained a list of all captured data from the three rigid bodies, as described in Section~\ref{prototype-tracking}. 
 Each of the list entries contained the position and rotation from each rigid body and also the required information to identify the different exercise parts for assigned exercise parts. Otherwise, the exercises would be treated as one full movement without division.
 
-We chose to save our information in the JSON format, as opposed to XML, because it generates much smaller file sizes. In addition, it is also a more readable format, something useful for the prototype implementation and debugging.
+We chose to save information in the JSON format, as opposed to XML, because it generates much smaller file sizes. In addition, it is also a more readable format, something useful for the prototype implementation and debugging.
 
 \subsection{Guiding}
 
@@ -316,7 +316,7 @@ Second, the desired state will be updated accordingly to the current entry \ac{E
 
 Even though we were tracking rigid bodies positions, we could not blindly compare between the original and attempted positions.
 As explained in Section~\ref{sec:skeletoncomparison}, the person which recorded an exercise could have, for instance, a different arm length. Hence, even though we were storing rigid bodies positions, we generated normalized vectors to represent the arm direction. 
-Upper arm direction was a normalized vector pointing from shoulder to elbow position, while the fore arm direction was a vector from elbow to wrist.
+Upper arm direction was a normalized vector pointing from shoulder to elbow position, while the forearm direction was a vector from elbow to wrist.
 By comparing the directions for both arm regions, we eliminate the physical differences between different user's arm.
 
 \subsection{Performance Review}
@@ -324,10 +324,13 @@ By comparing the directions for both arm regions, we eliminate the physical diff
 Every time an exercise was finished, our prototype should present the user with a review of his attempt. 
 As described in our approach, the review should contain trajectory comparison between the original exercise and user's attempt.
 As for the score, we implemented a simple formula to return a value from 0 to 100.
-Unfortunately, only after finishing our user tests we discovered a better alternative, which we ended up using for our result analysis, in Section~\ref{sec:results}.
-A picture of our performance review implementation can be seen in Figure~\ref{fig:teaser} D). \todo{rever este texto...}
 
-\todo{where is described the scoring algorithm ?}
+The score starts with 100 points.
+Considering the original exercise as a list of arm positions, the user needs to advance through each position to finish the exercise, as explained previously. Every time the patient gets too far away from the desired position, we start removing points from his score. In other words, the more wrong movements are made, the lower the score will be, eventually reaching 0.
+This scoring method is a proof of concept to help us develop and evaluate our approach. It is accurate enough to give the user a general motivational awareness of current progress.
+Despite that, this approach proved to be sufficient to spawn the desire to improve their score, hence improve their overall performance.
+A picture of our performance review implementation can be seen in Figure~\ref{fig:teaser} D).
+
 
 
 \section{Summary}

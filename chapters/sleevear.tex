@@ -35,7 +35,7 @@ Each of this phases will be individually described in the following sections.
 
 \begin{figure}[!h]
     \begin{center}
-        \includegraphics[width=0.6\textwidth]{imgs/approach/sleevear-progress}
+        \includegraphics[width=0.5\textwidth]{imgs/approach/sleevear-progress}
     \end{center}
     \caption{SleeveAR process.}
     \label{fig:sleevear-progress}
@@ -48,7 +48,6 @@ With this in mind, we wanted to maintain this relation between a therapist and a
 Based on this demonstration, SleeveAr will capture the therapist movement, and it will build and store its model for a later usage.
 By giving the therapist the responsibility of demonstrating the exercise, we do not need to worry about the physical limitations of the patient that would use our system to recreate it. 
 We are assuming the recorded exercise is already customized for the patient in question.
-
 Given these assumptions, SleeveAr must then be able to guide a patient through those exercises as best as possible. Hence, we will now describe the SleeveAR's intended behaviour for guiding a patient.
 
 
@@ -118,7 +117,7 @@ Its was mainly aimed at notifying users about a specific event. In Section~\ref{
 \minipage[t]{0.49\textwidth}
   \centering
   \includegraphics[width=0.9\linewidth]{imgs/approach/forearmfeedback}
-    \caption{Fore Arm Visual Feedback.}
+    \caption{Forearm Visual Feedback.}
     \label{fig:forearmfeedback}
     \endminipage
 \end{figure}
@@ -137,36 +136,24 @@ A useful and minimalist design was targeted for the visual feedback. There were 
 First of all, the visual information had to provide the user with a representation of his \textbf{current} position, while also showing the \textbf{desired} position. 
 These representations had to be done in a way the user would easily comprehend what to do for achieving a desired position.
 To provide suitable feedback regarding the full arm, we first applied a different design for each of the regions. Next, we will present our planned visual feedback designs.
-
-Our goal with the following feedback was to accomplish a clear correction of the users arm in the context of the several types of anatomic movements an arm can have. 
+Our goal with the following feedback designs was to accomplish a clear correction of the users' arm in the context of the several types of anatomic movements an arm can execute. 
 For each visual feedback described, we will refer to the corresponding anatomic arm movement.
 
-\subsubsection{Fore Arm}
+\subsubsection{Forearm}
 
-The fore arm feedback addresses two types of anatomic movement, known as \textbf{flexion} and \textbf{extension} of the arm. 
-This type of movements affect an angle between two parts of the body, which in this case refers to the angle between the upper and fore arm. 
+The forearm feedback addresses two types of anatomic movement, known as \textbf{flexion} and \textbf{extension} of the arm. 
+This type of movements affect an angle between two parts of the body, which in this case refers to the angle between the upper and forearm. 
 This specific angle will be denoted as the \textbf{elbow angle}.
-With this in mind, the fore arm range of motion could be summarized in extension and flexion of the arm.
+With this in mind, the forearm range of motion could be summarized in extension and flexion of the arm.
 Looking at figure \ref{fig:elbowangle}, we can see an example of two different elbow angles. 
 On the left, we observe an elbow angle $\theta$$_1$ of approximately 180 degrees, while on the right an elbow angle $\theta$$_2$ of 90 degrees.  
 Whenever extending or flexing the arm, if we are essentially changing the elbow angle, then our feedback should focus on this same angle.
 
 As we said previously, we wanted both designs to represent the current and desired state. 
-Our final design for a fore arm feedback makes use of a circle with two bars, similar to a clock with two pointers.
-
-%\subsubsection{Current State}
-
-%\begin{figure}[!t]
-%    \begin{center}
-%        \includegraphics[width=0.5\textwidth]{imgs/forearmfeedback.png}
-%    \end{center}
-%    \caption{Fore Arm Visual Feedback.}
- %    \label{fig:forearmfeedback}
-%\end{figure}
-
-To represent the current state, we use the black bar, seen in figure \ref{fig:forearmfeedback}. Whenever the user moves his fore arm, this bar will move accordingly.
-On the other hand, the desired fore arm state is represented by the green bar. 
-For the user to achieve this state, he needs to move his fore arm so that the black bar reaches the green bar.
+Our final design for a forearm feedback makes use of a circle with two bars, similar to a clock with two pointers.
+The black bar, seen in figure \ref{fig:forearmfeedback}, is used to represent the current state. Whenever the user moves his forearm, this bar will move accordingly.
+On the other hand, the desired forearm state is represented by the green bar. 
+For the user to achieve this state, he needs to move his forearm so that the black bar reaches the green bar.
 
 Two additional features were specifically introduced into this design to extend the user's awareness. 
 Depending on the distance between both bars, the circle color would fade between red (too far from goal), and green (for close enough). 
@@ -191,20 +178,7 @@ Next we present the planned design for the upper arm feedback.
     \endminipage
 \end{figure}
 
-\begin{figure}[!t]
-\minipage[t]{0.49\textwidth}
-  \centering
-  \includegraphics[width=0.8\linewidth]{imgs/approach/upperarmfeedback}
-   \caption{Upper Arm Visual Feedback.}
-   \label{fig:upperarmfeedback}
-    \endminipage\hfill
-\minipage[t]{0.49\textwidth}
-  \centering
-  \includegraphics[width=0.5\linewidth]{imgs/approach/upperarmcirclemovement}
-    \caption{Dotted circle possible directions.}
-    \label{fig:upperarmcirclemovement}
-    \endminipage
-    \end{figure}
+
 
 The upper arm movement addresses 4 types of anatomic movements. 
 The first two, \textbf{elevation} and \textbf{depression}, represent moving the arm above or below an horizontal line. 
@@ -229,6 +203,20 @@ As for the desired state, a simple circle was chosen.
 For the upper arm to achieve the desired direction the user simply has to move it until the dotted circumference surrounds the circle.
 It should be also noted that the dotted circle offset from the target is always relative to the target itself.
 
+\begin{figure}[!t]
+\minipage[t]{0.49\textwidth}
+  \centering
+  \includegraphics[width=0.8\linewidth]{imgs/approach/upperarmfeedback}
+   \caption{Upper Arm Visual Feedback.}
+   \label{fig:upperarmfeedback}
+    \endminipage\hfill
+\minipage[t]{0.49\textwidth}
+  \centering
+  \includegraphics[width=0.5\linewidth]{imgs/approach/upperarmcirclemovement}
+    \caption{Dotted circle possible directions.}
+    \label{fig:upperarmcirclemovement}
+    \endminipage
+    \end{figure}
 
 \subsubsection{Full Arm}
 
@@ -249,7 +237,7 @@ It should be also noted that the dotted circle offset from the target is always 
 
 Each of the previously presented designs are able to guide each arm region individually.
 Hence, to guide a user to a full arm position, we combined both of them as seen on fig \ref{fig:fullarmfeedback}. 
-By replacing the grey circle, used on the upper arm's design, with the elbow angle circle from the fore arm's design, we are able to use both of them simultaneously. 
+By replacing the grey circle, used on the upper arm's design, with the elbow angle circle from the forearm's design, we are able to use both of them simultaneously. 
 
 All these designs are able to guide the user to a specific, but static, position. For us to be able to guide a user throughout a movement, there needs to be some changes on it.
 
@@ -263,14 +251,14 @@ These arm color projections will help in highlighting what the user might be doi
 \subsubsection{Movement Guidance}
 \label{sec:movementguidance}
 
-It is not realistic to assume that both the upper and fore arm relative position will remain static during an arm movement. 
-For instance, in some movements the arm remains fully extended throughout the movement, whereas in others the fore arm may vary during the movement.  
-In this latter case there is an elbow angle variation, which means the fore arm desired state is continuously changing.
+It is not realistic to assume that both the upper and forearm relative position will remain static during an arm movement. 
+For instance, in some movements the arm remains fully extended throughout the movement, whereas in others the forearm may vary during the movement.  
+In this latter case there is an elbow angle variation, which means the forearm desired state is continuously changing.
 With this dynamic goal in mind, our planned feedback must then change its desired state during the movement.
 
 As for the upper arm, to help the user know where to move it, a path will be drawn showing the direction for the desired arm movement.
 If we look closely at the previously presented design, we can observe it actually focus around the circle. 
-The fore arm changes the circle itself, while the upper arm controls the dotted circumference that must cover also the circle. 
+The forearm changes the circle itself, while the upper arm controls the dotted circumference that must cover also the circle. 
 With this in mind, if we move this same circle through the movement path, we will be able to continuously inform the user about the 
 desired direction while also updating what specific elbow angle he should have. 
 In fig \ref{fig:movementguidancefeedback} we can see an example where the user is already in the middle of the exercise (at the trajectory midpoint).
@@ -291,5 +279,5 @@ From there, the main source of feedback was provided in visual form.
 \section{Summary}
 
 In this chapter we explained SleeveAR, our approach for the presented problem. Firstly, we introduced the three main phases of what we consider to be
-SleeveAr's process. Secondly, we present our planned visual design to be used when guiding patients through movements, while explaining which possible arm movements are covered by each. Finally, we describe how will audio feedback be used in our approach.
-The following chapter describes the set of tools developed and devices used to build our SleeveAr prototype following the requirements presented in this chapter.
+SleeveAR's process. Secondly, we present our planned visual design to be used when guiding patients through movements, while explaining which possible arm movements are covered by each. Finally, we describe how will audio feedback be used in our approach.
+The following chapter describes the set of tools developed and devices used to build our SleeveAR prototype following the requirements presented in this chapter.
