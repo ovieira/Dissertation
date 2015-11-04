@@ -84,10 +84,12 @@ Even though we are presenting this ordering for the four stages, half of the par
 
 \section{Performed Tasks} \label{evaluation-tasks}
 
+Next, each participants was asked to replicate five different rehabilitation exercises in two distinct stages:
+{\it Video approach}, where the participant watches a video intended exercise at least two times and then, while following the video playing, the participant executes the same movement based on the video observation; and {\it SleeveAR approach}, the exactly same previously recorded exercises, now with real-time feedback.
 
-Participants were asked to execute five different exercises which consisted of rather simple combinations of possible anatomic arm movements, described previously.
+Regarding these two approaches, half of the participants started with the former while other half with the latter.
 Each exercise consisted of different movement combinations which can be seen in Table~\ref{table:exercises}.
-These same five exercises were executed for both the above mentioned second and third stages.
+
 To store the original exercise we first had to capture it, hence, each exercise was simultaneously recorded with a video camera and with motion tracking devices. Under these circumstances, we made sure that the content being stored in video format directly represented the data being stored on SleeveAR's prototype.
 
 While in the SleeveAR phase, the users would first be presented with a small tutorial which introduced interactively each of the feedback components individually. 
@@ -167,7 +169,7 @@ The users preferences regarding using SleeveAR or Video observation help to unde
 More specifically, it evaluates how easy it was to perform the five exercises and to interpret the provided feedback, both by SleeveAR and Video.
 Our questions were presented in a \textit{Likert} scale of 6 values.
 
-Table~\ref{tab:userpreferences} depicts the questionnaire responses regarding the overall SleeveAR and Video usability, presented in the form of median and interquartile range. 
+Table~\ref{tab:userpreferences} depicts the questionnaire responses regarding the overall SleeveAR and Video usability, presented in the form of median and interquartile range. Full tables can be consulted in Appendix~\ref{appendix_questionnaire}.
 
 Since the values obtained from the tasks are two related samples and come from the same population in
 an ordinal scale from 1 to 6, we applied the Wilcoxon Signed Ranks test to highlight possible statistically significant
@@ -312,7 +314,7 @@ We will now present the most significant feedback, stressing both the positive a
 
 
 \begin{itemize}
-\item \textbf{Missing feedback from one of the three axis}
+\item \textbf{Missing feedback from one possible arm movement}
 
 A fully complete SleeveAR real-time feedback would need to take into account a missing arm movement which is the arm self rotation. Since this prototype focused on guiding the arm through relatively simple movements, we had not previously detected this problem. But, consequently, in the evaluation tests, we realized that it might have helped to take this into account. If a subject has a 90 degree flexion of the arm and maintains the upper arm direction, in case he rotates the upper arm, both the elbow angle and upper arm direction remain the same. Therefore, our prototype assumes it is the same arm position.
 
